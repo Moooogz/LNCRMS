@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
 
 *{
     font-family: "Montserrat", sans-serif;
@@ -10,20 +11,21 @@ body{
 }
 
 #navgreen {
-    background: linear-gradient(109.6deg, rgb(9, 154, 151) 11.2%, rgb(21, 205, 168) 91.1%);
+  background: radial-gradient(circle at 7.1% 15.6%, rgb(22, 160, 133) 0%, rgb(64, 240, 206) 100.3%);
+  
 }
 
 main {
     position: absolute;
     top: 80px;
     left: 320px;
-    width:80lvw;
+    width:70lvw;
     height: 100%;
     background-color: white;  
     padding: 1em;
     color: #555;
     border-radius: 8px;
-    box-shadow: 3px 3px 5px #acabab;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     border: solid 1px;
     border-color: #b9b9b9;
     
@@ -41,7 +43,7 @@ main {
     position: fixed;
     height: 100%;
     overflow: auto;
-    box-shadow: 2px 2px 5px #acabab;
+    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
   /* Sidebar links */
@@ -104,4 +106,50 @@ main {
 
   .patient-table {
     padding-top: 20px;
+    align-items: center;
   }
+
+  .patientdetails-main {
+    position: absolute;
+    align-content: center;
+    top: 70px;
+    left: 320px;
+    width:70lvw;
+    height: 100%;
+    padding: 1em;
+    color: #555;
+
+}
+
+.patientinfo {
+  display: inline-block;
+  position: relative;
+  color: green;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px 0 0 5px;
+  width: 500px;
+  margin-right: 40px;
+  box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 13px;
+  
+
+
+}
+
+.greentip{
+  display: inline-block;
+  position:absolute;
+  left: 10px;
+  padding: 0;
+  margin: 0;
+  background: radial-gradient(circle at 7.1% 15.6%, rgb(22, 160, 133) 0%, rgb(64, 240, 206) 100.3%);
+  border-radius: 5px 0 0 5px;
+  padding: 30px;
+
+}
+
+.gradient-green {
+  background: radial-gradient(circle at 7.1% 15.6%, rgb(22, 160, 133) 0%, rgb(64, 240, 206) 100.3%);
+}
+

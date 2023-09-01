@@ -1,47 +1,106 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 
 <div class='content-title'>Patients Records Table</div>
 
-<div style="margin-top: 100px;">Search: <input/></div>
+<div style="margin-top: 80px;">
+  Search: <input />
+  <button
+    class="btn btn-success"
+    data-bs-toggle="modal"
+    data-bs-target="#exampleModal"
+    style="position: absolute; right: 15px"
+  >
+    <i class="bi bi-person-plus-fill"></i> Add Patient
+  </button>
+</div>
 
+<!-- Modal -->
+<div
+  class="modal fade"
+  id="exampleModal"
+  tabindex="-1"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+  >
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content" style="background-color: #e7e9eb;">
+      <div class="modal-header gradient-green">
+        <h1 class="modal-title fs-5 text-light" id="exampleModalLabel">
+          Add patient
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <div class="input-group" style="padding: 10px">
+            <span class="input-group-text">Fullname</span>
+            <input type="text" aria-label="First name" class="form-control" placeholder="firstname">
+            <input type="text" aria-label="Last name" class="form-control"  placeholder="middlename">
+            <input type="text" aria-label="Last name" class="form-control"  placeholder="lastname">
+          </div>
+          <div class="input-group" style="padding: 10px">
+            <span class="input-group-text">Address</span>
+            <input type="text" aria-label="Address" class="form-control" placeholder="permanent address">            
+          </div>
+
+        <div style="padding: 20px">
+          First Name : <input /> 
+          Middle Name : <input /> 
+          Last Name : <input />
+        </div>
+        <div style="padding: 20px">
+          Permanent Address: <input size="60" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="patient-table">
-    <table class="table">
-        <thead class="table-secondary">
-            <th>Patient No.</th>
-            <th>Last Name</th>
-            <th>First Name</th>
-            <th>Middle Name</th>
-            <th>Gender</th>
-            <th>Age</th>
-            <th>Contact No.</th>
-            <th>Date Added No.</th>
-            <th>Action</th>
-        </thead>
-           
-        <tbody>
-            {% for x in patientsdata %}
-            <tr>               
-                <td>{{x.id}}</td>     
-                <td>{{x.last_name}}</td>   
-                <td>{{x.first_name}}</td>   
-                <td>{{x.middle_name}}</td>   
-                <td>{{x.gender}}</td>    
-                <td>{{x.age}}</td>   
-                <td>{{x.contact_no}}</td>    
-                <td>{{x.created_at}}</td>         
-                
-            </tr>
-            {% endfor %}
-        </tbody>
-      
-    </table>
-   
+  <table class="table table-sm table-bordered">
+    <thead class="table-secondary">
+      <th>Patient No.</th>
+      <th>Last Name</th>
+      <th>First Name</th>
+      <th>Middle Name</th>
+      <th>Gender</th>
+      <th>Age</th>
+      <th>Contact No.</th>
+      <th>Date Added No.</th>
+      <th>Action</th>
+    </thead>
 
-</div>  
+    <tbody>
+      {% for x in patientsdata %}
+      <tr>
+        <td>{{x.id}}</td>
+        <td>{{x.last_name}}</td>
+        <td>{{x.first_name}}</td>
+        <td>{{x.middle_name}}</td>
+        <td>{{x.gender}}</td>
+        <td>{{x.age}}</td>
+        <td>{{x.contact_number}}</td>
+        <td>{{x.created_at}}</td>
+        <td style="in">
+          <a role="button" href="#" class="btn btn-outline-danger btn-sm"
+            ><i class="bi bi-trash3"></i></a
+          >&nbsp
 
-
+          <a
+            role="button"
+            href="{% url 'patientdetails' %}"
+            class="btn btn-outline-success btn-sm"
+            ><i class="bi bi-pencil-square"></i
+          ></a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
 
 {% endblock content %}
