@@ -14,27 +14,44 @@
 
     <!--Custom CSS-->
     <link rel="stylesheet" href="{% static 'styles.css' %}">
-  
+
+    <!-- Toast message CSS -->
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css"/>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/themes/bootstrap.css"/>
+    
+    
+
   </head>
-  <body>
+  <body>  
   
     <!--NavBar and Sidebar-->
    {% include 'navbar.html' %}
    {% include 'sidebar.html' %}
 
-   <!--Main Content-->
-    
-   <main>
-    <div class="main-content">
-    {% block content  %}    
-    {% endblock content  %}
-  </div>  
-</main>
-    
 
-    
+    <!--MESSAGES-->  
+ 
+    <!--end of MESSAGES-->
 
-
+   <!--Main Content-->    
+  <main>
+      <div class="main-content">
+          {% block content  %}    
+          {% endblock content  %}
+    </div>  
+  </main>
+  <!--End of Main Content--> 
+       
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+   
+    <!--ToastMessage JavaScript -->   
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
+    
+    <script>
+      alertify.set('notifier','position', 'bottom-right');
+      alertify.success('genesis');
+      </script>
+    
   </body>
 </html>
