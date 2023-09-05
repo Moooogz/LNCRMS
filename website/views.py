@@ -13,6 +13,9 @@ def home(request):
 def patientDetails(request):
     return render(request, 'patientdetails.html',{})
 
+def indexpage(request):
+    return render(request, 'index.html',{})
+
 def login_user(request):
     if request.method == 'POST':
         uNmae = request.POST['uName']
