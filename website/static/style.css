@@ -8,6 +8,10 @@
     
 }
 
+body{
+    background-color: #f4f4f4;
+}
+
 li,a,strong, button {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
@@ -64,7 +68,7 @@ li,a,strong, button {
 }
 
 .title-container {
-    background-color: #80e399;
+    background-color: #80c3e3;
     height: 80px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
@@ -77,24 +81,239 @@ li,a,strong, button {
 .content-main {
     height: 100%;
     margin: 5px 20%;
-    box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.2)
+
 }
 
 .title-tab {
-    background-color: #04c54e;
+    background-color: #01cdfb;
     color: #edf0f1;
     padding: 5px;
 }
 
-.left-menu{
-    background-color: #76be92;
-    height: 200px;
+.container1{
+    display: inline-flex;
+    height: auto;
+    margin-top:30px;
+    width: 100%;
+    
+}
+
+.container2{
+    height: 100%;
     margin-top: 10px;
+    width: 100%;
+    background-color: white;
+    border-style: solid;
+    border-color: #b4c3d3;
+    border-width: 0 1px 1px 1px;
+}
+
+.left-menu{
     width: 250px;
+    
+    margin: 0;
+    padding: 0;
 }
 
 .reg-area{
-    background-color: #4f5770;
-    height: 200px;
-    margin-top: 10px;
+    position: relative;
+    margin-left: 10px;
+    width: 80%;
+    background-color: white;
+    border-style: solid;
+    border-color: #b4c3d3;
+    border-width: 1px;
 }
+
+.title-form{
+    color: #edf0f1 ;
+    background-color: #0088a9;
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+}
+
+.left-menu lu,li {
+    font-size: 5px;
+    text-decoration: none;
+    color: black;
+    padding: 5px;
+    list-style: none;
+    margin: 0;
+    
+
+}
+
+.active{
+    background-color: #0088a9;
+    color: #edf0f1 ;
+    padding: 10px;
+    border-radius: 5px 5px 0 0;
+    font-size: 13px;
+}
+
+.table-title{
+    color: #edf0f1 ;
+    background-color: #b4c3d3;
+    width: 100%;
+    margin-top: 20px;
+    padding: 8px;
+    
+    border-style: solid;
+    border-color: #b4c3d3;
+    border-width: 1px;
+    border-radius: 5px 5px 0 0;
+    font-size: 15px;
+    
+}
+
+.table-box{
+    margin: 20px 0;
+    padding: 0 5px 10px 10px;
+    background-color: white;
+    height: auto;
+    width: 100%;
+    
+   
+}
+
+.left-menu a{
+    display: list-item;
+    list-style: none;
+    color: black;
+    width: 100%;
+    padding: 10px;
+    border-style: solid;
+    border-color: #b4c3d3;
+    border-width: 1px;
+    background-color: white;
+}
+
+.left-menu a:hover{
+    background-color: #0087a972;
+    color: white;
+}
+
+.form-fields {
+    
+    padding: 10px;
+}
+
+.reg-input{
+    display: block;
+    border-style: solid;
+    border-color: #b4c3d3;
+    border-radius: 5px;
+    border-width: 1px;
+    padding-left: 5px;
+    width: 100%;
+    font-family: roboto;
+    color: #045164;
+   
+}
+
+.reg-label{
+    color: #5e6974 ;
+}
+
+.reg-row{
+    position: relative;
+    display:inline-flex;
+    width: 100%;
+    
+}
+
+.reg-col{
+    padding: 2px 5px;
+}
+
+.btn-save{
+    background-color: #0088a9;
+    color: white;
+    padding: 8px 25px;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.btn-save:hover{
+    background-color: #0087a9d5; 
+}
+
+table{   
+    padding: 5px 5px;
+    width: 100%;
+    border-collapse: collapse;
+    
+}
+
+th {
+    padding: 10px;
+    border: 1px solid #ddd;
+    font-size: 12px;
+    color: black;
+    background-color: #b4c3d33c;
+  }
+
+tr {
+    border: 1px solid #ddd;
+    font-size: 14px;
+    
+  }
+
+td {
+    border: 1px solid #ddd;
+    padding: 2px 5px;
+    width: auto;
+  }
+  
+#link-view{
+    color: white;
+    border: 1px solid white;
+    padding: 2px 8px;
+    background-color: #0087a99c;
+    border-radius: 5px;     
+}
+
+#link-view:hover{
+    background-color: #0087a975;
+}
+
+#link-edit{
+    color: white;
+    border: 1px solid white;
+    padding: 2px 8px;
+    background-color:rgba(0, 128, 0, 0.553);
+    border-radius: 5px;     
+}
+
+#link-edit:hover{
+    background-color:rgba(0, 128, 0, 0.4);
+}
+
+#link-delete{
+    color: white;
+    border: 1px solid white;
+    padding: 2px 8px;
+    background-color:rgba(255, 0, 0, 0.544);
+    border-radius: 5px;    
+    width: 100%; 
+}
+
+#link-delete:hover{
+    background-color:rgba(255, 0, 0, 0.4);
+}
+
+.search{
+    display: inline-flex;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+#search{
+    color: black;
+    border: 1px solid #ddd;
+    border-radius: 5px; 
+    padding: 2px 8px;
+}
+
+

@@ -1,0 +1,72 @@
+<div class="title-form bg-gradient">Add New Patient</div>
+<form method="POST">
+    {% csrf_token %}
+<div class="form-fields">
+    
+    <div class="reg-row">
+        <div class="reg-col">
+        <label class="reg-label">Lastname</label><br>
+        <input class="reg-input" name="last_name" width="30%" required>
+        </div>
+        <div class="reg-col">
+            <label class="reg-label">Firstname</label><br>
+            <input class="reg-input" name="first_name" width="30%" required>
+        </div>
+        <div class="reg-col">
+            <label class="reg-label">Middlename</label><br>
+            <input class="reg-input" name="middle_name" width="30%" required>
+        </div>
+    </div>
+
+    <br>    
+    <div class="reg-row">
+        <div class="reg-col">
+            <label class="reg-label">Age</label><br>
+            <input class="reg-input" name="age" size="10px" required>
+        </div>
+        <div class="reg-col">
+            <label class="reg-label">Birthday</label><br>
+            <input type="date" class="reg-input" name="bday" size="15px" required>
+        </div>
+        <div class="reg-col">
+            <label class="reg-label">Gender</label><br>
+            <select class="reg-input" name="gender">
+                <option selected>-options-</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+        </div>
+        <div class="reg-col">
+            <label class="reg-label">Civil Status</label><br>
+            <input class="reg-input" name="civil_status" size="20px" required> 
+        </div>
+        <div class="reg-col">
+            <label class="reg-label">Contact Number</label><br>
+            <input class="reg-input" name="contact_number" size="20px" required>
+        </div>
+    </div>
+
+    <br>
+    <div class="reg-row">        
+        <div class="reg-col">
+            <label class="reg-label">Address</label><br>
+            <input class="reg-input" name="address" size="80%" required>
+        </div>
+    </div>
+
+    <br>
+    <div class="reg-row">        
+        <div class="reg-col">
+            <label class="reg-label">Remarks</label><br>
+            <textarea class="reg-input" cols="100%" name="remarks" required></textarea>
+        </div>
+    </div>
+
+    <div class="reg-row">
+        <div class="reg-col">        
+            <button class="btn-save" type="submit">Save</button>
+        </div>
+    </div>
+</form>
+</div>
