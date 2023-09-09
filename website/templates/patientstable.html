@@ -1,12 +1,12 @@
 
 <!--PATIENTS TABLE-->
-<div class="search">
+{% comment %} <div class="search">
 <label class="reg-label">Search:</label> &nbsp
 <input class="reg-input" size="30"> &nbsp
 <a href="#" id="search"><i class="bi bi-search"></i></a>
-</div>
+</div> {% endcomment %}
 
-    <table class="patient-tables">
+    <table id="patienttable" class="patient-tables">
       <thead >
         <th>Patient No.</th>
         <th>Last Name</th>
@@ -31,8 +31,8 @@
           <td>{{x.contact_number}}</td>
           <td>{{x.created_at}}</td>
           <td>
-            <a href="#" id="link-view"><i class="bi bi-eye"></i></a>
-            <a href="#" id="link-edit"><i class="bi bi-pencil-square"></i></a>
+            <a href="{% url 'patientinfo' x.id %}" id="link-view"><i class="bi bi-eye"></i></a>
+            
             <a href="#" id="link-delete"><i class="bi bi-trash3"></i></a>
           </td>          
         </tr>

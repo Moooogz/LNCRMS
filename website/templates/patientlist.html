@@ -1,0 +1,28 @@
+
+{% extends 'index.html' %}
+
+{% block content%}
+
+
+<div class="title-tab bg-gradient">Patient List</div>
+
+<div class="container1">
+  <!--Left Menus-->
+  <div class="left-menu">
+    <div class="active-title bg-gradient">Patient Records</div>
+    <a href="#">Add Patient</a>
+    <a href="#">Medicine List</a>
+    <a href="#">Prescriptions</a>
+  </div>
+
+  <!--Add new patient form-->
+  <div class="reg-area">{% include 'newpatient.html' %}</div>
+</div>
+
+<!--Table container-->
+<div class="container2">
+  <div class="table-title bg-gradient">Patient List</div>
+  <div class="table-box">{% include 'patientstable.html' %}</div>
+</div>
+
+{%endblock%}

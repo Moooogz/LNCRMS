@@ -28,6 +28,8 @@ li,a,strong, button {
     align-items: center;
     padding: 0px 10%;
     background-color: #24242a ;
+    position:sticky;
+    top: 0px;
 
 }
 
@@ -93,7 +95,7 @@ li,a,strong, button {
 .container1{
     display: inline-flex;
     height: auto;
-    margin-top:30px;
+    margin-top:10px;
     width: 100%;
     
 }
@@ -116,7 +118,6 @@ li,a,strong, button {
 }
 
 .reg-area{
-    position: relative;
     margin-left: 10px;
     width: 80%;
     background-color: white;
@@ -144,7 +145,7 @@ li,a,strong, button {
 
 }
 
-.active{
+.active-title{
     background-color: #0088a9;
     color: #edf0f1 ;
     padding: 10px;
@@ -173,6 +174,7 @@ li,a,strong, button {
     background-color: white;
     height: auto;
     width: 100%;
+    font-size: 12px;
     
    
 }
@@ -207,17 +209,17 @@ li,a,strong, button {
     border-width: 1px;
     padding-left: 5px;
     width: 100%;
-    font-family: roboto;
     color: #045164;
    
 }
 
 .reg-label{
-    color: #5e6974 ;
+    font-size: 12px;
+    color:rgba(0, 0, 0, 0.651);
 }
 
 .reg-row{
-    position: relative;
+   
     display:inline-flex;
     width: 100%;
     
@@ -225,6 +227,7 @@ li,a,strong, button {
 
 .reg-col{
     padding: 2px 5px;
+    width: 100%;
 }
 
 .btn-save{
@@ -240,29 +243,32 @@ li,a,strong, button {
 }
 
 table{   
-    padding: 5px 5px;
+    
     width: 100%;
-    border-collapse: collapse;
+ 
     
 }
 
 th {
     padding: 10px;
-    border: 1px solid #ddd;
+   
     font-size: 12px;
     color: black;
     background-color: #b4c3d33c;
   }
 
-tr {
-    border: 1px solid #ddd;
-    font-size: 14px;
+tr {    
+    font-size: 14px; 
     
   }
 
+tr:hover{
+    background-color: #b4c3d33c;
+  }
+
 td {
-    border: 1px solid #ddd;
-    padding: 2px 5px;
+    border: 1px dotted #ddd;
+    padding: 0px 5px;
     width: auto;
   }
   
@@ -314,6 +320,104 @@ td {
     border: 1px solid #ddd;
     border-radius: 5px; 
     padding: 2px 8px;
+}
+
+.info-row1{
+    display: inline-flex;
+    width: 100%;
+}
+
+.info-row2{
+    display: block;
+    width: 100%;
+}
+
+.lbl-pname{
+    font-size:12px;
+    position: relative;
+    color: #01576d;
+}
+
+.value-pname{
+    font-size: 18px;
+    font-style: bold;
+}
+
+.col1-info{
+    margin: 20px 0;
+    margin-right: 20px;
+    padding: 10px 20px;
+    background-color:white;
+    width:60%;
+    border-left: 6px  solid #b4c3d3;
+    border-radius: 5px 0 0 5px;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+}
+
+.col2-info{
+    margin: 20px 0;
+    padding: 10px 20px;
+    background-color:white;
+    width:40%;
+    border-left: 6px  solid #b4c3d3;
+    border-radius: 5px 0 0 5px;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+}
+
+.pdetails-head{
+    width: 100%;
+    background-color: #b4c3d33c;
+    padding: 15px 20px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+}
+
+.pdetails-body {
+    padding-left:20px;
+    padding-top: 10px;
+    background-color: white;
+    width: 100%;
+    
+}
+
+.lbl-details{
+    font-size: 15px;
+    color: #01576d;
+    
+}
+
+.detials-container{
+    width: 40%;
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+}
+
+.login-box{
+    display:grid;
+    width: 350px ;
+    left: 50%;
+    margin: auto;
+    padding: 30px;
+    background-color: white;
+    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+   
+    margin-top: 150px;
+}
+
+.btn-login{
+    margin: 25px 0;
+    background-color: #0088a9;
+    color: white;
+    padding: 8px 25px;
+    border-radius: 5px;
+    border-style: none;
+}
+
+.btn-login:hover{
+    background-color: #0087a9b0;
+}
+
+#message-div{
+    height: 50px;
 }
 
 

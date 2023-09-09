@@ -1,10 +1,12 @@
-{% load static %}
-
-
-<div class="container bg-gradient">
-    <nav class="navbar fixed-top" id="navgreen">
-        <div class="container-fluid" id="logodiv">
-          <a class="navbar-brand" href="#" style="font-family: 'Ubuntu', sans-serif;">LNCRMS</a>
-        </div>
-      </nav>
-  </div>
+<header class="nav-bar">
+    <a href="/"><strong class="logo-text">LNCRMS</strong></a>
+    <nav>
+        <ul class="nav-links">
+            <li><a href="#">Dashboard</a></li>
+            <li><a href="#">Settings</a></li>
+            <li><a href="#">Patient List</a></li>
+            <li><a href="#">Medications</a></li>                    
+        </ul>
+    </nav>
+    <a href="{% url 'logoutuser' %}"><button class="logout-btn">Logout</button></a>
+</header>
