@@ -84,6 +84,7 @@ li,a,strong, button {
     height: 100%;
     margin: 5px 20%;
 
+
 }
 
 .title-tab {
@@ -108,6 +109,17 @@ li,a,strong, button {
     border-style: solid;
     border-color: #b4c3d3;
     border-width: 0 1px 1px 1px;
+}
+
+.container3{
+    height: 78%;
+    background-color: white;
+    border-style: solid;
+    border-color: #b4c3d3;
+    border-width: 0 1px 1px 1px;
+    margin-left: 250px;
+    margin-right: 40%;
+    margin: 5px 0 5px 253px;
 }
 
 .left-menu{

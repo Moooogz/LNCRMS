@@ -55,4 +55,7 @@ def logout_user(request):
     logout(request)
     return redirect('loginuser')
 
+def medications(request):        
+    return render(request, 'medications.html',{})
+
 
