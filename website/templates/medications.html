@@ -1,24 +1,78 @@
-
 {% extends 'index.html' %}
 
 {% block content%}
 
 
+
 <div class="title-tab bg-gradient">Patient List</div>
 
-<!--SIDE MENU-->
-{% include "sidemenu.html" %}
+<div class="container1">
+  <!--SIDE MENU-->
+  {% include "sidemenu.html" %}
 
   <!--Add new patient form-->
   <div class="reg-area">
+    <form method="POST">
+      {% csrf_token %}
+    <div class="title-form bg-gradient">Add Medicines</div>
+    <div class="reg-row">
+        <div class="medicine-col">
+          <label class="reg-label">Medicine Name</label><br />
+          <input class="medicine-input" name="medname" required />
+        </div>
+        <div class="medicine-col">
+          <label class="reg-label">Dosage</label><br />
+          <input class="medicine-input" name="dosage" style="width: 50%;" required/>
+        </div>
+    </div>
+
+    <div class="reg-row">
+        <div class="medicine-col">        
+          <button class="btn-save" type="submit">save medicine</button>
+        </div>   
+    </div>
+  </form>
+  </div>
+  
+</div> <!--container1-->
+
+<!--Table container-->
+<div class="container3">
+  <div class="table-title bg-gradient">Medicine List</div>
+  <div class="table-box">
+    
+    
+      <!--PATIENTS TABLE-->
+      <table id="medicine-table" class="medicine-tables">
+        <thead >
+          <th>#</th>
+          <th>Medicine Name</th>
+          <th>Dosage</th>
+          <th>Actions</th>
+        </thead>
+
+        <tbody>
+          {% for meds in medicinedata %}
+          <tr>
+            <td>{{meds.id}}</td>
+            <td>{{meds.medicine_name}}</td>
+            <td>{{meds.dosage}}</td>           
+            <td>
+              <a href="{% url "editmedicine" meds.id %}"  id="link-edit"><i class="bi bi-pencil-square"></i></a>
+
+              <a href="#" id="link-delete"><i class="bi bi-trash3"></i></a>
+            
+              
+            </td>          
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
 
   </div>
 </div>
 
-<!--Table container-->
-<div class="container3">
-  <div class="table-title bg-gradient">Patient List</div>
-  <div class="table-box">dasd</div>
-</div>
+
 
 {%endblock%}

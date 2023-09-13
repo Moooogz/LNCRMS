@@ -1,22 +1,25 @@
-
 {% extends 'index.html' %}
 
 {% block content%}
 
-
 <div class="title-tab bg-gradient">Patient List</div>
 
-<!--SIDE MENU-->
-{% include "sidemenu.html" %}
+    <div class="container1">
+      <!--SIDE MENU-->
+      {% include "sidemenu.html" %}
 
-  <!--Add new patient form-->
-  <div class="reg-area">{% include 'newpatient.html' %}</div>
-</div>
+      <!--Add new patient form-->
+      <div class="reg-area">
+        {% include 'newpatient.html' %}
+      </div>
+    </div>
 
-<!--Table container-->
-<div class="container2">
-  <div class="table-title bg-gradient">Patient List</div>
-  <div class="table-box">{% include 'patientstable.html' %}</div>
+    <!--Table container-->
+    <div class="container2">
+      <div class="table-title bg-gradient">Patient List</div>
+      <div class="table-box">
+        {% include 'patientstable.html' %}
+      </div>
 </div>
 
 {%endblock%}

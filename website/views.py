@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Patient
-from .forms import PatientForm
+from .models import Patient,Medicinelist
+from .forms import PatientForm,MedicineForm
 import os
 
 def home(request):        
@@ -31,8 +31,8 @@ def patientlist(request):
        newPatient.save()
        messages.success(request,"Added Patient Data Successfully")
        return redirect('patientlist')
-    patientsdata = Patient.objects.all()
-    return render(request, 'patientlist.html',{'patientsdata': patientsdata})
+    patientsdata = {'patientsdata': Patient.objects.all()}
+    return render(request, 'patientlist.html',patientsdata)
 
 def login_user(request):
     if request.method == 'POST':
@@ -55,7 +55,20 @@ def logout_user(request):
     logout(request)
     return redirect('loginuser')
 
-def medications(request):        
-    return render(request, 'medications.html',{})
+def medications(request):
+    if request.method == 'POST':
+       medData = {}
+       medData['medicine_name']=request.POST['medname']
+       medData['dosage']=request.POST['dosage']       
+       newMedicine = MedicineForm(medData)
+       newMedicine.save()
+       messages.success(request,"Added Medicine Successfully")
+       return redirect('medications')
+    medicinedata = {'medicinedata':Medicinelist.objects.all()}
+    return render(request, 'medications.html',medicinedata)
+
+def editmedicine(request,pk):
+    medicine_record = Medicinelist.objects.get(id=pk)
+    return render(request, 'editmedicine.html',{'medicine_record':medicine_record})
 
 
