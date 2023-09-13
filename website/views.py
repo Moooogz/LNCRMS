@@ -56,7 +56,8 @@ def logout_user(request):
     return redirect('loginuser')
 
 def medications(request):
-    if request.method == 'POST':
+    medicinedata={}
+    if 'save' in request.POST:
        medData = {}
        medData['medicine_name']=request.POST['medname']
        medData['dosage']=request.POST['dosage']       
@@ -64,7 +65,11 @@ def medications(request):
        newMedicine.save()
        messages.success(request,"Added Medicine Successfully")
        return redirect('medications')
-    medicinedata = {'medicinedata':Medicinelist.objects.all()}
+    # else:
+    #     editrecord = Medicinelist.objects.get(id=request.POST['submit'])
+    #     medicinedata['editrecord']=editrecord
+    #     messages.success(request,"Added")    
+    medicinedata['medicinedata'] = Medicinelist.objects.all()
     return render(request, 'medications.html',medicinedata)
 
 def editmedicine(request,pk):
