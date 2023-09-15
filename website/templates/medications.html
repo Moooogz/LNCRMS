@@ -50,58 +50,75 @@
           <th>Dosage</th>
           <th>Actions</th>
         </thead>
-       
+        
         <tbody>
           {% for meds in medicinedata %}
           <tr>
             <td name="medID">{{meds.id}}</td>
             <td>{{meds.medicine_name}}</td>
             <td>{{meds.dosage}}</td>           
-            <td>
-             
-              <button name="updatedetails" type='submit' value="{{meds.id}}" id="link-edit"><i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#record{{meds.id}}"></i></button>
-               
+            <td id="actions_cell">
               
-                
+              <button name="updatedetails" type='submit' value="{{meds.id}}" id="link-edit"><i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#{{meds.id}}"></i></button>
+              <form action="{% url "medications" meds.id %}" method="POST">
+                {% csrf_token %}
+              <button name="delete" type='submit' value="{{meds.id}}" id="link-delete"><i class="bi bi-trash3"></i></button>
+              </form>
+              {% comment %} <button id="link-delete"><i class="bi bi-trash3"></i></button> {% endcomment %}
+              <!-- Modal -->
+      <div class="modal fade" id="{{meds.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+        
+          <div class="modal-content">
+            <div class="title-form bg-gradient">Edit Record</div>
+            <form action="{% url "medications" meds.id %}" method="POST">
+              {% csrf_token %}
+            <div class="reg-row">
+              <div class="medicine-col"  style="width: 35%;" >
+                <label class="reg-label">Medicine #</label><br />
+                <input class="medicine-input" value="{{meds.id}}" name="medID{{meds.id}}" disabled/>
+              </div>
+              <div class="medicine-col">
+                <label class="reg-label">Medicine Name</label><br />
+                <input class="medicine-input" value="{{meds.medicine_name}}" name="medname{{meds.id}}" required/>
+              </div>
+              <div class="medicine-col" style="width: 40%;">
+                <label class="reg-label">Dosage</label><br />
+                <input class="medicine-input" value="{{meds.dosage}}" name="dosage{{meds.id}}" style="width: 90%;" required/>
+              </div>
+          </div>
 
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="record{{meds.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="title-form bg-gradient">Record No. {{meds.id}}</div>
-                          <div class="reg-row">
-                            <div class="medicine-col">
-                              <label class="reg-label">Medicine Name</label><br />
-                              <input class="medicine-input" value="{{meds.medicine_name}}" name="medname" required/>
-                            </div>
-                            <div class="medicine-col">
-                              <label class="reg-label">Dosage</label><br />
-                              <input class="medicine-input" value="{{meds.dosage}}" name="dosage" style="width: 90%;" required/>
-                            </div>
-                        </div>
-
-                        <div class="reg-row">
-                            <div class="medicine-col">        
-                              <button class="btn-save" type="submit" name="update">Update</button>
-                            </div>   
-                        </div>
-                        </div>
-                      </div>
-                    </div>
+          <div class="reg-row">
+              <div class="medicine-col">  
+                      
+                <button class="btn-save" type="submit" name="update">Update</button>
                  
+              </div>   
+          </div>
+        </form>
+          </div>
+          
+        </div>
+      </div>
+                    
+                 
+     
 
-              <a href="#" id="link-delete"><i class="bi bi-trash3"></i></a>
-         
+             
+           
+              
            
               
             </td>          
           </tr>
           {% endfor %}
+          
         </tbody>
-     
+        <form method="POST">
       </table>
-
+      
+     
+    </form>
 
   </div>
 </div>

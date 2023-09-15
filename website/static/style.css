@@ -312,9 +312,8 @@ td {
     color: white;
     border: 1px solid white;
     padding: 5px 8px;
-    background-color:rgba(255, 0, 0, 0.544);
-    border-radius: 3px;    
-    width: 100%; 
+    background-color:rgba(235, 18, 11, 0.89);
+    border-radius: 3px;  
 }
 
 #link-delete:hover{
@@ -446,6 +445,11 @@ td {
     padding: 7px 0 7px 20px;
     width: 100%;
     
+}
+
+#actions_cell{
+    display: inline-flex;
+    width:90%;
 }
 
 

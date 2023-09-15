@@ -55,8 +55,9 @@ def logout_user(request):
     logout(request)
     return redirect('loginuser')
 
-def medications(request):
-    medicinedata={}
+def medications(request,pk=''):
+    
+
     if 'save' in request.POST:
        medData = {}
        medData['medicine_name']=request.POST['medname']
@@ -65,11 +66,24 @@ def medications(request):
        newMedicine.save()
        messages.success(request,"Added Medicine Successfully")
        return redirect('medications')
-    # else:
-    #     editrecord = Medicinelist.objects.get(id=request.POST['submit'])
-    #     medicinedata['editrecord']=editrecord
-    #     messages.success(request,"Added")    
-    medicinedata['medicinedata'] = Medicinelist.objects.all()
+       
+      
+    
+    elif 'update'in request.POST: 
+        editrecord = Medicinelist.objects.get(id=pk)
+        medName=request.POST.get(f'medname{pk}',False)
+        medDosage=request.POST.get(f'dosage{pk}',False)
+        editrecord.medicine_name=medName
+        editrecord.dosage=medDosage
+        editrecord.save()
+        return redirect('medications')
+        messages.success(request,"Record Updated")
+    elif 'delete'in request.POST:
+        editrecord = Medicinelist.objects.get(id=pk)
+        editrecord.delete()
+        messages.success(request,"Record Deleted")
+        return redirect('medications')
+    medicinedata ={'medicinedata': Medicinelist.objects.all()}
     return render(request, 'medications.html',medicinedata)
 
 def editmedicine(request,pk):
@@ -77,3 +91,12 @@ def editmedicine(request,pk):
     return render(request, 'editmedicine.html',{'medicine_record':medicine_record})
 
 
+def updatemedrecord(request,pk):
+    # editrecord = Medicinelist.objects.get(id=pk)
+    # editrecord.medicine_name=request.POST[f"medname{pk}"]
+    # editrecord.dosage=request.POST[f"dosage{pk}"]
+    # editrecord.save()
+    mednameDict = request.GET.get('update',1)
+
+    messages.success(request,mednameDict)  
+    return redirect('medications')
