@@ -4,7 +4,8 @@ from .models import Patient,Medicinelist
 class PatientForm(ModelForm):
     class Meta:
         model = Patient
-        fields = ['first_name',
+        fields = ['patient_code',
+                  'first_name',
                   'middle_name',
                   'last_name',
                   'age',
@@ -13,7 +14,7 @@ class PatientForm(ModelForm):
                   'gender',
                   'address',
                   'contact_number',
-                  'remarks'                
+                  'remarks',                
                 ]
         
 

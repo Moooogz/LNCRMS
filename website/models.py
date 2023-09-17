@@ -2,6 +2,7 @@ from django.db import models
 
 class Patient(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
+    patient_code=models.CharField(max_length=50)
     first_name = models.CharField(max_length=50)
     middle_name = models.CharField(max_length=50)
     last_name = models.CharField(max_length=50)

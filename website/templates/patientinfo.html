@@ -1,60 +1,89 @@
-
 {% extends 'index.html' %}
-
+{% load custom_tags %}
 {% block content %}
 
 <div class="title-form bg-gradient">Patient Information</div>
 
 <div class="info-row1">
-    <div class="col1-info">
-        <label class="lbl-pname">PATIENT NAME : &nbsp &nbsp </label>
-        <label class="value-pname">{{patient_record.first_name}} {{patient_record.middle_name}} {{patient_record.last_name }} </label>
-    </div>
+  <div class="col1-info">
+    <label class="lbl-pname">PATIENT NAME : &nbsp &nbsp </label>
+    <label class="value-pname"
+      >{{patient_record.first_name}} {{patient_record.middle_name}}
+      {{patient_record.last_name }}
+    </label>
+  </div>
 
-    <div class="col2-info" >
-        <label class="lbl-pname">PATIENT NUMBER : &nbsp &nbsp</label>
-        <label class="value-pname">P-00{{patient_record.id}} </label>
-    </div>
+  <div class="col2-info">
+    <label class="lbl-pname">PATIENT NUMBER : &nbsp &nbsp</label>
+    <label class="value-pname">{{patient_record.patient_code}} </label>
+  </div>
 </div>
 
 <div class="info-row2">
-    <div class="detials-container">
-        <div class="pdetails-head">
-            <div class="lbl-details">DETAILS</div>
-        </div>
-
-        <div class="pdetails-body">
-            <label class="lbl-pname">ADDRESS</label><br>
-            <label class="value-pname">{{patient_record.address}} </label>
-        </div>
-
-        <div class="pdetails-body">
-            <label class="lbl-pname">AGE</label><br>
-            <label class="value-pname">{{patient_record.age}} </label>
-        </div>
-
-        <div class="pdetails-body">
-            <label class="lbl-pname">BIRTHDAY</label><br>
-            <label class="value-pname">{{patient_record.bday}} </label>
-        </div>
-
-        <div class="pdetails-body">
-            <label class="lbl-pname">CIVIL STATUS</label><br>
-            <label class="value-pname">{{patient_record.civil_status}} </label>
-        </div>
-
-        <div class="pdetails-body">
-            <label class="lbl-pname">GENDER</label><br>
-            <label class="value-pname">{{patient_record.gender}} </label>
-        </div>
-
-        <div class="pdetails-body">
-            <label class="lbl-pname">CONTACT NUMBER</label><br>
-            <label class="value-pname">{{patient_record.contact_number}} </label>
-        </div>
+  <div class="detials-container">
+    <div class="pdetails-head">
+      <div class="lbl-details">Details</div>
     </div>
-    
-</div>
 
+    <div class="pdetails-body">
+      <label class="lbl-pname">ADDRESS</label><br />
+      <label class="value-pname">{{patient_record.address}} </label>
+    </div>
+
+    <div class="pdetails-body">
+      <label class="lbl-pname">AGE</label><br />
+      <label class="value-pname">{{patient_record.age}} </label>
+    </div>
+
+    <div class="pdetails-body">
+      <label class="lbl-pname">BIRTHDAY</label><br />
+      <label class="value-pname">{{patient_record.bday}} </label>
+    </div>
+
+    <div class="pdetails-body">
+      <label class="lbl-pname">CIVIL STATUS</label><br />
+      <label class="value-pname">{{patient_record.civil_status}} </label>
+    </div>
+
+    <div class="pdetails-body">
+      <label class="lbl-pname">GENDER</label><br />
+      <label class="value-pname">{{patient_record.gender}} </label>
+    </div>
+
+    <div class="pdetails-body">
+      <label class="lbl-pname">CONTACT NUMBER</label><br />
+      <label class="value-pname">{{patient_record.contact_number}} </label>
+    </div>
+  </div>
+
+  <div class="details-history">
+    <div class="phistory-head">
+      <div class="lbl-details">Medical History</div>
+    </div>
+
+    <div class="medicalhistorytable">
+            <!--MEDICINES TABLE-->
+            {% Medhistory patient_record.id as records %}
+            <table id="medicine-table" class="medicine-tables">
+            <thead>
+                <th>Medical History</th>
+                <th>Date/Time Consulted</th>
+            </thead>
+            
+            {% for record in records %}
+            <tr>
+            <td>{{record.remarks}}</td>
+            <td>{{record.created_at}}</td>
+            </tr>
+            {% endfor %}
+                {% comment %} {% for precord in patient_record %}
+                    <td>{{patient_record.remarks}}</td>
+                    <td>{{patient_record.created_at}}</td>
+                {% endfor %}  {% endcomment %}
+            </table>
+            <!--end of MEDICINES TABLE-->
+    </div>
+  </div>
+</div>
 
 {% endblock content %}

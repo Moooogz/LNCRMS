@@ -11,3 +11,8 @@ def dugtong(a,b):
 def testing1(pk):
     medicine_record = Medicinelist.objects.get(id=pk)
     return medicine_record.medicine_name
+
+@register.simple_tag
+def Medhistory(id):
+    Phistory = Patient.objects.filter(id=id)
+    return Phistory

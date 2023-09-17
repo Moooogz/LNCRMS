@@ -106,17 +106,13 @@ li,a,strong, button {
     margin-top: 10px;
     width: 100%;
     background-color: white;
-    border-style: solid;
-    border-color: #b4c3d3;
-    border-width: 0 1px 1px 1px;
+    box-shadow: 0 5px 15px 0 #00000026;
 }
 
 .container3{
     height: 78%;
     background-color: white;
-    border-style: solid;
-    border-color: #b4c3d3;
-    border-width: 0 1px 1px 1px;
+    box-shadow: 0 5px 15px 0 #00000026;
     margin-left: 250px;
     margin-right: 40%;
     margin: 5px 0 5px 253px;
@@ -133,9 +129,7 @@ li,a,strong, button {
     margin-left: 10px;
     width: 80%;
     background-color: white;
-    border-style: solid;
-    border-color: #b4c3d3;
-    border-width: 1px;
+    box-shadow: 0 5px 15px 0 #00000026;
 }
 
 .title-form{
@@ -197,9 +191,7 @@ li,a,strong, button {
     color: black;
     width: 100%;
     padding: 10px;
-    border-style: solid;
-    border-color: #b4c3d3;
-    border-width: 1px;
+    box-shadow: 0 5px 15px 0 #00000026;
     background-color: white;
 }
 
@@ -334,12 +326,13 @@ td {
 }
 
 .info-row1{
+    
     display: inline-flex;
     width: 100%;
 }
 
 .info-row2{
-    display: block;
+    display: inline-flex;
     width: 100%;
 }
 
@@ -362,7 +355,7 @@ td {
     width:60%;
     border-left: 6px  solid #b4c3d3;
     border-radius: 5px 0 0 5px;
-    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 5px 15px 0 #00000026;
 }
 
 .col2-info{
@@ -372,7 +365,7 @@ td {
     width:40%;
     border-left: 6px  solid #b4c3d3;
     border-radius: 5px 0 0 5px;
-    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 5px 15px 0 #00000026;
 }
 
 .pdetails-head{
@@ -380,7 +373,7 @@ td {
     background-color: #b4c3d33c;
     padding: 15px 20px;
     border-radius: 5px 5px 0 0;
-    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 5px 15px 0 #00000026;
 }
 
 .pdetails-body {
@@ -398,8 +391,10 @@ td {
 }
 
 .detials-container{
+    margin-right: 20px;
+    display: block;
     width: 40%;
-    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 5px 15px 0 #00000026;
 }
 
 .login-box{
@@ -409,7 +404,7 @@ td {
     margin: auto;
     padding: 30px;
     background-color: white;
-    box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.2), 0 1px 1px 0 rgba(0, 0, 0, 0.24);
+    box-shadow: 0 5px 15px 0 #00000026;
    
     margin-top: 150px;
 }
@@ -452,4 +447,25 @@ td {
     width:90%;
 }
 
+hr{
+    margin: 0;
+    padding: 0;
+}
 
+.details-history {
+    background-color:white;
+    width: 100%;
+    box-shadow: 0 5px 15px 0 #00000026;
+}
+
+.phistory-head{
+    width: 100%;
+    background-color: #b4c3d33c;
+    padding: 15px 20px;
+    border-radius: 5px 5px 0 0;
+   
+}
+
+.medicalhistorytable {
+    padding: 15px;
+}

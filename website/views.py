@@ -11,12 +11,20 @@ def home(request):
 
 
 def patientinfo(request,pk):
+    
     patient_record = Patient.objects.get(id=pk)
+    
     return render(request, 'patientinfo.html',{'patient_record':patient_record})
 
 def patientlist(request):
     if request.method == 'POST':
        datas = {}
+       if Patient.objects.all().count()==0:
+           datas['patient_code']='P-001'
+       else:       
+           lastcode=int(Patient.objects.latest('id').patient_code.split('-')[1])
+           lastcode= lastcode+1
+           datas['patient_code']=f"P-{lastcode:03}"
        datas['first_name']=request.POST['first_name']
        datas['middle_name']=request.POST['middle_name']
        datas['last_name']=request.POST['last_name']
