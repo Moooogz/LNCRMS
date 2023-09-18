@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Patient,Medicinelist
-from .forms import PatientForm,MedicineForm
+from .models import Patient,Medicinelist,Patienthistory,Prescription
+from .forms import PatientForm,MedicineForm,PatienthistoryForm
 import os
 
 def home(request):        
@@ -10,21 +10,26 @@ def home(request):
     return render(request, 'home.html',{'patientsdata': patientsdata})
 
 
-def patientinfo(request,pk):
-    
+def patientinfo(request,pk):    
     patient_record = Patient.objects.get(id=pk)
-    
-    return render(request, 'patientinfo.html',{'patient_record':patient_record})
+    medicationrecord = Prescription.objects.filter(patient_code=patient_record.patient_code)
+    context = { 'medicationrecord': medicationrecord,
+               'patient_record':patient_record,
+               }
+    return render(request, 'patientinfo.html',context)
 
 def patientlist(request):
     if request.method == 'POST':
+       phistory={}
        datas = {}
        if Patient.objects.all().count()==0:
            datas['patient_code']='P-001'
+           phistory['patient_code']='P-001'
        else:       
            lastcode=int(Patient.objects.latest('id').patient_code.split('-')[1])
            lastcode= lastcode+1
            datas['patient_code']=f"P-{lastcode:03}"
+           phistory['patient_code']=f"P-{lastcode:03}"           
        datas['first_name']=request.POST['first_name']
        datas['middle_name']=request.POST['middle_name']
        datas['last_name']=request.POST['last_name']
@@ -34,9 +39,21 @@ def patientlist(request):
        datas['gender']=request.POST['gender']
        datas['address']=request.POST['address']
        datas['contact_number']=request.POST['contact_number']
-       datas['remarks']=request.POST['remarks']
+       phistory['remarks']=request.POST['remarks']
+             
+       if Patienthistory.objects.all().count()==0:
+           phistory['consultCounter']="1"
+       else:
+           phistory['consultCounter']=int(Patienthistory.objects.latest('id').consultCounter)+1
+
+       #patienttable
        newPatient = PatientForm(datas)
        newPatient.save()
+
+       #PatienthistoryTable
+       newPatienthistory = PatienthistoryForm(phistory)
+       newPatienthistory.save()
+
        messages.success(request,"Added Patient Data Successfully")
        return redirect('patientlist')
     patientsdata = {'patientsdata': Patient.objects.all()}

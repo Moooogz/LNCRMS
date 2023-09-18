@@ -1,5 +1,5 @@
 from django import template
-from ..models import Patient,Medicinelist
+from ..models import Patient,Medicinelist,Prescription,Patienthistory
 
 register = template.Library()
 
@@ -13,6 +13,6 @@ def testing1(pk):
     return medicine_record.medicine_name
 
 @register.simple_tag
-def Medhistory(id):
-    Phistory = Patient.objects.filter(id=id)
+def Medhistory(pcode):
+    Phistory = Patienthistory.objects.filter(patient_code=pcode)
     return Phistory

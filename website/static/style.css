@@ -202,7 +202,7 @@ li,a,strong, button {
 
 .form-fields {
     
-    padding: 10px;
+    padding: 10px 20px;
 }
 
 .reg-input{
@@ -370,7 +370,7 @@ td {
 
 .pdetails-head{
     width: 100%;
-    background-color: #b4c3d33c;
+    background-color: #6e80943c;
     padding: 15px 20px;
     border-radius: 5px 5px 0 0;
     box-shadow: 0 5px 15px 0 #00000026;
@@ -386,7 +386,7 @@ td {
 
 .lbl-details{
     font-size: 15px;
-    color: #01576d;
+    color: #037692;
     
 }
 
@@ -395,6 +395,7 @@ td {
     display: block;
     width: 40%;
     box-shadow: 0 5px 15px 0 #00000026;
+     background-color:white;
 }
 
 .login-box{
@@ -455,17 +456,44 @@ hr{
 .details-history {
     background-color:white;
     width: 100%;
-    box-shadow: 0 5px 15px 0 #00000026;
+    box-shadow: 0 5px 15px 0 #00000026;    
 }
 
 .phistory-head{
+    
+    display: inline-flex;
     width: 100%;
-    background-color: #b4c3d33c;
-    padding: 15px 20px;
+    background-color: #6e80943c;
+    padding: 15px 20px 0 20px;
     border-radius: 5px 5px 0 0;
    
 }
 
 .medicalhistorytable {
     padding: 15px;
+}
+
+.add-medication{
+    margin-left: 30px;
+}
+
+.add-medication a{
+   color:rgb(0, 0, 0,0.8);
+}
+
+.add-medication a:hover{
+    color: #0087a9b0;
+ }
+
+input, textarea{
+    background-color: rgb(250, 255, 189,0.7);
+    font-family: 'Arial';
+}
+
+#table-medications{
+    text-align: center;
+}
+
+#table-medications th{
+    vertical-align:middle;
 }

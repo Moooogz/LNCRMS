@@ -12,11 +12,27 @@ class Patient(models.Model):
     gender = models.CharField(max_length=50)
     address = models.CharField(max_length=100)
     contact_number = models.CharField(max_length=50)
-    remarks = models.CharField(max_length=200)
-
-
+    
 class Medicinelist(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     medicine_name = models.CharField(max_length=100)
     dosage = models.CharField(max_length=50)
+
+class Patienthistory(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    consultCounter = models.CharField(max_length=50)
+    patient_code=models.CharField(max_length=50)
+    remarks = models.CharField(max_length=500)
+
+class Prescription(models.Model):
+    created_at = models.DateField(auto_now_add=True)
+    patient_code=models.CharField(max_length=50)
+    quantity = models.CharField(max_length=50)
+    medicine_name = models.CharField(max_length=100)
+    dosage = models.CharField(max_length=50)
+    morning = models.CharField(max_length=50)
+    noon = models.CharField(max_length=50)
+    evening = models.CharField(max_length=50)
+
+
     
