@@ -485,8 +485,8 @@ hr{
     color: #0087a9b0;
  }
 
-input, textarea{
-    background-color: rgb(250, 255, 189,0.7);
+input, textarea, select{
+    background-color: rgb(250, 255, 189,0.3);
     font-family: 'Arial';
 }
 

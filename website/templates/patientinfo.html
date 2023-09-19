@@ -63,64 +63,70 @@
       <div class="add-medication"><a href="#"><h4><i class="bi bi-plus-circle-fill"></i></h4></a></div>
     </div>
 
-    <div class="medicalhistorytable">
-            <!--MEDICINES TABLE-->
-            {% Medhistory patient_record.patient_code as records %}
+
+              <!--MEDICAL RECORD TABLE-->
+              <div class="medicalhistorytable">
+              
+                {% Medhistory patient_record.patient_code as records %}
+                <table id="table-medications" class="table table-sm table-bordered">
+                  <thead class="table-primary">
+                    <th>Medical History</th>
+                    <th>Date/Time Consulted</th>
+                </thead>
+                
+                {% for record in records %}
+                <tr>
+                <td>{{record.remarks}}</td>
+                <td>{{record.created_at}}</td>
+                </tr>
+                {% endfor %}             
+                </table>
+                </div>
+                <!--end of MEDICAL RECORD TABLE-->
+
+
+            <div class="phistory-head">
+              <div class="lbl-details">Medications</div>
+              <div class="add-medication"><a href="#"><h4><i class="bi bi-printer-fill"></i></h4></a></div>
+            </div>
+            <div>
+              <div>
+    
+            <!--MEDICAL HISTORY TABLE-->
+            <div class="medicalhistorytable">
             <table id="table-medications" class="table table-sm table-bordered">
               <thead class="table-primary">
-                <th>Medical History</th>
-                <th>Date/Time Consulted</th>
-            </thead>
-            
-            {% for record in records %}
-            <tr>
-            <td>{{record.remarks}}</td>
-            <td>{{record.created_at}}</td>
-            </tr>
-            {% endfor %}             
-            </table>
-            <!--end of MEDICINES TABLE-->
-    </div>
-    <div class="phistory-head">
-      <div class="lbl-details">Medications</div>
-      <div class="add-medication"><a href="#"><h4><i class="bi bi-printer-fill"></i></h4></a></div>
-    </div>
-    
-    <div class="medicalhistorytable">
-    <table id="table-medications" class="table table-sm table-bordered">
-      <thead class="table-primary">
-        <tr>
-        <th rowspan="2">Quantity</th>
-        <th rowspan="2">Medication/Preparation</th>
-        <th rowspan="2">Dosage</th>
-        <th colspan="3">Schedule of Intake</th>
-        </tr>
-        <tr>
-          <th>7:00 AM</th>
-          <th>1:00 PM</th>
-          <th>7:00 PM</th>          
-          </tr>      
-      </thead>
-        
-      <tbody>
-        {% if medicationrecord %}        
-        {% for medrecord in medicationrecord %}
-        <tr>
-        <td>{{medrecord.quantity}}</td>
-        <td>{{medrecord.medicine_name}}</td>
-        <td>{{medrecord.dosage}}</td>
-        <td>{{medrecord.morning}}</td>
-        <td>{{medrecord.noon}}</td>
-        <td>{{medrecord.evening}}</td>                      
-        </tr>
-        {% endfor %}
-        {% else %}
-        <td colspan="6">No current prescription data</td>
-        {% endif %}
-      </tbody>
-
-    </table>
-    </div>
+                <tr>
+                <th rowspan="2">Quantity</th>
+                <th rowspan="2">Medication/Preparation</th>
+                <th rowspan="2">Dosage</th>
+                <th colspan="3">Schedule of Intake</th>
+                </tr>
+                <tr>
+                  <th>7:00 AM</th>
+                  <th>1:00 PM</th>
+                  <th>7:00 PM</th>          
+                  </tr>      
+              </thead>        
+              <tbody>
+                {% if medicationrecord %}        
+                {% for medrecord in medicationrecord %}
+                <tr>
+                <td>{{medrecord.quantity}}</td>
+                <td>{{medrecord.medicine_name}}</td>
+                <td>{{medrecord.dosage}}</td>
+                <td>{{medrecord.morning}}</td>
+                <td>{{medrecord.noon}}</td>
+                <td>{{medrecord.evening}}</td>                      
+                </tr>
+                {% endfor %}
+                {% else %}
+                <td colspan="6">No current prescription data</td>
+                {% endif %}
+              </tbody>
+            </table>    
+            </div>
+            <!--END MEDICAL HISTORY TABLE-->
     
 
   </div>
