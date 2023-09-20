@@ -243,6 +243,15 @@ li,a,strong, button {
     border-style: none;
 }
 
+.btn-addmed{
+    background-color: #0088a9;
+    color: white;
+    padding: 6px 20px;
+    border-radius: 5px;
+    border-style: none;
+    margin-top: 22px;
+}
+
 .btn-save:hover{
     background-color: #0087a9d5; 
 }
@@ -460,12 +469,12 @@ hr{
 }
 
 .phistory-head{
-    
     display: inline-flex;
     width: 100%;
     background-color: #6e80943c;
     padding: 15px 20px 0 20px;
     border-radius: 5px 5px 0 0;
+    justify-content:space-between;
    
 }
 
@@ -496,4 +505,17 @@ input, textarea, select{
 
 #table-medications th{
     vertical-align:middle;
+}
+
+datalist{
+    width: 100%;
+}
+
+.accordion-button{
+    padding: 5px 15px;
+    margin: 0;
+}
+
+#additem-form{
+    display: flex;
 }

@@ -10,11 +10,16 @@ def home(request):
     return render(request, 'home.html',{'patientsdata': patientsdata})
 
 
-def patientinfo(request,pk):    
+def patientinfo(request,pk):
+    if 'addtoprescription' in request.POST:
+        
+        print(request.POST['pmvalue'])
+    medicines_list = Medicinelist.objects.all()   
     patient_record = Patient.objects.get(id=pk)
     medicationrecord = Prescription.objects.filter(patient_code=patient_record.patient_code)
     context = { 'medicationrecord': medicationrecord,
                'patient_record':patient_record,
+               'medicines_list':medicines_list,
                }
     return render(request, 'patientinfo.html',context)
 

@@ -87,11 +87,83 @@
 
             <div class="phistory-head">
               <div class="lbl-details">Medications</div>
-              <div class="add-medication"><a href="#"><h4><i class="bi bi-printer-fill"></i></h4></a></div>
+              <div class="add-medication" ><a href="#"><h4><i class="bi bi-printer-fill"></i></h4></a></div>
             </div>
-            <div>
-              <div>
-    
+
+            
+                
+                
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                      data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                      <i class="bi bi-plus-circle-fill"></i> &nbsp Add Item in prescription
+                    </button>
+                  </h2>
+                  <div id="flush-collapseOne" class="accordion-collapse collapse" data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body">
+
+                      <div class="accordion-item">
+                       
+                              <div class="reg-row">
+                                <div class="medicine-col" style="width:100%;">
+                                  <label class="reg-label">Medicine Name</label><br />
+                                  <input class="medicine-input" list="medlist" name="medName" required />
+                                  <datalist id="medlist">
+                                    {% for medListItem in medicines_list %}
+                                    <option value="{{medListItem.medicine_name}}">
+                                      {% endfor %}
+                                  </datalist>
+                                </div>
+                              
+
+                                <div class="medicine-col">
+                                  <label class="reg-label">Dosage</label><br />
+                                  <input class="medicine-input" name="dosage" required />
+                                </div>
+
+                                <div class="medicine-col">
+                                  <label class="reg-label">Quantity</label><br />
+                                  <input class="medicine-input" name="qty" style="width:80%;" required />
+                                </div>
+                            </div>
+
+                        <div class="reg-row" style="padding-top:0px">
+                          <form method="POST" id="additem-form">
+                            {% csrf_token %}
+                            <div class="medicine-col">
+                              <label class="reg-label">7AM</label><br />
+                              <input class="medicine-input" name="am" required />
+                            </div>
+
+                            <div class="medicine-col">
+                              <label class="reg-label">1PM</label><br />
+                              <input class="medicine-input" name="noon" required />
+                            </div>
+
+                            <div class="medicine-col">
+                              <label class="reg-label">5PM</label><br />
+                              <input class="medicine-input" name="pmvalue" required />
+                            </div>
+
+                            <div class="medicine-col">
+                             
+                              <button class="btn-addmed" type="submit" name="addtoprescription">add to prescription</button>
+                          
+                            </div>
+                          </form>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+              
+            
+                
+            
+
+            
             <!--MEDICAL HISTORY TABLE-->
             <div class="medicalhistorytable">
             <table id="table-medications" class="table table-sm table-bordered">
