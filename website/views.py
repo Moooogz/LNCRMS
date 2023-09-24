@@ -1,28 +1,88 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from .models import Patient,Medicinelist,Patienthistory,Prescription
-from .forms import PatientForm,MedicineForm,PatienthistoryForm
+from .models import *
+from .forms import *
 import os
 
-def home(request):        
-    patientsdata = Patient.objects.all()
-    return render(request, 'home.html',{'patientsdata': patientsdata})
+def consultCounter():
+    counter = "0"
+    if Patienthistory.objects.all().count()==0:
+        counter="1"
+    else:
+        counter=int(Patienthistory.objects.latest('id').consultCounter)+1
+    return counter
 
-
-def patientinfo(request,pk):
-    if 'addtoprescription' in request.POST:
-        
-        print(request.POST['pmvalue'])
+def patientinfoData(pk):
     medicines_list = Medicinelist.objects.all()   
     patient_record = Patient.objects.get(id=pk)
     medicationrecord = Prescription.objects.filter(patient_code=patient_record.patient_code)
     context = { 'medicationrecord': medicationrecord,
                'patient_record':patient_record,
                'medicines_list':medicines_list,
+               'pID':pk,
                }
+    return context
+
+
+def home(request):        
+    patientsdata = Patient.objects.all()
+    return render(request, 'home.html',{'patientsdata': patientsdata})
+
+def medicalhistorytb(request,pk):
+    context = patientinfoData(pk)
+    pCode=patientinfoData(pk)['patient_record'].patient_code
+    form =PatientsAttachmentsForm()
+    pHistoryForm = PatienthistoryForm()
+    
+    if request.method=='POST':
+        pHistoryForm = PatienthistoryForm(request.POST,request.FILES)
+        form = PatientsAttachmentsForm(request.POST,request.FILES)
+        # if form.is_valid():
+        #     a=form.save(commit=False)
+        #     a.patient_code = patient_record.patient_code
+        #     a.save()
+        if pHistoryForm.is_valid():
+            pHistoryForm_final = pHistoryForm.save(commit=False)
+            pHistoryForm_final.consultCounter = str(consultCounter())
+            pHistoryForm_final.patient_code = pCode
+            pHistoryForm_final.save()
+            print("success")
+        else:
+            print("error")
+    context['form']=form
+    context['pHistoryForm']=pHistoryForm
+   
+    return render(request,'tables/medicalhistorytb.html',context)    
+
+def medicalhistoryinfo(request,pk):
+    context={}
+    return render(request,'medicalhistoryinfo.html',context) 
+
+
+def patientinfo(request,pk):
+    
+    context = patientinfoData(pk)
+    pCode=patientinfoData(pk)['patient_record'].patient_code
+    if 'addtoprescription' in request.POST:
+        newPrescriptionData={}        
+        newPrescriptionData['patient_code'] = pCode
+        newPrescriptionData['quantity']=request.POST['qtyvalue']
+        newPrescriptionData['medicine_name']=request.POST['medName']
+        newPrescriptionData['dosage'] =request.POST['dosage']
+        newPrescriptionData['morning'] =request.POST['am']
+        newPrescriptionData['noon'] =request.POST['noon']
+        newPrescriptionData['evening'] =request.POST['pmvalue']
+        newPrescription = PrescriptionForm(newPrescriptionData)
+        newPrescription.save()
     return render(request, 'patientinfo.html',context)
 
+def deleteitemprescription(request,pID,pk):
+    PrescriptionItem= Prescription.objects.get(id=pk)
+    PrescriptionItem.delete()
+    return redirect(f'/patientinfo/{pID}')
+    
+    
 def patientlist(request):
     if request.method == 'POST':
        phistory={}
@@ -45,11 +105,9 @@ def patientlist(request):
        datas['address']=request.POST['address']
        datas['contact_number']=request.POST['contact_number']
        phistory['remarks']=request.POST['remarks']
-             
-       if Patienthistory.objects.all().count()==0:
-           phistory['consultCounter']="1"
-       else:
-           phistory['consultCounter']=int(Patienthistory.objects.latest('id').consultCounter)+1
+       phistory['consultCounter']=str(consultCounter())
+       
+        
 
        #patienttable
        newPatient = PatientForm(datas)
@@ -63,6 +121,8 @@ def patientlist(request):
        return redirect('patientlist')
     patientsdata = {'patientsdata': Patient.objects.all()}
     return render(request, 'patientlist.html',patientsdata)
+
+
 
 def login_user(request):
     if request.method == 'POST':

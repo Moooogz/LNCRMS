@@ -482,6 +482,11 @@ hr{
     padding: 15px;
 }
 
+.add_medicalhistorytable{
+    padding: 30px;
+}
+
+
 .add-medication{
     margin-left: 30px;
 }
@@ -495,7 +500,7 @@ hr{
  }
 
 input, textarea, select{
-    background-color: rgb(250, 255, 189,0.3);
+    background-color: rgb(250, 255, 189,0.2);
     font-family: 'Arial';
 }
 
@@ -519,3 +524,20 @@ datalist{
 #additem-form{
     display: flex;
 }
+
+.medicalhistorytable input,textarea{
+    border-style: solid;
+    border-color: silver;
+    border-radius: 3px;
+    border-width: 1px;
+    padding-left: 5px;
+    padding: 2px 5px;
+    width: 100%;
+}
+
+.label_1{
+    font-size: 15px;
+    font-weight: 600;
+    color:black;  
+}
+

@@ -13,6 +13,16 @@ class Patient(models.Model):
     address = models.CharField(max_length=100)
     contact_number = models.CharField(max_length=50)
     
+    def __str__(self):
+        return self.patient_code
+   
+    
+    
+class PatientsAttachments(models.Model):
+    patient_code=models.CharField(max_length=50,null=True, blank=True)
+    name = models.CharField(max_length=100,null=True, blank=True)
+    fileattachments = models.ImageField(null=True, blank=True)
+    
 class Medicinelist(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     medicine_name = models.CharField(max_length=100)
@@ -22,7 +32,8 @@ class Patienthistory(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     consultCounter = models.CharField(max_length=50)
     patient_code=models.CharField(max_length=50)
-    remarks = models.CharField(max_length=500)
+    diagnosis = models.TextField(default="*under observation",max_length=500,null=True, blank=True)
+    remarks = models.TextField(max_length=500,null=True, blank=True)
 
 class Prescription(models.Model):
     created_at = models.DateField(auto_now_add=True)

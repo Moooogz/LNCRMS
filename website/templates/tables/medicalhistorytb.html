@@ -1,0 +1,35 @@
+
+{% extends 'patientinfo.html' %}
+{% load custom_tags %}
+
+
+
+ {% block btn-back %} <a href="javascript:history.go(-1)"><h4 style="color:black;"><i class="bi bi-arrow-left-square-fill"></i></h4></a>{% endblock btn-back %}
+ {% block title %}
+
+ <div class="lbl-details">Add Record</div>
+
+ 
+ {% endblock title %}
+ {% block content1 %}
+<div class="add_medicalhistorytable">
+<form method='POST' action='' enctype='multipart/form-data'>
+    {% csrf_token %}
+    <label class="label_1">Remarks</label>
+    {{pHistoryForm.remarks}}
+
+    <label class="label_1">Diagnosis</label>
+    {{pHistoryForm.diagnosis}}
+
+
+    {{form.name.label_tag}}
+    {{form.name}}
+    {{form.fileattachments}}
+
+    
+
+    <input type='submit' name='saveattachments'>
+</form>
+</div>
+    {% endblock content1 %}
+

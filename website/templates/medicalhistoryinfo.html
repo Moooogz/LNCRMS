@@ -1,0 +1,18 @@
+
+{% extends 'patientinfo.html' %}
+{% load custom_tags %}
+
+
+
+ {% block btn-back %} <a href="javascript:history.go(-1)"><h4 style="color:black;"><i class="bi bi-arrow-left-square-fill"></i></h4></a>{% endblock btn-back %}
+ {% block title %}
+ <div class="lbl-details">Patient History Details</div>
+
+ 
+ {% endblock title %}
+ {% block content1 %}
+<div class="add_medicalhistorytable">
+<h1>Patient History Details</h1>
+</div>
+    {% endblock content1 %}
+
