@@ -11,8 +11,21 @@
  
  {% endblock title %}
  {% block content1 %}
-<div class="add_medicalhistorytable">
-<h1>Patient History Details</h1>
+
+ <div class="add_medicalhistorytable card">
+    <label class="lbl-pname2">CONSULTATION DATE/TIME</label><br />
+    <label class="value-pname">{{patient_history.created_at}} </label>
+    </div>
+    
+
+<div class="add_medicalhistorytable  card">
+<label class="lbl-pname2">DIAGNOSIS</label><br />
+<label class="value-pname">{{patient_history.diagnosis}} </label>
 </div>
+
+<div class="add_medicalhistorytable  card">
+    <label class="lbl-pname2">REMARKS</label><br />
+    <label class="value-pname">{{patient_history.remarks}} </label>
+    </div>
     {% endblock content1 %}
 

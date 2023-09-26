@@ -15,6 +15,7 @@
 <div class="add_medicalhistorytable">
 <form method='POST' action='' enctype='multipart/form-data'>
     {% csrf_token %}
+    
     <label class="label_1">Remarks</label>
     {{pHistoryForm.remarks}}
 

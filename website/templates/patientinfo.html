@@ -80,7 +80,7 @@
                 
                 {% for record in records %}
                 <tr>
-                <td>{{record.remarks}} &nbsp <a class="link link-info" href="{% url "medicalhistoryinfo" 12%}">View</a></td>
+                <td>{{record.remarks}} &nbsp <a class="link link-info" href="{% url "medicalhistoryinfo" patient_record.id record.id%}">View</a></td>
                 <td>{{record.created_at}}</td>
                 </tr>
                 {% endfor %}             

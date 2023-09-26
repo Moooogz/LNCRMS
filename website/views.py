@@ -55,8 +55,12 @@ def medicalhistorytb(request,pk):
    
     return render(request,'tables/medicalhistorytb.html',context)    
 
-def medicalhistoryinfo(request,pk):
-    context={}
+def medicalhistoryinfo(request,pk,pkHistory):
+    
+    context=patientinfoData(pk)
+    context['patient_history']= Patienthistory.objects.get(id=pkHistory)
+    
+
     return render(request,'medicalhistoryinfo.html',context) 
 
 

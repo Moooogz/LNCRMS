@@ -483,7 +483,8 @@ hr{
 }
 
 .add_medicalhistorytable{
-    padding: 30px;
+    padding: 15px;
+    margin: 5px;
 }
 
 
@@ -525,14 +526,23 @@ datalist{
     display: flex;
 }
 
-.medicalhistorytable input,textarea{
-    border-style: solid;
-    border-color: silver;
-    border-radius: 3px;
-    border-width: 1px;
-    padding-left: 5px;
-    padding: 2px 5px;
+.medicalhistorytable input,textarea,input{
+    background-color: rgb(250, 255, 189,0.1); 
+    display: block;
     width: 100%;
+    padding: 0.375rem 0.75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bs-body-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+    background-clip: padding-box;
+    border: var(--bs-border-width) solid var(--bs-border-color);
+    border-radius: var(--bs-border-radius);
+    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
 .label_1{
@@ -541,3 +551,8 @@ datalist{
     color:black;  
 }
 
+.lbl-pname2{
+    font-size:13px;
+    position: relative;
+    color: #01576d;
+}
