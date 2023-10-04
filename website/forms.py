@@ -20,8 +20,7 @@ class PatientsAttachmentsForm(ModelForm):
     class Meta:
       model= PatientsAttachments
       fields = ['name',
-                'fileattachments',
-        
+                'fileattachments',  
       ]
         
 

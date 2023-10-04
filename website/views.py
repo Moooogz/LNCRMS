@@ -20,6 +20,7 @@ def patientinfoData(pk):
     context = { 'medicationrecord': medicationrecord,
                'patient_record':patient_record,
                'medicines_list':medicines_list,
+               'pCode':patient_record.patient_code,
                'pID':pk,
                }
     return context
@@ -38,15 +39,16 @@ def medicalhistorytb(request,pk):
     if request.method=='POST':
         pHistoryForm = PatienthistoryForm(request.POST,request.FILES)
         form = PatientsAttachmentsForm(request.POST,request.FILES)
-        # if form.is_valid():
-        #     a=form.save(commit=False)
-        #     a.patient_code = patient_record.patient_code
-        #     a.save()
+     
         if pHistoryForm.is_valid():
             pHistoryForm_final = pHistoryForm.save(commit=False)
             pHistoryForm_final.consultCounter = str(consultCounter())
             pHistoryForm_final.patient_code = pCode
+            form_final=form.save(commit=False)
+            form_final.consultCounter = str(consultCounter())
+            form_final.patient_code = pCode
             pHistoryForm_final.save()
+            form_final.save()
             print("success")
         else:
             print("error")
@@ -55,17 +57,30 @@ def medicalhistorytb(request,pk):
    
     return render(request,'tables/medicalhistorytb.html',context)    
 
-def medicalhistoryinfo(request,pk,pkHistory):
-    
+def medicalhistoryinfo(request,pk,pkHistory):    
+    form =PatientsAttachmentsForm()
     context=patientinfoData(pk)
-    context['patient_history']= Patienthistory.objects.get(id=pkHistory)
+    patienthistory_Data= Patienthistory.objects.get(id=pkHistory)
+    context['patient_history']= patienthistory_Data
+    pCode= context['pCode']
+    context['form']=form
+    context['patient_history_attachments'] = PatientsAttachments.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data.consultCounter)
     
-
+    if request.method=='POST':
+        form = PatientsAttachmentsForm(request.POST,request.FILES)
+        if form.is_valid():
+            print("success add attachments")            
+            form_final=form.save(commit=False)
+            form_final.consultCounter = patienthistory_Data.consultCounter
+            form_final.patient_code = pCode
+            form_final.save()
+        else:
+            print("error add attachments")
+    
     return render(request,'medicalhistoryinfo.html',context) 
-
-
-def patientinfo(request,pk):
     
+
+def patientinfo(request,pk):    
     context = patientinfoData(pk)
     pCode=patientinfoData(pk)['patient_record'].patient_code
     if 'addtoprescription' in request.POST:
@@ -93,12 +108,12 @@ def patientlist(request):
        datas = {}
        if Patient.objects.all().count()==0:
            datas['patient_code']='P-001'
-           phistory['patient_code']='P-001'
+           phistory_code='P-001'
        else:       
            lastcode=int(Patient.objects.latest('id').patient_code.split('-')[1])
            lastcode= lastcode+1
            datas['patient_code']=f"P-{lastcode:03}"
-           phistory['patient_code']=f"P-{lastcode:03}"           
+           phistory_code=f"P-{lastcode:03}"           
        datas['first_name']=request.POST['first_name']
        datas['middle_name']=request.POST['middle_name']
        datas['last_name']=request.POST['last_name']
@@ -109,7 +124,8 @@ def patientlist(request):
        datas['address']=request.POST['address']
        datas['contact_number']=request.POST['contact_number']
        phistory['remarks']=request.POST['remarks']
-       phistory['consultCounter']=str(consultCounter())
+       #phistory['consultCounter']=str(consultCounter())
+       
        
         
 
@@ -119,6 +135,9 @@ def patientlist(request):
 
        #PatienthistoryTable
        newPatienthistory = PatienthistoryForm(phistory)
+       newPatienthistory= newPatienthistory.save(commit=False)
+       newPatienthistory.patient_code=phistory_code
+       newPatienthistory.consultCounter = str(consultCounter())
        newPatienthistory.save()
 
        messages.success(request,"Added Patient Data Successfully")
