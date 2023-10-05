@@ -1,6 +1,7 @@
 
 {% extends 'patientinfo.html' %}
 {% load custom_tags %}
+{% load static %}
 
 {% block btn-back %} <a href="javascript:history.go(-1)">
     <h4 style="color:black;"><i class="bi bi-arrow-left-square-fill"></i></h4>
@@ -37,7 +38,7 @@
             {% for a in  patient_history_attachments%}
             <tr>
                 <td>{{a.name}}</td>
-                <td>{{a.fileattachments}}</td>
+                <td><img src="{{a.fileattachments.url}}" width="200"></td>
             </tr>
             {% endfor %}
         </tbody>
