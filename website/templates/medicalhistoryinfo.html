@@ -38,7 +38,11 @@
             {% for a in  patient_history_attachments%}
             <tr>
                 <td>{{a.name}}</td>
-                <td><img src="{{a.fileattachments.url}}" width="200"></td>
+                <td><img src="{{a.fileattachments.url}}" width="200"></img>
+                  <a class="btn-link" id="link-view" type="button" href="{{a.fileattachments.url}}" target="_blank">
+                    open
+                    </a>
+                  </td>
             </tr>
             {% endfor %}
         </tbody>
