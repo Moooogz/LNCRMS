@@ -220,10 +220,12 @@ def updatemedrecord(request,pk):
 
 def pdfreport(request):
     patients_attachments = PatientsAttachments.objects.filter(patient_code='P-002') 
+    medicationrecord = Prescription.objects.filter(patient_code='P-002')
     template_path = 'pdfreport.html'
     static_url = os.path.join(settings.BASE_DIR, 'website\static')
     context = {
                 'patients_attachments': patients_attachments,
+                'medicationrecord':medicationrecord,
                 'static_url':static_url,
     }
     response = HttpResponse(content_type='application/pdf')

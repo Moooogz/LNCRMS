@@ -1,62 +1,192 @@
 {% load static %}
 <!doctype html>
 <html lang="en">
-  <head>
-    
-    <title>Bootstrap demo</title>
-    
-    <style>
-        @page {
-            size: letter portrait;
-            margin: 2cm 1cm;
-            @frame header_frame {           /* Static Frame */
-                -pdf-frame-content: header_content;
-                left: 50pt; width: 512pt; top: 50pt; height: 40pt;
-            }
 
-            @frame header_pdf {
-                background-color: blue;
-                left: 50pt; width: 512pt; top: 50pt; height: 80pt;
-            }
-        }
-    </style>
+<head>
+
+  <title>Bootstrap demo</title>
+  <link
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+  rel="stylesheet"
+  integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+  crossorigin="anonymous"
+/>
+  <style>
+    @page {
+      size: letter portrait;
+      margin: 1cm 1cm;
+
+      @frame header_frame {
+        /* Static Frame */
+        -pdf-frame-content: header_content;
+        left: 50pt;
+        width: 512pt;
+        top: 30pt;
+        height: 40pt;
+      }
+
+      @frame header_pdf {
+
+        left: 50pt;
+        width: 512pt;
+        top: 50pt;
+        height: 95pt;
+      }
+
+      
+      h1 {
+        left: 30px;
+
+      }
+
+    }
+
+    .h1bold {
+      margin: 0
+    }
+
+    h2 {
+      margin: 0;
+    }
+
+    .inline_row{
+      position: relative;
+      display: inline-flex;
+    }
+
+    label{
+      margin:10px;
+      font-size=13px;
+      
+    }
+
+ 
+    th{
+      word-wrap:break-word;
+      cell-padding: 1px;
+    }
+
+    .tbl td{
+      font-size:12px;
+      align: center;
+      padding:3px;
+    }
+  </style>
 
 </head>
-  <body>
-    <div id="header_pdf">      
-            
-            <div>
-            <img src="{{static_url}}\logo2.jpg" width="100px" height="100px" ></img>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp
-            <img src="{{static_url}}\logo.png" width="100px" height="100px"  ></img>
-            </div>
-            <div>
-                
-                
-                </div>
-            <div><center>
-            <h1 style="margin-bottom:0px;">LABAGUIS NEURO CLINIC AND NEUROCARE PHARMACY</h1>
-            <h2 style="margin-top:0px;">Dr. Zernan S. Labaguis</h2>
-            </center>
-            </div>
-            <hr style="margin-top:50px;"> 
-      
-        
+
+<body>
+  <div id="header_pdf">
+
+    <div>
+      <img src="{{static_url}}\logo2.jpg" width="100px" height="100px"></img>
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp
+      &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+      &nbsp
+      &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp
+
+      <img src="{{static_url}}\logo.png" width="100px" height="100px"></img>
     </div>
-  
+
+    <div style="margin:0px;">
+
+      <center>
+        <b>
+          <h1 style="margin:0 100px 0;font-size:20px;color:#2d2e32;">LABAGUIS NEURO CLINIC AND NEUROCARE PHARMACY</h1>
+        </b>
+        <h1 style="margin:0;color:#0a5202;">Deseases of the Brain, Spinal Cord, Nerves and Muscles</h1>
+        <h1 style="margin:0;" width="50%">Dr. Zernan S. Labaguis</h1>
+        <p style="margin:0;">NEUROLOGIST</p>
+      </center>
+      <br>
+      <div class="inline_row">
        
-     
+        <h1 class="h1bold">LABAGUIS NEURO CLINIC@MEGH</h1>
+        <h2>Medical Arts Bldg. Highway, Tawiran</h2>
+        Monday to Saturday (6am : 12nn) 
+        Contact Numbers: 286-7388 or 286-7386 Local # 373 | (09399018400/ 09173233648)
+      </div>
+    </div>
+    <hr style="margin-bottom:10px;">
+
+  </div>
+
+ <div>
+
+
+  <table>
+    <tr>     
+      <td>Date : </td>      
+    </tr> 
+    <tr>
+      <td>Patient Name : </td>
+      <td>Age/Gender : </td>      
+    </tr>   
+   
+    <tr>      
+      <td>Address : </td>
+    </tr>  
+
+  </table>
     
 
+  <br>
+  <br>
+  <br>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-  </body>
+  <table class="tbl">
+    
+    <thead >      
+      <tr style="border-top: 1px solid black;padding: 1px;padding:2px;" >
+      <th rowspan="2">QUANTITY</th>
+      <th style="word-wrap:break-word;" rowspan="2">MEDICATION/<br>PREPARATION</th>
+      <th rowspan="2">DOSAGE</th>
+      <th colspan="3">SCHEDULE OF INTAKE</th>
+      </tr>
+      <tr style="border-bottom: 1px solid black;" >
+        <th>7:00 AM</th>
+        <th>1:00 PM</th>
+        <th>7:00 PM</th>          
+      </tr>             
+    </thead>  
+
+    <tbody>
+      {% for a in medicationrecord %}
+      <tr>
+        <td align ="center">{{a.quantity}}</td>
+        <td align ="center">{{a.medicine_name}}</td>
+        <td align ="center">{{a.dosage}}</td>
+        <td align ="center">{{a.morning}}</td>
+        <td align ="center">{{a.noon}}</td>
+        <td align ="center">{{a.evening}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+   
+  </table>  
+
+
+
+  {% comment %} <label>Date: _______________________________</label><br style="margin-bottom:20px;">
+  <label>Patient Name: _______________________________</label> &nbsp &nbsp &nbsp &nbsp
+  <label>Age: _______________________________</label> {% endcomment %}
+
+
+</body>
+
 </html>
