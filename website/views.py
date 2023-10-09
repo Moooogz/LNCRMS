@@ -4,6 +4,10 @@ from django.contrib import messages
 from .models import *
 from .forms import *
 import os
+from django.http import HttpResponse
+from django.template.loader import get_template
+from xhtml2pdf import pisa
+from django.conf import settings
 
 def consultCounter():
     counter = "0"
@@ -213,3 +217,25 @@ def updatemedrecord(request,pk):
 
     messages.success(request,mednameDict)  
     return redirect('medications')
+
+def pdfreport(request):
+    patients_attachments = PatientsAttachments.objects.filter(patient_code='P-002') 
+    template_path = 'pdfreport.html'
+    static_url = os.path.join(settings.BASE_DIR, 'website\static')
+    context = {
+                'patients_attachments': patients_attachments,
+                'static_url':static_url,
+    }
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'filename="report.pdf"'
+    
+    template = get_template(template_path)
+    html = template.render(context)
+    
+    pisa_status= pisa.CreatePDF(
+        html, dest=response)
+ 
+    return response
+
+
+    

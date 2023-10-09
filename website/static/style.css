@@ -77,12 +77,12 @@ header li,a,strong, button {
     font-size: 30px;
     color: #edf0f1;
     text-decoration: none;
-    padding: 20px 20%;
+    padding: 15px 15%;
     }
 
 .content-main {
     height: 100%;
-    margin: 5px 20%;
+    margin: 5px 15%;
 
 
 }
@@ -557,7 +557,7 @@ datalist{
     color: #01576d;
 }
 
-.fullwidth input {
+.fullwidth input  {
     font-size: 15px;
     margin: 0;
     padding: 5px;
