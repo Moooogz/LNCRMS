@@ -218,13 +218,16 @@ def updatemedrecord(request,pk):
     messages.success(request,mednameDict)  
     return redirect('medications')
 
-def pdfreport(request):
-    patients_attachments = PatientsAttachments.objects.filter(patient_code='P-002') 
-    medicationrecord = Prescription.objects.filter(patient_code='P-002')
+def pdfreport(request,pk):
+    patient_record = Patient.objects.get(id=pk)
+    pCode = patient_record.patient_code
+    medicationrecord = Prescription.objects.filter(patient_code=pCode)
+    
+    
     template_path = 'pdfreport.html'
     static_url = os.path.join(settings.BASE_DIR, 'website\static')
-    context = {
-                'patients_attachments': patients_attachments,
+    context = {      
+                'patient_record':patient_record,          
                 'medicationrecord':medicationrecord,
                 'static_url':static_url,
     }

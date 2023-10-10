@@ -69,7 +69,10 @@
     .tbl td{
       font-size:12px;
       align: center;
-      padding:3px;
+      padding:2px;
+    }
+    .tblpatientdetails td {
+      font-size: 13px;
     }
   </style>
 
@@ -129,17 +132,17 @@
  <div>
 
 
-  <table>
+  <table class="tblpatientdetails">
     <tr>     
       <td>Date : </td>      
     </tr> 
     <tr>
-      <td>Patient Name : </td>
-      <td>Age/Gender : </td>      
+      <td>Patient Name : <b> {{patient_record.last_name}}, {{patient_record.first_name}} {{patient_record.middle_name}}</b></td>
+      <td>Age/Gender   : <b>{{patient_record.age}} / {{patient_record.gender}}</b></td>      
     </tr>   
    
     <tr>      
-      <td>Address : </td>
+      <td>Address&nbsp &nbsp &nbsp &nbsp &nbsp: <b>{{patient_record.address}}</b></td>
     </tr>  
 
   </table>
@@ -167,15 +170,27 @@
 
     <tbody>
       {% for a in medicationrecord %}
-      <tr>
-        <td align ="center">{{a.quantity}}</td>
-        <td align ="center">{{a.medicine_name}}</td>
-        <td align ="center">{{a.dosage}}</td>
-        <td align ="center">{{a.morning}}</td>
-        <td align ="center">{{a.noon}}</td>
-        <td align ="center">{{a.evening}}</td>
-      </tr>
+        {% if forloop.last %}
+        <tr style="border-bottom: 1px solid black;" >
+            <td align ="center">{{a.quantity}}</td>
+            <td align ="center">{{a.medicine_name}}</td>
+            <td align ="center">{{a.dosage}}</td>
+            <td align ="center">{{a.morning}}</td>
+            <td align ="center">{{a.noon}}</td>
+            <td align ="center">{{a.evening}}</td>
+          </tr>
+        {% else %}
+        <tr >
+            <td align ="center">{{a.quantity}}</td>
+            <td align ="center">{{a.medicine_name}}</td>
+            <td align ="center">{{a.dosage}}</td>
+            <td align ="center">{{a.morning}}</td>
+            <td align ="center">{{a.noon}}</td>
+            <td align ="center">{{a.evening}}</td>
+          </tr>
+        {% endif %}
       {% endfor %}
+    
     </tbody>
    
   </table>  
