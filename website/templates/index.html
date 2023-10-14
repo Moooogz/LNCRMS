@@ -51,7 +51,11 @@
     {% include 'navbar.html' %}
 
     <div class=" header-main2">
-      <i class="bi bi-prescription2"></i>Patients Records Management System
+      <strong style="font-size:22px;margin-left:20px;">
+        {% block pagetitle %}
+        Patients List
+        {% endblock %}
+      </strong>
     </div>
      
      <!--MAIN CONTAINER-->

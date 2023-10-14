@@ -128,11 +128,8 @@ def patientlist(request):
        datas['address']=request.POST['address']
        datas['contact_number']=request.POST['contact_number']
        phistory['remarks']=request.POST['remarks']
-       #phistory['consultCounter']=str(consultCounter())
+       #phistory['consultCounter']=str(consultCounter())    
        
-       
-        
-
        #patienttable
        newPatient = PatientForm(datas)
        newPatient.save()
@@ -151,9 +148,31 @@ def patientlist(request):
 
 def deletepatient(request,pk):
     if request.method == 'POST':
-        deletepatient = Patient.objects..get(id=pk)
-        
+        deletepatient = Patient.objects.get(id=pk)
+        deletepatient.delete()
+        messages.success(request,"Record Deleted")
+        return redirect('patientlist')        
     return render(request, 'deletepatient.html',{})
+
+def editpatient(request,pk):
+    
+    editpatientdata = Patient.objects.get(id=pk)
+    context = {'editpatientdata':editpatientdata}    
+    
+    if request.method == 'POST':        
+        editpatientdata.first_name=request.POST['first_name']
+        editpatientdata.middle_name=request.POST['middle_name']
+        editpatientdata.last_name=request.POST['last_name']
+        editpatientdata.age=request.POST['age']
+        editpatientdata.bday=request.POST['bday']
+        editpatientdata.civil_status=request.POST['civil_status']
+        editpatientdata.gender=request.POST['gender']
+        editpatientdata.address=request.POST['address']
+        editpatientdata.contact_number=request.POST['contact_number']
+        editpatientdata.save()
+        messages.success(request,"Patient Data Updated Successfully")
+        return redirect('patientlist')      
+    return render(request, 'editpatient.html',context)
 
 def login_user(request):
     if request.method == 'POST':

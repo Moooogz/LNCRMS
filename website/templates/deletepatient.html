@@ -9,8 +9,8 @@
         <div>
             <form method="POST">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-danger" >Delete</button>&nbsp&nbsp
-                <button type="submit" class="btn btn-secondary" >Back</button>
+                <button type="submit" class="btn btn-danger" >Delete</button>&nbsp&nbsp 
+                <a href="{% url "patientlist" %}" class="btn btn-secondary" >Back</a>               
             </form>
         </div>
     </div>

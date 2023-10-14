@@ -1,0 +1,92 @@
+{% extends 'index.html' %}
+
+{% block content%}
+
+<!--<div class="title-tab bg-gradient">Patient List</div>-->
+
+    <div class="container1">
+      <!--SIDE MENU-->
+      {% include "sidemenu.html" %}
+
+      <!--Add new patient form-->
+      <div class="reg-area">
+        <div class="title-form ">Edit Patient {{editpatientdata.patient_code}}</div>
+<form method="POST">
+    {% csrf_token %}
+<div class="form-fields">
+    
+    <div class="reg-row">
+        <div class="reg-col">
+        <label class="reg-label">Lastname</label><br>
+        <input class="reg-input" name="last_name" value="{{editpatientdata.last_name}}"  required>
+        </div>
+        <div class="reg-col">
+            <label class="reg-label">Firstname</label><br>
+            <input class="reg-input" name="first_name" value="{{editpatientdata.first_name}}" required>
+        </div>
+        <div class="reg-col">
+            <label class="reg-label">Middlename</label><br>
+            <input class="reg-input" name="middle_name" value="{{editpatientdata.middle_name}}"  required>
+        </div>
+    </div>
+
+    <br>    
+    <div class="reg-row">
+        <div class="reg-col">
+            <label class="reg-label">Age</label><br>
+            <input class="reg-input" name="age" size="10px" value="{{editpatientdata.age}}" required>
+        </div>
+        <div class="reg-col">
+            <label class="reg-label">Birthday</label><br>
+            <input type="date" class="reg-input" name="bday" value="{{editpatientdata.bday}}" size="15px" required>
+        </div>
+        <div class="reg-col">
+            <label class="reg-label">Gender</label><br>
+            <select class="reg-input" name="gender">
+                <option selected>{{editpatientdata.gender}}</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+        </div>
+        <div class="reg-col">
+            <label class="reg-label">Civil Status</label><br>
+            <input class="reg-input" name="civil_status" size="20px"  value="{{editpatientdata.civil_status}}" required> 
+        </div>
+        <div class="reg-col">
+            <label class="reg-label">Contact Number</label><br>
+            <input class="reg-input" name="contact_number" size="20px" value="{{editpatientdata.contact_number}}" required>
+        </div>
+    </div>
+
+    <br>
+    <div class="reg-row">        
+        <div class="reg-col">
+            <label class="reg-label">Address</label><br>
+            <input class="reg-input" name="address" size="80%" value="{{editpatientdata.address}}" required>
+        </div>
+    </div>
+
+    <br>
+    
+
+    <div class="reg-row">
+        <div class="reg-col">        
+            <button class="btn-save" type="submit">Update</button>
+            <a href="{% url "patientlist" %}" class="btn btn-secondary" >Back</a>
+        </div>
+    </div>
+</form>
+</div>
+      </div>
+    </div>
+
+    {% comment %} <!--Table container-->
+    <div class="container2">
+      <div class="table-title">Patient List</div>
+      <div class="table-box">
+        
+      </div> {% endcomment %}
+</div>
+
+{%endblock%}

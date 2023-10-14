@@ -1,5 +1,7 @@
 {% extends 'index.html' %}
 
+{% block pagetitle %}Medicine List{% endblock pagetitle %}
+
 {% block content%}
 
 
@@ -70,7 +72,7 @@
     <div class="modal-dialog modal-dialog-centered">
 
       <div class="modal-content">
-        <div class="title-form bg-gradient">Edit Record</div>
+        <div class="title-form ">Edit Record</div>
         <form action="{% url "medications" meds.id %}" method="POST">
           {% csrf_token %}
           <div class="reg-row">
