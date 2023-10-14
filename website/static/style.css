@@ -563,3 +563,25 @@ datalist{
     padding: 5px;
     width: 100%;
 }
+
+
+
+/* @media screen and (min-device-width:321px)
+{
+   
+    .content-main {
+        height: 100%;
+        margin: 0;
+
+    }
+    .title-container {
+        background-color: #80c3e3;
+        height: 50px;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 500;
+        font-size: 15px;
+        color: #edf0f1;
+        text-decoration: none;
+    
+        }
+} */
