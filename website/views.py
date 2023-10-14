@@ -149,7 +149,11 @@ def patientlist(request):
     patientsdata = {'patientsdata': Patient.objects.all()}
     return render(request, 'patientlist.html',patientsdata)
 
-
+def deletepatient(request,pk):
+    if request.method == 'POST':
+        deletepatient = Patient.objects..get(id=pk)
+        
+    return render(request, 'deletepatient.html',{})
 
 def login_user(request):
     if request.method == 'POST':

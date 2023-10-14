@@ -9,7 +9,7 @@
 }
 
 body{
-    background-color: #f4f4f4;
+    background-color: #e7f3ed;
 }
 
 header li,a,strong, button {
@@ -42,6 +42,10 @@ header li,a,strong, button {
     padding-top: 10px;
 }
 
+.nav-link {
+    font-size: 15px;
+}
+
 .nav-links li {
     display: inline-block;
     padding: 0px 20px;
@@ -70,19 +74,20 @@ header li,a,strong, button {
 }
 
 .title-container {
-    background-color: #80c3e3;
+    background-color: #0a3382;
     height: 80px;
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
     font-size: 30px;
     color: #edf0f1;
     text-decoration: none;
-    padding: 15px 15%;
+    padding: 15px 1%;
     }
 
 .content-main {
     height: 100%;
-    margin: 5px 15%;
+    margin: 5px 18%;
+    
 
 
 }
@@ -126,18 +131,19 @@ header li,a,strong, button {
 }
 
 .reg-area{
-    margin-left: 10px;
+    margin-left: 20px;
     width: 80%;
     background-color: white;
     box-shadow: 0 5px 15px 0 #00000026;
 }
 
 .title-form{
-    color: #edf0f1 ;
-    background-color: #0088a9;
+    color: #edf0f1 ;    
     width: 100%;
     padding: 10px;
     font-size: 13px;
+    background: rgb(0,135,97);
+    background: linear-gradient(90deg, rgba(0,135,97,0.8) 0%, rgba(59,178,113,0.49343487394957986) 100%);
 }
 
 .left-menu lu,li {
@@ -152,7 +158,8 @@ header li,a,strong, button {
 }
 
 .active-title{
-    background-color: #0088a9;
+    background: rgb(0,135,97);
+    background: linear-gradient(90deg, rgba(0,135,97,1) 0%, rgba(59,178,113,0.49343487394957986) 100%);
     color: #edf0f1 ;
     padding: 10px;
     border-radius: 5px 5px 0 0;
@@ -161,7 +168,8 @@ header li,a,strong, button {
 
 .table-title{
     color: #edf0f1 ;
-    background-color: #b4c3d3;
+    background: rgb(62,85,105);
+    background: linear-gradient(90deg, rgba(62,85,105,.5) 0%, rgba(65,67,69,.3) 100%);;
     width: 100%;
     margin-top: 20px;
     padding: 8px;
@@ -201,8 +209,9 @@ header li,a,strong, button {
 }
 
 .form-fields {
-    
+    width: 100%;
     padding: 10px 20px;
+    margin: 0;
 }
 
 .reg-input{
@@ -236,7 +245,8 @@ header li,a,strong, button {
 }
 
 .btn-save{
-    background-color: #0088a9;
+    background: rgb(0,135,97);
+    
     color: white;
     padding: 8px 20px;
     border-radius: 5px;
@@ -332,6 +342,7 @@ td {
     border: 1px solid #ddd;
     border-radius: 5px; 
     padding: 2px 8px;
+    margin-bottom: 5px;
 }
 
 .info-row1{
@@ -362,7 +373,7 @@ td {
     padding: 10px 20px;
     background-color:white;
     width:60%;
-    border-left: 6px  solid #b4c3d3;
+    border-left: 6px  solid rgb(0,135,97);
     border-radius: 5px 0 0 5px;
     box-shadow: 0 5px 15px 0 #00000026;
 }
@@ -372,14 +383,14 @@ td {
     padding: 10px 20px;
     background-color:white;
     width:40%;
-    border-left: 6px  solid #b4c3d3;
+    border-left: 6px  solid rgb(0,135,97);
     border-radius: 5px 0 0 5px;
     box-shadow: 0 5px 15px 0 #00000026;
 }
 
 .pdetails-head{
     width: 100%;
-    background-color: #6e80943c;
+    /* background: rgb(0,135,97,0.2); */
     padding: 15px 20px;
     border-radius: 5px 5px 0 0;
     box-shadow: 0 5px 15px 0 #00000026;
@@ -394,8 +405,10 @@ td {
 }
 
 .lbl-details{
-    font-size: 15px;
-    color: #037692;
+    /* font-size: 15px; */
+    color: rgb(0,135,97);
+    border-bottom: 1px  solid rgb(0,135,97);
+    width: 100%;
     
 }
 
@@ -471,7 +484,7 @@ hr{
 .phistory-head{
     display: inline-flex;
     width: 100%;
-    background-color: #6e80943c;
+    /* background: rgb(62,84,104,0.2); */
     padding: 15px 20px 0 20px;
     border-radius: 5px 5px 0 0;
     justify-content:space-between;
@@ -502,6 +515,7 @@ hr{
 
 input, textarea, select{
     background-color: rgb(250, 255, 189,0.2);
+    padding: auto;
     font-family: 'Arial';
 }
 
@@ -565,23 +579,62 @@ datalist{
 }
 
 
+.header-main {
+    height: 100%;
+    margin: 0px 18%;
+    background-color: #80c3e3;
+    background: rgb(1,136,97);
+background: linear-gradient(90deg, rgba(1,136,97,1) 0%, rgba(31,157,105,1) 50%, rgba(59,178,113,1) 100%);
+    color: white;
+}
 
-/* @media screen and (min-device-width:321px)
-{
-   
-    .content-main {
-        height: 100%;
-        margin: 0;
+.header-main *{
+    color: white;
+}
 
-    }
-    .title-container {
-        background-color: #80c3e3;
-        height: 50px;
-        font-family: 'Montserrat', sans-serif;
-        font-weight: 500;
-        font-size: 15px;
-        color: #edf0f1;
-        text-decoration: none;
+.header-main2 {
+    height: 100%;
+    margin: 0px 18%;
+    background-color: #24242a;
+    background: rgb(62,85,105);
+background: linear-gradient(90deg, rgba(62,85,105,1) 0%, rgba(65,67,69,1) 100%);
+    color: white;
+    padding: 10px 5px;
     
-        }
-} */
+}
+
+.navbar {
+    padding: 2px;
+}
+
+.header-base{
+    height: 100%;
+    margin: 3px 18% 0 18%;
+    padding: 10px 5px;
+    background-color: white;
+    border: 1px solid rgb(62,85,105,0.3);
+
+}
+
+.logotitle{
+    font-family: Verdana;
+    color: #028861;
+    font-size: 20px;
+}
+
+.delete-prompt{
+    
+    height: 100%;
+    margin-top: 10px;
+    width: 70%;
+    background-color: white;
+    box-shadow: 0 5px 15px 0 #00000026;
+   
+}
+
+.reg-rowdelete{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    
+}

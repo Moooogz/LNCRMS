@@ -2,7 +2,7 @@
 {% load custom_tags %}
 {% block content %}
 
-<div class="title-form bg-gradient">Patient Information</div>
+{% comment %} <div class="title-form bg-gradient">Patient Information</div> {% endcomment %}
 
 <div class="info-row1">
   <div class="col1-info">
@@ -22,7 +22,7 @@
 <div class="info-row2">
   <div class="detials-container">
     <div class="pdetails-head">
-      <div class="lbl-details">Details</div>
+      <div class="lbl-details"><h3>Details</h3></div><hr>
     </div>
 
     <div class="pdetails-body">
@@ -61,7 +61,8 @@
       
      
       {% block title %}
-      <div class="lbl-details">Medical History</div>
+      <div class="lbl-details"><h3>Medical History</h3></div><hr>
+      
       <div class="add-medication"><a href="{% url "medicalhistorytb" patient_record.id%}"><h4><i class="bi bi-plus-circle-fill"></i></h4></a></div>
       {% endblock title %}
       {% block btn-back%}{% endblock  %}
@@ -73,7 +74,7 @@
                
                 {% Medhistory patient_record.patient_code as records %}
                 <table id="table-medications" class="table table-sm table-bordered">
-                  <thead class="table-primary">
+                  <thead class="table-success">
                     <th>Medical History</th>
                     <th>Date/Time Consulted</th>
                 </thead>
@@ -90,7 +91,7 @@
 
                 
             <div class="phistory-head">
-              <div class="lbl-details">Medications</div>
+              <div class="lbl-details"><h3>Medications</h3></div>
               <div class="add-medication" ><a href="{% url "report" patient_record.id %}"><h4><i class="bi bi-printer-fill"></i></h4></a></div>
             </div>
 
@@ -172,7 +173,7 @@
             <!--PATIENT PRESCRIPTION TABLE-->
             <div class="medicalhistorytable">
             <table id="table-medications" class="table table-sm table-bordered">
-              <thead class="table-primary">
+              <thead class="table-success">
                 <tr>
                 <th rowspan="2">Quantity</th>
                 <th rowspan="2">Medication/Preparation</th>
