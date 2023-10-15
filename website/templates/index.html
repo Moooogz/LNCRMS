@@ -39,7 +39,7 @@
 
   </head>
   <body>
-<div class="stickys">
+<div class="sticky">
    <div class=" header-base">
       <div>
         <img src="{% static "logo.png" %}" width="50px">
@@ -93,7 +93,9 @@
     <script>
       $("#patienttable").DataTable({})
       $("#medicine-table").DataTable({})
-      $("#consultation-table").DataTable({})
+      $("#consultation-table").DataTable({
+        order: [[3, 'asc']]
+      })
     
     </script>
   </body>

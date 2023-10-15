@@ -630,7 +630,7 @@ background: linear-gradient(90deg, rgba(62,85,105,1) 0%, rgba(65,67,69,1) 100%);
 
 .header-base{
     height: 100%;
-    margin: 3px 18% 0 18%;
+    margin: 0px 18% 0 18%;
     padding: 10px 5px;
     background-color: white;
     border: 1px solid rgb(62,85,105,0.3);
@@ -733,4 +733,14 @@ background: linear-gradient(90deg, rgba(62,85,105,1) 0%, rgba(65,67,69,1) 100%);
   
   #consultation-table{
     font-size: 12px;
+  }
+
+  .adds{
+    display: flex;
+    justify-content: space-between;
+  }
+
+  #addpatients{
+    font-size: 25px;
+    color: #2ea86d;
   }
