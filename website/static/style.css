@@ -114,6 +114,14 @@ header li,a,strong, button {
     box-shadow: 0 5px 15px 0 #00000026;
 }
 
+.container4{
+    height: 100%;
+    margin-top: 0px;
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 5px 15px 0 #00000026;
+}
+
 .container3{
     height: 78%;
     background-color: white;
@@ -184,6 +192,17 @@ header li,a,strong, button {
 
 .table-box{
     margin: 20px 0;
+    padding: 0 5px 10px 10px;
+    background-color: white;
+    height: auto;
+    width: 100%;
+    font-size: 12px;
+    
+   
+}
+
+.table-box2{
+    margin: 0;
     padding: 0 5px 10px 10px;
     background-color: white;
     height: auto;
@@ -651,4 +670,67 @@ background: linear-gradient(90deg, rgba(62,85,105,1) 0%, rgba(65,67,69,1) 100%);
   .iconcolor{
     color: black;
     font-size: 28px;
+  }
+
+  .dashboard-patient{
+    font-family: Verdana;
+    background-color: white;
+    width: 100%;
+    padding: 20px;
+    display: inline-flex;
+    color: darkmagenta;
+    box-shadow: 0 5px 15px 0 #00000026;
+    margin-right: 20px;
+  }
+
+  .dashboard-medicines{
+    font-family: Verdana;
+    background-color: white;
+    width: 100%;
+    padding: 20px;
+    display: inline-flex;
+    color: #2ea86d;
+    box-shadow: 0 5px 15px 0 #00000026;
+   
+  }
+
+  .dashboard-consultations{
+    font-family: Verdana;
+    background-color: white;
+    width: 100%;
+    padding: 20px;
+    display: inline-flex;
+    color: #ff7d00;
+    box-shadow: 0 5px 15px 0 #00000026;
+    margin-left: 20px;
+  }
+
+  .patienticon{
+    font-family:Tahoma;
+    font-size: 60px;
+    margin: 20px;
+  }
+
+  .dashboard-row{
+    width: 100%;
+    display: inline-flex;
+    margin: 20px 0;
+  }
+
+  .dashboard-row2{
+    width: 100%;
+    display: inline-flex;
+    margin:10px 0 20px 0;
+  }
+
+  .dashboard-tblconsultations{
+    font-family: Verdana;
+    background-color: white;
+    width: 100%;
+    padding: 10px;
+    box-shadow: 0 5px 15px 0 #00000026;
+  }
+  
+  #consultation-table{
+    font-size: 12px;
   }

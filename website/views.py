@@ -8,6 +8,7 @@ from django.http import HttpResponse
 from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.conf import settings
+from django.contrib.auth.decorators import login_required
 
 def consultCounter():
     counter = "0"
@@ -34,6 +35,21 @@ def home(request):
     patientsdata = Patient.objects.all()
     return render(request, 'home.html',{'patientsdata': patientsdata})
 
+@login_required(login_url="loginuser")
+def dashboard(request):        
+    consultationtable = Patienthistory.objects.all()
+    patientcount=Patient.objects.all().count()
+    medicinecount= Medicinelist.objects.all().count()
+    consultationscount= Patienthistory.objects.all().count()
+    context = {"consultationtable":consultationtable,
+               'patientsdata': Patient.objects.all(),
+               'patientcount':patientcount,
+               'medicinecount':medicinecount,
+               'consultationscount':consultationscount,
+               }
+    return render(request, 'dashboard.html',context)
+
+@login_required(login_url="loginuser")
 def medicalhistorytb(request,pk):
     context = patientinfoData(pk)
     pCode=patientinfoData(pk)['patient_record'].patient_code
@@ -54,7 +70,8 @@ def medicalhistorytb(request,pk):
     context['pHistoryForm']=pHistoryForm
    
     return render(request,'tables/medicalhistorytb.html',context)    
-
+\
+@login_required(login_url="loginuser")
 def medicalhistoryinfo(request,pk,pkHistory):    
     form =PatientsAttachmentsForm()
     context=patientinfoData(pk)
@@ -77,6 +94,7 @@ def medicalhistoryinfo(request,pk,pkHistory):
     
     return render(request,'medicalhistoryinfo.html',context) 
 
+@login_required(login_url="loginuser")
 def editmedicalhistory(request,pk,pkHistory):
     context=patientinfoData(pk)
     patienthistory_Data= Patienthistory.objects.get(id=pkHistory)
@@ -92,6 +110,7 @@ def editmedicalhistory(request,pk,pkHistory):
         
     return render(request,'editmedhistory.html',context)
 
+@login_required(login_url="loginuser")
 def deletemedicalhistory(request,pkpatient,pkmedhistory):
     if request.method=="POST":
         pHistory = Patienthistory.objects.get(id=pkmedhistory)
@@ -101,6 +120,7 @@ def deletemedicalhistory(request,pkpatient,pkmedhistory):
     return render(request,'deletemedhistory.html',{}) 
     
 
+@login_required(login_url="loginuser")
 def patientinfo(request,pk):    
     context = patientinfoData(pk)
     pCode=patientinfoData(pk)['patient_record'].patient_code
@@ -117,12 +137,14 @@ def patientinfo(request,pk):
         newPrescription.save()
     return render(request, 'patientinfo.html',context)
 
+@login_required(login_url="loginuser")
 def deleteitemprescription(request,pID,pk):
     PrescriptionItem= Prescription.objects.get(id=pk)
     PrescriptionItem.delete()
     return redirect(f'/patientinfo/{pID}')
     
     
+@login_required(login_url="loginuser")
 def patientlist(request):
     if request.method == 'POST':
        phistory={}
@@ -163,6 +185,7 @@ def patientlist(request):
     patientsdata = {'patientsdata': Patient.objects.all()}
     return render(request, 'patientlist.html',patientsdata)
 
+@login_required(login_url="loginuser")
 def deletepatient(request,pk):
     if request.method == 'POST':
         deletepatient = Patient.objects.get(id=pk)
@@ -171,6 +194,7 @@ def deletepatient(request,pk):
         return redirect('patientlist')        
     return render(request, 'deletepatient.html',{})
 
+@login_required(login_url="loginuser")
 def editpatient(request,pk):
     
     editpatientdata = Patient.objects.get(id=pk)
@@ -200,7 +224,7 @@ def login_user(request):
         if user is not None:
             login(request, user)
             messages.success(request,"You have been login!")
-            return redirect('patientlist')            
+            return redirect('dashboard')            
         else:
             messages.success(request,"Invalid Username and Password...")
             return render(request, 'login.html',{})
@@ -212,8 +236,8 @@ def logout_user(request):
     logout(request)
     return redirect('loginuser')
 
-def medications(request,pk=''):
-    
+@login_required(login_url="loginuser")
+def medications(request,pk=''): 
 
     if 'save' in request.POST:
        medData = {}
@@ -222,8 +246,7 @@ def medications(request,pk=''):
        newMedicine = MedicineForm(medData)
        newMedicine.save()
        messages.success(request,"Added Medicine Successfully")
-       return redirect('medications')
-       
+       return redirect('medications')      
       
     
     elif 'update'in request.POST: 
@@ -243,11 +266,12 @@ def medications(request,pk=''):
     medicinedata ={'medicinedata': Medicinelist.objects.all()}
     return render(request, 'medications.html',medicinedata)
 
+@login_required(login_url="loginuser")
 def editmedicine(request,pk):
     medicine_record = Medicinelist.objects.get(id=pk)
     return render(request, 'editmedicine.html',{'medicine_record':medicine_record})
 
-
+@login_required(login_url="loginuser")
 def updatemedrecord(request,pk):
     # editrecord = Medicinelist.objects.get(id=pk)
     # editrecord.medicine_name=request.POST[f"medname{pk}"]
@@ -258,6 +282,7 @@ def updatemedrecord(request,pk):
     messages.success(request,mednameDict)  
     return redirect('medications')
 
+@login_required(login_url="loginuser")
 def pdfreport(request,pk):
     patient_record = Patient.objects.get(id=pk)
     pCode = patient_record.patient_code
