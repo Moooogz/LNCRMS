@@ -42,21 +42,15 @@ def medicalhistorytb(request,pk):
     
     if request.method=='POST':
         pHistoryForm = PatienthistoryForm(request.POST,request.FILES)
-        form = PatientsAttachmentsForm(request.POST,request.FILES)
-     
         if pHistoryForm.is_valid():
             pHistoryForm_final = pHistoryForm.save(commit=False)
             pHistoryForm_final.consultCounter = str(consultCounter())
             pHistoryForm_final.patient_code = pCode
-            form_final=form.save(commit=False)
-            form_final.consultCounter = str(consultCounter())
-            form_final.patient_code = pCode
             pHistoryForm_final.save()
-            form_final.save()
-            print("success")
+            messages.success(request,"Added Medical History Successfully")
+            return redirect(f'/patientinfo/{pk}')
         else:
             print("error")
-    context['form']=form
     context['pHistoryForm']=pHistoryForm
    
     return render(request,'tables/medicalhistorytb.html',context)    
@@ -82,6 +76,29 @@ def medicalhistoryinfo(request,pk,pkHistory):
             print("error add attachments")
     
     return render(request,'medicalhistoryinfo.html',context) 
+
+def editmedicalhistory(request,pk,pkHistory):
+    context=patientinfoData(pk)
+    patienthistory_Data= Patienthistory.objects.get(id=pkHistory)
+    context['patient_history']= patienthistory_Data
+    pCode= context['pCode']
+    
+    if request.method=="POST":
+        patienthistory_Data.diagnosis=request.POST['diagnosisss']
+        patienthistory_Data.remarks=request.POST['remarksss']
+        patienthistory_Data.save()
+        messages.success(request,"Updated Medical History Successfully")
+        return redirect(f'/patientinfo/{pk}/medicalhistoryinfo/{pkHistory}')
+        
+    return render(request,'editmedhistory.html',context)
+
+def deletemedicalhistory(request,pkpatient,pkmedhistory):
+    if request.method=="POST":
+        pHistory = Patienthistory.objects.get(id=pkmedhistory)
+        pHistory.delete()
+        messages.success(request,"Medical History Deleted")
+        return redirect(f'/patientinfo/{pkpatient}')
+    return render(request,'deletemedhistory.html',{}) 
     
 
 def patientinfo(request,pk):    

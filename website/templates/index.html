@@ -39,17 +39,17 @@
 
   </head>
   <body>
-
+<div class="stickys">
    <div class=" header-base">
       <div>
         <img src="{% static "logo.png" %}" width="50px">
         <img src="{% static "logo2.jpg" %}" width="50px">
-      <span class="logotitle"><b>LABAGUIS</b></span> <strong style="color:black;">Neuro Clinic and Nuerocare Pharmacy</strong> </div>
+      <span class="logotitle"><b>LABAGUIS</b></span> <strong style="color:black;font-size:15px;">Neuro Clinic and Nuerocare Pharmacy</strong> </div>
     </div>
 
     <!--NavBar-->
     {% include 'navbar.html' %}
-
+ 
     <div class=" header-main2">
       <strong style="font-size:22px;margin-left:20px;">
         {% block pagetitle %}
@@ -57,7 +57,7 @@
         {% endblock %}
       </strong>
     </div>
-     
+  </div>
      <!--MAIN CONTAINER-->
     <div class="content-main">
     

@@ -1,0 +1,43 @@
+
+{% extends 'patientinfo.html' %}
+{% load custom_tags %}
+{% load static %}
+
+{% block btn-back %} <a href="javascript:history.go(-1)">
+    <h4 style="color:black;"><i class="bi bi-arrow-left-square-fill"></i></h4>
+</a>{% endblock btn-back %}
+{% block title %}
+<div class="lbl-details "><h3>Patient History Details &nbsp<a href="#"><i class="bi iconcolor bi-pencil-square"></i></a></h3></div>
+
+{% endblock title %}
+{% block content1 %}
+
+<div class="add_medicalhistorytable">
+    <form method="POST">
+        {% csrf_token %}
+    <label class="lbl-pname">CONSULTATION DATE/TIME</label><br />
+    <label class="value-pname">{{patient_history.created_at}} </label>
+</div>
+
+<div class="add_medicalhistorytable">
+    <label class="lbl-pname">DIAGNOSIS</label><br />
+    <textarea class="reg-input" cols="100%" name="diagnosisss" required>{{patient_history.diagnosis}}</textarea>
+    {% comment %} <label class="value-pname">{{patient_history.diagnosis}} </label> {% endcomment %}
+</div>
+
+<div class="add_medicalhistorytable">
+    <label class="lbl-pname">REMARKS</label><br />
+    <textarea class="reg-input" cols="100%" name="remarksss" required>{{patient_history.remarks}}</textarea>
+    {% comment %} <label class="value-pname">{{patient_history.remarks}} </label> {% endcomment %}
+</div>
+
+<div class="add_medicalhistorytable">
+
+    <button type="submit" class="btn btn-success" >Update</button>&nbsp&nbsp 
+    <a href="javascript:history.go(-1)" class="btn btn-secondary" >Back</a>               
+</form>
+</div>
+
+
+
+{% endblock content1 %}

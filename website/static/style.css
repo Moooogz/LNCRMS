@@ -363,7 +363,7 @@ td {
 }
 
 .value-pname{
-    font-size: 18px;
+    font-size: 20px;
     font-style: bold;
 }
 
@@ -621,7 +621,8 @@ background: linear-gradient(90deg, rgba(62,85,105,1) 0%, rgba(65,67,69,1) 100%);
 .logotitle{
     font-family: Verdana;
     color: #028861;
-    font-size: 20px;
+    font-size: 25px;
+    margin-top: 50px;
 }
 
 .delete-prompt{
@@ -640,3 +641,14 @@ background: linear-gradient(90deg, rgba(62,85,105,1) 0%, rgba(65,67,69,1) 100%);
     width: 100%;
     
 }
+
+.sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+  }
+
+  .iconcolor{
+    color: black;
+    font-size: 28px;
+  }
