@@ -50,7 +50,8 @@
             {% endfor %}
         {% endif %}
    
-        <div class="login-box"><h4 style="color: #01576d;">LOGIN</h4>
+        <div class="login-box"><h4 style="color: #01576d;">LOGIN</h4><hr>
+          
             <form method="POST">
                 {% csrf_token %}
             <label class="lbl-pname" style="margin-top: 20px;">USERNAME</label>
@@ -59,7 +60,7 @@
             <label class="lbl-pname" style="margin-top: 20px;">PASSWORD</label>
             <input name="pWord" type="PASSWORD" class="value-pname" style="margin-top: 5px;width: 100%;"/>
             
-            <button class="btn-login">LOGIN</button>
+            <button class="btn btn-success w-100 mt-3 mb-3">LOGIN</button>
             </form>
             </div>
       

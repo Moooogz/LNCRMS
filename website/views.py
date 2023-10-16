@@ -9,6 +9,20 @@ from django.template.loader import get_template
 from xhtml2pdf import pisa
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+
+
+def registrationpage(request):
+    userForm = UserCreationForm()
+
+    if request.method == "POST":
+        userForm = UserCreationForm(request.POST)
+        if userForm.is_valid():
+            userForm.save()
+            messages.success(request,"New User Created")
+            return redirect('registrationpage')
+    context={'userForm':userForm}
+    return render(request, 'registrationpage.html',context)
 
 def consultCounter():
     counter = "0"
@@ -70,7 +84,7 @@ def medicalhistorytb(request,pk):
     context['pHistoryForm']=pHistoryForm
    
     return render(request,'tables/medicalhistorytb.html',context)    
-\
+
 @login_required(login_url="loginuser")
 def medicalhistoryinfo(request,pk,pkHistory):    
     form =PatientsAttachmentsForm()
@@ -81,6 +95,7 @@ def medicalhistoryinfo(request,pk,pkHistory):
     context['form']=form
     context['patient_history_attachments'] = PatientsAttachments.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data.consultCounter)
     
+  
     if request.method=='POST':
         form = PatientsAttachmentsForm(request.POST,request.FILES)
         if form.is_valid():
@@ -135,6 +150,14 @@ def patientinfo(request,pk):
         newPrescriptionData['evening'] =request.POST['pmvalue']
         newPrescription = PrescriptionForm(newPrescriptionData)
         newPrescription.save()
+    elif 'print_prescription' in request.POST:
+        checked=request.POST.getlist('sigchecked')
+        if len(checked)>0:
+            sigValue = "\doctorsignature.png"
+            return redirect(f'/report/{pk}/{sigValue}')
+        else:
+            return redirect(f'/report/{pk}/nosig')
+
     return render(request, 'patientinfo.html',context)
 
 @login_required(login_url="loginuser")
@@ -223,7 +246,7 @@ def login_user(request):
         user = authenticate(request, username=uNmae, password=pWord)
         if user is not None:
             login(request, user)
-            messages.success(request,"You have been login!")
+            messages.success(request,f"You have been login! Welcome {uNmae}")
             return redirect('dashboard')            
         else:
             messages.success(request,"Invalid Username and Password...")
@@ -283,7 +306,7 @@ def updatemedrecord(request,pk):
     return redirect('medications')
 
 @login_required(login_url="loginuser")
-def pdfreport(request,pk):
+def pdfreport(request,pk,sig):
     patient_record = Patient.objects.get(id=pk)
     pCode = patient_record.patient_code
     medicationrecord = Prescription.objects.filter(patient_code=pCode)
@@ -291,7 +314,7 @@ def pdfreport(request,pk):
     
     template_path = 'pdfreport.html'
     static_url = os.path.join(settings.BASE_DIR, 'website\static')
-    context = {      
+    context = { 'signature': sig,
                 'patient_record':patient_record,          
                 'medicationrecord':medicationrecord,
                 'static_url':static_url,

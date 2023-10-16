@@ -102,7 +102,13 @@
                 
             <div class="phistory-head">
               <div class="lbl-details"><h3>Medications</h3></div>
-              <div class="add-medication" ><a href="{% url "report" patient_record.id %}"><h4><i class="bi bi-printer-fill"></i></h4></a></div>
+
+             
+
+              <div class="add-medication" >
+                <a type="button" data-bs-toggle="modal" data-bs-target="#print_report"><h4><i class="bi bi-printer-fill"></i></h4></a>
+                </div>
+                {% comment %} <a href="{% url "report" patient_record.id %}"><h4><i class="bi bi-printer-fill"></i></h4></a></div> {% endcomment %}
             </div>
 
             
@@ -227,6 +233,40 @@
 
 
     
+
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade sm" id="print_report" data-bs-backdrop="static" tabindex="-1" aria-labelledby="print_report" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+
+    <div class="modal-content">
+      <div class="title-form">Print Prescription</div>
+      <form action="" method="POST">
+        {% csrf_token %}
+    
+          
+          <div class="form-check m-4">
+            <input name="sigchecked" class="form-check-input" type="checkbox" value="with signature" id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+              with signature
+            </label>
+          </div>
+         
+     
+       
+
+        <div class="reg-row">
+          <div class="medicine-col">
+
+            <button class="btn-save" type="submit" name="print_prescription">Save</button>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+          </div>
+        </div>
+      </form>
+    </div>
 
   </div>
 </div>

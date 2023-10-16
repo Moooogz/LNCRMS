@@ -31,12 +31,14 @@
                 <a class="nav-link" href="{% url "medications" %}">Medicines</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Settings</a>
+                <a class="nav-link" href="{% url "registrationpage" %}">Settings</a>
               </li>
               
             </ul>
           </div>
+          Hello,&nbsp <b>{{request.user}}</b> &nbsp &nbsp | &nbsp
         </div>
+          
         <a class="nav-item nav-link navbar-nav" style="margin-right:10px;" href="{% url "logoutuser" %}">Logout</a>
       </nav>
 </div>

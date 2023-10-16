@@ -12,6 +12,10 @@ body{
     background-color: #e7f3ed;
 }
 
+.body-login{
+    background-color: white;
+}
+
 header li,a,strong, button {
     font-family: 'Montserrat', sans-serif;
     font-weight: 500;
@@ -153,6 +157,7 @@ header li,a,strong, button {
     background: rgb(0,135,97);
     background: linear-gradient(90deg, rgba(0,135,97,0.8) 0%, rgba(59,178,113,0.49343487394957986) 100%);
 }
+
 
 .left-menu lu,li {
     font-size: 5px;
@@ -447,7 +452,7 @@ td {
     padding: 30px;
     background-color: white;
     box-shadow: 0 5px 15px 0 #00000026;
-   
+    
     margin-top: 150px;
 }
 
@@ -743,4 +748,12 @@ background: linear-gradient(90deg, rgba(62,85,105,1) 0%, rgba(65,67,69,1) 100%);
   #addpatients{
     font-size: 25px;
     color: #2ea86d;
+  }
+
+  .reg-rows{
+    padding: 20px;
+  }
+
+  .reg-rows label,span,p,ul,li{
+    font-size: 15px;
   }

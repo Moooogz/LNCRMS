@@ -1,0 +1,39 @@
+{% extends 'index.html' %} 
+{% block pagetitle %} Settings Page{% endblock pagetitle%}  
+
+{% block content%}
+
+<!--<div class="title-tab bg-gradient">Patient List</div>-->
+
+<div class="container1">
+  
+    <!--Left Menus-->
+    <div class="left-menu">
+        <div class="active-title">Menu</div>
+        <a href="#">Register New User</a><hr>
+     
+      </div>
+
+  <!--Add new patient form-->
+  <div class="reg-area">
+
+    <div class="title-form ">Register</div>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+    <div class="reg-rows">
+        {{userForm.as_p}}
+      
+            {% csrf_token %}
+            <button type="submit" class="btn btn-success" >Register</button>&nbsp&nbsp 
+            <a href="{% url "patientlist" %}" class="btn btn-secondary" >Back</a>               
+       
+        </div>
+        </form>
+       
+  </div>
+</div>
+
+
+
+{%endblock%}
