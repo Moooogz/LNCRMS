@@ -10,6 +10,8 @@ from xhtml2pdf import pisa
 from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
+from datetime import datetime
+from django.utils import formats
 
 
 def registrationpage(request):
@@ -136,10 +138,14 @@ def deletemedicalhistory(request,pkpatient,pkmedhistory):
     
 
 @login_required(login_url="loginuser")
-def patientinfo(request,pk):    
+def patientinfo(request,pk,selectedmed=''):    
+    date_joined = datetime.now()
+    formatted_datetime = formats.date_format(date_joined, "SHORT_DATETIME_FORMAT")
+   
     context = patientinfoData(pk)
+    context['medicinedata'] =Medicinelist.objects.all()
     pCode=patientinfoData(pk)['patient_record'].patient_code
-    if 'addtoprescription' in request.POST:
+    if 'addtoprescription' in request.POST: 
         newPrescriptionData={}        
         newPrescriptionData['patient_code'] = pCode
         newPrescriptionData['quantity']=request.POST['qtyvalue']
@@ -157,6 +163,11 @@ def patientinfo(request,pk):
             return redirect(f'/report/{pk}/{sigValue}')
         else:
             return redirect(f'/report/{pk}/nosig')
+    elif f'select_medicine' in request.POST:
+        if not selectedmed=='':
+            medselected = Medicinelist.objects.get(id=selectedmed)
+            context['medselected']=medselected
+           
 
     return render(request, 'patientinfo.html',context)
 
@@ -307,6 +318,8 @@ def updatemedrecord(request,pk):
 
 @login_required(login_url="loginuser")
 def pdfreport(request,pk,sig):
+    date_joined = datetime.now()
+    formatted_datetime = formats.date_format(date_joined, "SHORT_DATETIME_FORMAT")
     patient_record = Patient.objects.get(id=pk)
     pCode = patient_record.patient_code
     medicationrecord = Prescription.objects.filter(patient_code=pCode)
@@ -314,7 +327,8 @@ def pdfreport(request,pk,sig):
     
     template_path = 'pdfreport.html'
     static_url = os.path.join(settings.BASE_DIR, 'website\static')
-    context = { 'signature': sig,
+    context = { 'datetimevalue':formatted_datetime,
+                'signature': sig,
                 'patient_record':patient_record,          
                 'medicationrecord':medicationrecord,
                 'static_url':static_url,

@@ -158,6 +158,16 @@ header li,a,strong, button {
     background: linear-gradient(90deg, rgba(0,135,97,0.8) 0%, rgba(59,178,113,0.49343487394957986) 100%);
 }
 
+.title-form2{
+    justify-items:space-around;
+    color: #edf0f1 ;    
+    width: 100%;
+    padding: 10px;
+    font-size: 13px;
+    background: rgb(0,135,97);
+    background: linear-gradient(90deg, rgba(0,135,97,0.8) 0%, rgba(59,178,113,0.49343487394957986) 100%);
+}
+
 
 .left-menu lu,li {
     font-size: 5px;
@@ -278,7 +288,7 @@ header li,a,strong, button {
 }
 
 .btn-addmed{
-    background-color: #0088a9;
+    background-color: #06a87d;
     color: white;
     padding: 6px 20px;
     border-radius: 5px;
@@ -348,6 +358,14 @@ td {
     border: 1px solid white;
     padding: 5px 8px;
     background-color:rgba(235, 18, 11, 0.89);
+    border-radius: 3px;  
+}
+
+#link-select{
+    color: white;
+    border: 1px solid white;
+    padding: 5px 8px;
+    background-color:rgb(0,135,97);
     border-radius: 3px;  
 }
 
@@ -756,4 +774,16 @@ background: linear-gradient(90deg, rgba(62,85,105,1) 0%, rgba(65,67,69,1) 100%);
 
   .reg-rows label,span,p,ul,li{
     font-size: 15px;
+  }
+
+  .btn-successs{
+    background-color: #1dd1a1;
+    color: white;
+    padding: 10px;
+  }
+
+  .btn-successs:hover{
+    background-color: #06a87d;
+   color: white;
+  
   }

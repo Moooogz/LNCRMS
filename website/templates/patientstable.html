@@ -3,9 +3,7 @@
     <table id="patienttable" class="patient-tables">
       <thead >
         <th>Patient Code</th>
-        <th>Last Name</th>
-        <th>First Name</th>
-        <th>Middle Name</th>
+        <th>Patient Name</th>
         <th>Gender</th>
         <th>Age</th>
         <th>Date Added No.</th>
@@ -16,9 +14,7 @@
         {% for x in patientsdata %}
         <tr>
           <td>{{x.patient_code}}</td>
-          <td>{{x.last_name}}</td>
-          <td>{{x.first_name}}</td>
-          <td>{{x.middle_name}}</td>
+          <td>{{x.last_name}}, {{x.first_name}} {{x.middle_name.0}}.</td>
           <td>{{x.gender}}</td>
           <td>{{x.age}}</td>
           <td>{{x.created_at}}</td>

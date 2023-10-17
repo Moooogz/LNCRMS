@@ -20,11 +20,11 @@
     <div class="reg-row">
         <div class="medicine-col">
           <label class="reg-label">Medicine Name</label><br />
-          <input class="medicine-input" name="medname" required />
+          <textarea class="medicine-input" name="medname" required /></textarea>
         </div>
         <div class="medicine-col">
           <label class="reg-label">Dosage</label><br />
-          <input class="medicine-input" name="dosage" style="width: 50%;" required/>
+          <textarea class="medicine-input" name="dosage" style="width: 50%;" required/></textarea>
         </div>
     </div>
 
@@ -47,7 +47,7 @@
       <!--MEDICINES TABLE-->
       <table id="medicine-table" class="medicine-tables">
         <thead >
-          <th>#</th>
+          
           <th>Medicine Name</th>
           <th>Dosage</th>
           <th>Actions</th>
@@ -56,7 +56,7 @@
         <tbody>
           {% for meds in medicinedata %}
           <tr>
-            <td name="medID">{{meds.id}}</td>
+            
             <td>{{meds.medicine_name}}</td>
             <td>{{meds.dosage}}</td>           
             <td id="actions_cell">
