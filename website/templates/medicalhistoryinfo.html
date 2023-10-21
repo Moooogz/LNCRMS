@@ -17,15 +17,33 @@
     <label class="value-pname">{{patient_history.created_at}} </label>
 </div>
 
+
 <div class="add_medicalhistorytable">
-    <label class="lbl-pname">DIAGNOSIS</label><br />
-    <label class="value-pname">{{patient_history.diagnosis}} </label>
+  <label class="lbl-pname">BLOOD PRESSURE</label><br />
+  <label class="value-pname">{{patient_history.bp}} </label>
+</div>
+
+
+<div class="add_medicalhistorytable">
+    <label class="lbl-pname">COMMON CONCERN</label><br />
+    <label class="value-pname">{{patient_history.remarks}} </label>
 </div>
 
 <div class="add_medicalhistorytable">
-    <label class="lbl-pname">REMARKS</label><br />
-    <label class="value-pname">{{patient_history.remarks}} </label>
+  <label class="lbl-pname">OBJECTIVE/S</label><br />
+  <label class="value-pname">{{patient_history.objectives}} </label>
 </div>
+
+<div class="add_medicalhistorytable">
+  <label class="lbl-pname">ASSESSMENT/DIAGNOSIS</label><br />
+  <label class="value-pname">{{patient_history.diagnosis}} </label>
+</div>
+
+<div class="add_medicalhistorytable">
+  <label class="lbl-pname">PLANS AND RECOMMENDATIONS</label><br />
+  <label class="value-pname">{{patient_history.plans_recommendations}} </label>
+</div>
+
 <hr>
 <div class="medicalhistorytable">
      <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#add_attachments">Add attachments</button>

@@ -17,18 +17,37 @@
     {% csrf_token %}
 <div class="form-fields">
     
+    
+
+    <div class="reg-row">
+        <div class="reg-col">
+        <label class="reg-label">Senior ID No.</label><br>
+        <input class="reg-input" name="srID" width="60%" value="{{editpatientdata.srID}}" required>
+        </div>  
+        <div class="reg-col">
+            <label class="reg-label">PWD ID No.</label><br>
+            <input class="reg-input" name="pwdID" width="60%" value="{{editpatientdata.pwdID}}" required>
+            </div> 
+    </div>
+
     <div class="reg-row">
         <div class="reg-col">
         <label class="reg-label">Lastname</label><br>
-        <input class="reg-input" name="last_name" value="{{editpatientdata.last_name}}"  required>
-        </div>
+        <input class="reg-input" name="last_name" value="{{editpatientdata.last_name}}" width="60%" required>
+        </div>   
+    </div>
+
+    <div class="reg-row">
         <div class="reg-col">
-            <label class="reg-label">Firstname</label><br>
-            <input class="reg-input" name="first_name" value="{{editpatientdata.first_name}}" required>
-        </div>
+        <label class="reg-label">Firstname</label><br>
+        <input class="reg-input" name="first_name" value="{{editpatientdata.first_name}}" required>
+    </div>
+    </div>
+
+    <div class="reg-row">
         <div class="reg-col">
-            <label class="reg-label">Middlename</label><br>
-            <input class="reg-input" name="middle_name" value="{{editpatientdata.middle_name}}"  required>
+        <label class="reg-label">Middlename</label><br>
+            <input class="reg-input" name="middle_name"  value="{{editpatientdata.middle_name}}" required>
         </div>
     </div>
 
@@ -40,20 +59,28 @@
         </div>
         <div class="reg-col">
             <label class="reg-label">Birthday</label><br>
-            <input type="date" class="reg-input" name="bday" value="{{editpatientdata.bday}}" size="15px" required>
+            <input type="date" class="reg-input" name="bday" size="15px" value="{{editpatientdata.bday}}" required>
         </div>
         <div class="reg-col">
             <label class="reg-label">Gender</label><br>
-            <select class="reg-input" name="gender">
+            <select class="reg-input p-2" name="gender">
                 <option selected>{{editpatientdata.gender}}</option>
                 <option>Male</option>
                 <option>Female</option>
                 <option>Other</option>
               </select>
         </div>
+       
+    </div>
+
+    <div class="reg-row">
+        <div class="reg-col">
+            <label class="reg-label">Nationality</label><br>
+            <input class="reg-input" name="nationality" size="20px" value="{{editpatientdata.nationality}}" required> 
+        </div>
         <div class="reg-col">
             <label class="reg-label">Civil Status</label><br>
-            <input class="reg-input" name="civil_status" size="20px"  value="{{editpatientdata.civil_status}}" required> 
+            <input class="reg-input" name="civil_status" size="20px" value="{{editpatientdata.civil_status}}"  required> 
         </div>
         <div class="reg-col">
             <label class="reg-label">Contact Number</label><br>
@@ -70,7 +97,9 @@
     </div>
 
     <br>
-    
+  
+
+
 
     <div class="reg-row">
         <div class="reg-col">        
@@ -83,12 +112,9 @@
       </div>
     </div>
 
-    {% comment %} <!--Table container-->
-    <div class="container2">
-      <div class="table-title">Patient List</div>
-      <div class="table-box">
-        
-      </div> {% endcomment %}
+    
+
+
 </div>
 
 {%endblock%}

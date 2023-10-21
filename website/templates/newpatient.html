@@ -5,15 +5,32 @@
     
     <div class="reg-row">
         <div class="reg-col">
+        <label class="reg-label">Senior ID No.</label><br>
+        <input class="reg-input" name="srID" width="60%" value ='none' required>
+        </div>  
+        <div class="reg-col">
+            <label class="reg-label">PWD ID No.</label><br>
+            <input class="reg-input" name="pwdID" width="60%" value ='none' required>
+            </div> 
+    </div>
+
+    <div class="reg-row">
+        <div class="reg-col">
         <label class="reg-label">Lastname</label><br>
-        <input class="reg-input" name="last_name"  required>
-        </div>
+        <input class="reg-input" name="last_name" width="60%" required>
+        </div>   
+    </div>
+
+    <div class="reg-row">
         <div class="reg-col">
-            <label class="reg-label">Firstname</label><br>
-            <input class="reg-input" name="first_name" required>
-        </div>
+        <label class="reg-label">Firstname</label><br>
+        <input class="reg-input" name="first_name" required>
+    </div>
+    </div>
+
+    <div class="reg-row">
         <div class="reg-col">
-            <label class="reg-label">Middlename</label><br>
+        <label class="reg-label">Middlename</label><br>
             <input class="reg-input" name="middle_name"  required>
         </div>
     </div>
@@ -30,12 +47,20 @@
         </div>
         <div class="reg-col">
             <label class="reg-label">Gender</label><br>
-            <select class="reg-input" name="gender">
+            <select class="reg-input p-2" name="gender">
                 <option selected>-options-</option>
                 <option>Male</option>
                 <option>Female</option>
                 <option>Other</option>
               </select>
+        </div>
+       
+    </div>
+
+    <div class="reg-row">
+        <div class="reg-col">
+            <label class="reg-label">Nationality</label><br>
+            <input class="reg-input" name="nationality" size="20px" required> 
         </div>
         <div class="reg-col">
             <label class="reg-label">Civil Status</label><br>
@@ -58,7 +83,7 @@
     <br>
     <div class="reg-row">        
         <div class="reg-col">
-            <label class="reg-label">Remarks</label><br>
+            <label class="reg-label">Common Concern</label><br>
             <textarea class="reg-input" cols="100%" name="remarks" required></textarea>
         </div>
     </div>

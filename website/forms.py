@@ -13,7 +13,10 @@ class PatientForm(ModelForm):
                   'civil_status',
                   'gender',
                   'address',
-                  'contact_number',               
+                  'contact_number',   
+                  'srID',
+                  'pwdID',
+                  'nationality',            
                 ]
         
 class PatientsAttachmentsForm(ModelForm):
@@ -47,8 +50,10 @@ class PrescriptionForm(ModelForm):
 class PatienthistoryForm(ModelForm):
     class Meta:
         model = Patienthistory
-        fields = [
+        fields = ['bp',
                   'remarks',
                   'diagnosis',
+                  'objectives',
+                  'plans_recommendations',
                                               
                 ]

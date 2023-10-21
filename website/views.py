@@ -121,6 +121,9 @@ def editmedicalhistory(request,pk,pkHistory):
     if request.method=="POST":
         patienthistory_Data.diagnosis=request.POST['diagnosisss']
         patienthistory_Data.remarks=request.POST['remarksss']
+        patienthistory_Data.bp=request.POST['bps']
+        patienthistory_Data.objectives=request.POST['objectivess']
+        patienthistory_Data.plans_recommendations=request.POST['plansrecommendationss']
         patienthistory_Data.save()
         messages.success(request,"Updated Medical History Successfully")
         return redirect(f'/patientinfo/{pk}/medicalhistoryinfo/{pkHistory}')
@@ -200,6 +203,9 @@ def patientlist(request):
        datas['gender']=request.POST['gender']
        datas['address']=request.POST['address']
        datas['contact_number']=request.POST['contact_number']
+       datas['srID']=request.POST['srID']
+       datas['pwdID']=request.POST['pwdID']
+       datas['nationality']=request.POST['nationality']
        phistory['remarks']=request.POST['remarks']
        #phistory['consultCounter']=str(consultCounter())    
        
@@ -244,6 +250,9 @@ def editpatient(request,pk):
         editpatientdata.gender=request.POST['gender']
         editpatientdata.address=request.POST['address']
         editpatientdata.contact_number=request.POST['contact_number']
+        editpatientdata.srID   =request.POST['srID']
+        editpatientdata.pwdID  =request.POST['pwdID']
+        editpatientdata.nationality=request.POST['nationality']
         editpatientdata.save()
         messages.success(request,"Patient Data Updated Successfully")
         return redirect('patientlist')      

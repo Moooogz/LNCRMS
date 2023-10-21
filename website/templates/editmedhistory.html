@@ -19,20 +19,39 @@
     <label class="value-pname">{{patient_history.created_at}} </label>
 </div>
 
-<div class="add_medicalhistorytable">
-    <label class="lbl-pname">DIAGNOSIS</label><br />
-    <textarea class="reg-input" cols="100%" name="diagnosisss" required>{{patient_history.diagnosis}}</textarea>
+<div class="add_medicalhistorytable">   
+    <label class="lbl-pname">BLOOD PRESSURE</label><br />
+    <textarea id="id_bp" class="reg-input" cols="100%" name="bps" required>{{patient_history.bp}}</textarea>
     {% comment %} <label class="value-pname">{{patient_history.diagnosis}} </label> {% endcomment %}
 </div>
 
 <div class="add_medicalhistorytable">
-    <label class="lbl-pname">REMARKS</label><br />
-    <textarea class="reg-input" cols="100%" name="remarksss" required>{{patient_history.remarks}}</textarea>
+    <label class="lbl-pname">COMMON CONCERN</label><br />
+    <textarea id="id_remarks" class="reg-input" cols="100%" name="remarksss" required>{{patient_history.remarks}}</textarea>
     {% comment %} <label class="value-pname">{{patient_history.remarks}} </label> {% endcomment %}
 </div>
 
 <div class="add_medicalhistorytable">
+    <label class="lbl-pname">OBJECTIVE/S</label><br />
+    <textarea id="id_diagnosis" class="reg-input" cols="100%" name="objectivess" required>{{patient_history.objectives}}</textarea>
+    {% comment %} <label class="value-pname">{{patient_history.diagnosis}} </label> {% endcomment %}
+</div>
 
+<div class="add_medicalhistorytable">
+    <label class="lbl-pname">ASSESSMENT/DIAGNOSIS</label><br />
+    <textarea id="id_diagnosis" class="reg-input" cols="100%" name="diagnosisss" required>{{patient_history.diagnosis}}</textarea>
+    {% comment %} <label class="value-pname">{{patient_history.diagnosis}} </label> {% endcomment %}
+</div>
+
+<div class="add_medicalhistorytable">
+    <label class="lbl-pname">PLANS AND RECOMMENDATIONS</label><br />
+    <textarea id="id_diagnosis" class="reg-input" cols="100%" name="plansrecommendationss" required>{{patient_history.plans_recommendations}}</textarea>
+    {% comment %} <label class="value-pname">{{patient_history.diagnosis}} </label> {% endcomment %}
+</div>
+
+
+
+<div class="add_medicalhistorytable">
     <button type="submit" class="btn btn-success" >Update</button>&nbsp&nbsp 
     <a href="javascript:history.go(-1)" class="btn btn-secondary" >Back</a>               
 </form>

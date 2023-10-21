@@ -13,21 +13,34 @@
  {% endblock title %}
  {% block content1 %}
 <div class="add_medicalhistorytable">
-<form method='POST' action='' enctype='multipart/form-data'>
+<form method='POST' action='' >
     {% csrf_token %}
-    
-    <label class="label_1">Remarks</label>
+
+    <label class="label_1">Blood Pressure:</label>
+    {{pHistoryForm.bp}}
+    <br>
+
+    <label class="label_1">Common Concern:</label>
     {{pHistoryForm.remarks}}
+    <br>
 
-    <label class="label_1">Diagnosis</label>
+    <label class="label_1">Objective/s:</label>
+    {{pHistoryForm.objectives}}
+    <br>
+
+    <label class="label_1">Assessment/Diagnosis:</label>
     {{pHistoryForm.diagnosis}}
+    <br>
+
+    <label class="label_1">Plans and Recommendations:</label>
+    {{pHistoryForm.plans_recommendations}}
 
 
     
-
+ <br>
     
 
-    <button class="btn btn-success w-100 mt-2"  type='submit' name='saveattachments'>Save</button>
+    <button  class="btn btn-success w-25 mt-2 "  type='submit' name='saveattachments'>Save</button>
 </form>
 </div>
     {% endblock content1 %}
