@@ -154,16 +154,16 @@
   <br>
   <br>
 
-  <table class="tbl">
+  <table class="tbl table "style="border: 1px solid gray;padding: 1px;padding:2px;">
     
     <thead >      
-      <tr style="border-top: 1px solid black;padding: 1px;padding:2px;" >
+      <tr  >
       <th rowspan="2">QUANTITY</th>
       <th style="word-wrap:break-word;" rowspan="2" colspan="5">MEDICATION/<br>PREPARATION</th>
       <th rowspan="2" colspan="3">DOSAGE</th>
       <th colspan="3">SCHEDULE OF INTAKE</th>
       </tr>
-      <tr style="border-bottom: 1px solid black;" >
+      <tr >
         <th>7:00 AM</th>
         <th>1:00 PM</th>
         <th>7:00 PM</th>          
@@ -172,16 +172,7 @@
 
     <tbody>
       {% for a in medicationrecord %}
-        {% if forloop.last %}
-        <tr style="border-bottom: 1px solid black;" >
-            <td align ="center">{{a.quantity}}</td>
-            <td colspan="5" align ="center">{{a.medicine_name}}</td>
-            <td colspan="3" align ="center">{{a.dosage}}</td>
-            <td align ="center">{{a.morning}}</td>
-            <td align ="center">{{a.noon}}</td>
-            <td align ="center">{{a.evening}}</td>
-          </tr>
-        {% else %}
+       
         <tr >
             <td align ="center">{{a.quantity}}</td>
             <td colspan="5" align ="center">{{a.medicine_name}}</td>
@@ -190,7 +181,7 @@
             <td align ="center">{{a.noon}}</td>
             <td align ="center">{{a.evening}}</td>
           </tr>
-        {% endif %}
+   
       {% endfor %}
     
     </tbody>

@@ -10,7 +10,7 @@
             <form method="POST">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger" >Delete</button>&nbsp&nbsp 
-                <a href="{% url "patientlist" %}" class="btn btn-secondary" >Back</a>               
+                <a href="javascript:history.go(-1)" class="btn btn-secondary" >Back</a>               
             </form>
         </div>
     </div>

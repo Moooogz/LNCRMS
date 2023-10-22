@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% block pagetitle %}
+Records
+{% endblock pagetitle %}
+
+{% block content%}
+
+<!--<div class="title-tab bg-gradient">Patient List</div>-->
+
+   
+     
+    <!--Table container-->
+    <div class="container2">
+      <div class="title-form">Patient List</div>
+      <div class="table-box">
+        <a href="{% url "patientlist" %}" class="btn btn-success mb-3" type="submit"><i class="bi bi-plus-circle"></i> &nbsp Add New Patient</a>
+        {% include 'patientstable.html' %}
+      </div>
+
+
+{%endblock%}

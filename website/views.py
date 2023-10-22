@@ -180,7 +180,12 @@ def deleteitemprescription(request,pID,pk):
     PrescriptionItem.delete()
     return redirect(f'/patientinfo/{pID}')
     
-    
+@login_required(login_url="loginuser")    
+def patienttable(request):
+    patientsdata = {'patientsdata': Patient.objects.all()}
+    return render(request, 'patienttable.html',patientsdata)
+
+
 @login_required(login_url="loginuser")
 def patientlist(request):
     if request.method == 'POST':

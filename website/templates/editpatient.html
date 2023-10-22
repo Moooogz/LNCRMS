@@ -92,7 +92,7 @@
     <div class="reg-row">        
         <div class="reg-col">
             <label class="reg-label">Address</label><br>
-            <input class="reg-input" name="address" size="80%" value="{{editpatientdata.address}}" required>
+            <input class="reg-input mb-3" name="address" size="80%" value="{{editpatientdata.address}}" required>
         </div>
     </div>
 
@@ -103,8 +103,8 @@
 
     <div class="reg-row">
         <div class="reg-col">        
-            <button class="btn-save" type="submit">Update</button>
-            <a href="{% url "patientlist" %}" class="btn btn-secondary" >Back</a>
+            <button class="btn-save" style="width:130px;" type="submit">Update</button>
+            <a href="javascript:history.go(-1)" style="width:130px;" class="btn btn-secondary" >Back</a>
         </div>
     </div>
 </form>
