@@ -187,46 +187,51 @@ def patienttable(request):
 
 
 @login_required(login_url="loginuser")
-def patientlist(request):
+def patientlist(request):      
     if request.method == 'POST':
-       phistory={}
-       datas = {}
-       if Patient.objects.all().count()==0:
-           datas['patient_code']='P-001'
-           phistory_code='P-001'
-       else:       
-           lastcode=int(Patient.objects.latest('id').patient_code.split('-')[1])
-           lastcode= lastcode+1
-           datas['patient_code']=f"P-{lastcode:03}"
-           phistory_code=f"P-{lastcode:03}"           
-       datas['first_name']=request.POST['first_name']
-       datas['middle_name']=request.POST['middle_name']
-       datas['last_name']=request.POST['last_name']
-       datas['age']=request.POST['age']
-       datas['bday']=request.POST['bday']
-       datas['civil_status']=request.POST['civil_status']
-       datas['gender']=request.POST['gender']
-       datas['address']=request.POST['address']
-       datas['contact_number']=request.POST['contact_number']
-       datas['srID']=request.POST['srID']
-       datas['pwdID']=request.POST['pwdID']
-       datas['nationality']=request.POST['nationality']
-       phistory['remarks']=request.POST['remarks']
-       #phistory['consultCounter']=str(consultCounter())    
-       
-       #patienttable
-       newPatient = PatientForm(datas)
-       newPatient.save()
+        try:
+            if Patient.objects.get(first_name=request.POST['first_name'],middle_name=request.POST['middle_name'],last_name=request.POST['last_name']):
+                messages.success(request,"Patient Already Exist!")
+                return redirect('patientlist')
+        except:            
+            phistory={}
+            datas = {}
+            if Patient.objects.all().count()==0:
+                datas['patient_code']='P-001'
+                phistory_code='P-001'
+            else:       
+                lastcode=int(Patient.objects.latest('id').patient_code.split('-')[1])
+                lastcode= lastcode+1
+                datas['patient_code']=f"P-{lastcode:03}"
+                phistory_code=f"P-{lastcode:03}"           
+            datas['first_name']=request.POST['first_name']
+            datas['middle_name']=request.POST['middle_name']
+            datas['last_name']=request.POST['last_name']
+            datas['age']=request.POST['age']
+            datas['bday']=request.POST['bday']
+            datas['civil_status']=request.POST['civil_status']
+            datas['gender']=request.POST['gender']
+            datas['address']=request.POST['address']
+            datas['contact_number']=request.POST['contact_number']
+            datas['srID']=request.POST['srID']
+            datas['pwdID']=request.POST['pwdID']
+            datas['nationality']=request.POST['nationality']
+            phistory['remarks']=request.POST['remarks']
+            #phistory['consultCounter']=str(consultCounter())    
+            
+            #patienttable
+            newPatient = PatientForm(datas)
+            newPatient.save()
 
-       #PatienthistoryTable
-       newPatienthistory = PatienthistoryForm(phistory)
-       newPatienthistory= newPatienthistory.save(commit=False)
-       newPatienthistory.patient_code=phistory_code
-       newPatienthistory.consultCounter = str(consultCounter())
-       newPatienthistory.save()
+            #PatienthistoryTable
+            newPatienthistory = PatienthistoryForm(phistory)
+            newPatienthistory= newPatienthistory.save(commit=False)
+            newPatienthistory.patient_code=phistory_code
+            newPatienthistory.consultCounter = str(consultCounter())
+            newPatienthistory.save()
 
-       messages.success(request,"Added Patient Data Successfully")
-       return redirect('patientlist')
+            messages.success(request,"Added Patient Data Successfully")
+            return redirect('patientlist')
     patientsdata = {'patientsdata': Patient.objects.all()}
     return render(request, 'patientlist.html',patientsdata)
 
