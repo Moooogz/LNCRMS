@@ -51,6 +51,9 @@ class PatienthistoryForm(ModelForm):
     class Meta:
         model = Patienthistory
         fields = ['bp',
+                  'weight',
+                  'height',
+                  'bodytemp',
                   'remarks',
                   'diagnosis',
                   'objectives',

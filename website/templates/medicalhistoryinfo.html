@@ -13,35 +13,65 @@
 {% block content1 %}
 
 <div class="add_medicalhistorytable">
+  
     <label class="lbl-pname">CONSULTATION DATE/TIME</label><br />
+    <hr>
     <label class="value-pname">{{patient_history.created_at}} </label>
+   
 </div>
 
 
-<div class="add_medicalhistorytable">
+<div class="add_medicalhistorytable_flex">
+  <div class="history_item">
   <label class="lbl-pname">BLOOD PRESSURE</label><br />
-  <label class="value-pname">{{patient_history.bp}} </label>
+  <hr>
+  <label class="value-pname">{{patient_history.bp}} </label><br />
+  </div>
+
+  <div class="history_item">
+  <label class="lbl-pname">WEIGHT</label><br />
+  <hr>
+  <label class="value-pname">{{patient_history.weight}} </label><br />
+  </div>
+
+  <div class="history_item">
+  <label class="lbl-pname">HEIGHT</label><br />
+  <hr>
+  <label class="value-pname">{{patient_history.height}} </label>
+  </div>
+
+  <div class="history_item">
+    <label class="lbl-pname">TEMPERATURE</label><br />
+    <hr>
+    <label class="value-pname">{{patient_history.bodytemp}} </label>
+    </div>
 </div>
 
 
 <div class="add_medicalhistorytable">
     <label class="lbl-pname">COMMON CONCERN</label><br />
+    <hr>
     <label class="value-pname">{{patient_history.remarks}} </label>
 </div>
 
-<div class="add_medicalhistorytable">
-  <label class="lbl-pname">OBJECTIVE/S</label><br />
-  <label class="value-pname">{{patient_history.objectives}} </label>
-</div>
+
 
 <div class="add_medicalhistorytable">
   <label class="lbl-pname">ASSESSMENT/DIAGNOSIS</label><br />
+  <hr>
   <label class="value-pname">{{patient_history.diagnosis}} </label>
 </div>
 
 <div class="add_medicalhistorytable">
   <label class="lbl-pname">PLANS AND RECOMMENDATIONS</label><br />
+  <hr>
   <label class="value-pname">{{patient_history.plans_recommendations}} </label>
+</div>
+
+<div class="add_medicalhistorytable">
+  <label class="lbl-pname">OBJECTIVE/S</label><br />
+  <hr>
+  <label class="value-pname">{{patient_history.objectives}} </label>
 </div>
 
 <hr>
@@ -59,8 +89,11 @@
                 <td>{{a.name}}</td>
                 <td><img src="{{a.fileattachments.url}}" width="50"></img>
                   <a class="" id="link-view" type="button" href="{{a.fileattachments.url}}" target="_blank">
-                    open attachment
+                    Open
                     </a>
+                    <a class="btn btn-danger btn-sm" type="button" href="{% url "deleteattachment" pID patient_history.id a.id %} ">
+                      Delete
+                      </a>
                   </td>
             </tr>
             {% endfor %}

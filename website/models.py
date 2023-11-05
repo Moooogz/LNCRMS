@@ -41,6 +41,9 @@ class Patienthistory(models.Model):
     objectives = models.TextField(max_length=500,null=True, blank=True)
     plans_recommendations = models.TextField(max_length=500,null=True, blank=True)
     bp = models.CharField(max_length=50,null=True, blank=True)
+    weight = models.CharField(max_length=50,null=True, blank=True)
+    height = models.CharField(max_length=50,null=True, blank=True)
+    bodytemp = models.CharField(max_length=50,null=True, blank=True)
 
 class Prescription(models.Model):
     created_at = models.DateField(auto_now_add=True)

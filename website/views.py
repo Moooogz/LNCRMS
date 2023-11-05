@@ -363,5 +363,11 @@ def pdfreport(request,pk,sig):
  
     return response
 
-
+def deleteattachment(request,pk,pID,apk):
+    deleteattach = PatientsAttachments.objects.get(id=apk)
+    if len(deleteattach.fileattachments)>0:
+        os.remove(deleteattach.fileattachments.path)
+    deleteattach.delete()
+    messages.success(request,"Attachments Deleted!")
+    return redirect(f'/patientinfo/{pID}/medicalhistoryinfo/{pk}')   
     
