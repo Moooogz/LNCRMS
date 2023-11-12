@@ -8,8 +8,13 @@
     
 }
 
+
+
+
 body{
     background-color: #e7f3ed;
+
+    
 }
 
 .body-login{
@@ -436,8 +441,15 @@ td {
 
 .lbl-pname{
     font-size:12px;
-    position: relative;
     color: #01576d;
+  
+}
+
+.lbl-pname5{
+    font-size:12px;
+    color: #01576d;
+    border-bottom: 1px solid gray;
+  
 }
 
 

@@ -4,6 +4,9 @@
 {% block pagetitle %}Patients Information{% endblock pagetitle %}
 {% block content %}
 
+
+
+
 <div class="info-row1">
   <div class="col1-info">
     <label class="lbl-pname">PATIENT NAME : &nbsp &nbsp </label>
@@ -73,7 +76,10 @@
     </div>
   </div>
 
+
+
   <div class="details-history">
+    <div class="title-form"></div>
     <div class="phistory-head">
 
       {% block title %}
@@ -96,17 +102,19 @@
       {% Medhistory patient_record.patient_code as records %}
       <table id="table-medications" class="table table-sm table-bordered">
         <thead class="table-success">
-          <th colspan="5" width="65%">Medical History</th>
+          <th colspan="1" width="45%">Medical History</th>
           <th colspan="1">Date/Time Consulted</th>
+          <th colspan="1">Medications</th>
           <th colspan="1">Actions</th>
         </thead>
 
         {% for record in records %}
         <tr>
-          <td colspan="5" width="65%">{{record.remarks}}
+          <td colspan="1" width="65%">{{record.remarks}}
 
           </td>
           <td colspan="1">{{record.created_at}}</td>
+          <td colspan="1"><a class="link link-info" href="#">Open</a></td>
           <td colspan="1">
             &nbsp <a class="link link-info" href="{% url "medicalhistoryinfo" patient_record.id record.id%}">View</a>
             &nbsp <a class="link link-danger"
@@ -126,92 +134,89 @@
       <div class="add-medication">
         <a type="button" data-bs-toggle="modal" data-bs-target="#print_report">
           <h4><i class="bi bi-printer-fill"></i></h4>
-        
+        </a>
       </div>
-      {% comment %} <a href="{% url "report" patient_record.id %}">
-        <h4><i class="bi bi-printer-fill"></i></h4>
-      </a>
-    </div> {% endcomment %}
-  </div>
 
-  <form method="POST" id="additsem-form">
-    {% csrf_token %}
-    <a class="btn btn-outline-success" style="margin-left:20px;margin-top:10px;"   type="button" data-bs-toggle="modal" data-bs-target="#searchmedicine"><i class="bi bi-search"></i> Search medicine</a>
-    <div class="reg-row">
-      <div class="medicine-col" style="width:100%;">
+    </div>
 
-        {% if medselected %}
-        
-                    <label class="reg-label">Medicine Name</label><br />
-                    <input class="medicine-input" list="medlist" name="medName" value="{{medselected.medicine_name}}" required />
-                    <datalist id="medlist">
-                      {% for medListItem in medicines_list %}
-                      <option value="{{medListItem.medicine_name}}">
-                        {% endfor %}
-                    </datalist>
-                  </div>
+    <form method="POST" id="additsem-form">
+      {% csrf_token %}
+      <a class="btn btn-outline-success" style="margin-left:20px;margin-top:10px;" type="button" data-bs-toggle="modal"
+        data-bs-target="#searchmedicine"><i class="bi bi-search"></i> Search medicine</a>
+      <div class="reg-row">
+        <div class="medicine-col" style="width:100%;">
 
-                  <div class="medicine-col">
-                    <label class="reg-label">Dosage</label><br />
-                    <input class="medicine-input" name="dosage" value="{{medselected.dosage}}" required />
-                  </div>
+          {% if medselected %}
 
-                  <div class="medicine-col">
-                    <label class="reg-label">Quantity</label><br />
-                    <input class="medicine-input" name="qtyvalue" style="width:80%;" required />
-                  </div>
+          <label class="reg-label">Medicine Name</label><br />
+          <input class="medicine-input" list="medlist" name="medName" value="{{medselected.medicine_name}}" required />
+          <datalist id="medlist">
+            {% for medListItem in medicines_list %}
+            <option value="{{medListItem.medicine_name}}">
+              {% endfor %}
+          </datalist>
+        </div>
+
+        <div class="medicine-col">
+          <label class="reg-label">Dosage</label><br />
+          <input class="medicine-input" name="dosage" value="{{medselected.dosage}}" required />
+        </div>
+
+        <div class="medicine-col">
+          <label class="reg-label">Quantity</label><br />
+          <input class="medicine-input" name="qtyvalue" style="width:80%;" required />
+        </div>
 
         {% else %}
 
-                  <label class="reg-label">Medicine Name</label><br />
-                  <input class="medicine-input" list="medlist" name="medName" required />
-                  <datalist id="medlist">
-                    {% for medListItem in medicines_list %}
-                    <option value="{{medListItem.medicine_name}}">
-                      {% endfor %}
-                  </datalist>
-                </div>
+        <label class="reg-label">Medicine Name</label><br />
+        <input class="medicine-input" list="medlist" name="medName" required />
+        <datalist id="medlist">
+          {% for medListItem in medicines_list %}
+          <option value="{{medListItem.medicine_name}}">
+            {% endfor %}
+        </datalist>
+      </div>
 
-                <div class="medicine-col">
-                  <label class="reg-label">Dosage</label><br />
-                  <input class="medicine-input" name="dosage" required />
-                </div>
+      <div class="medicine-col">
+        <label class="reg-label">Dosage</label><br />
+        <input class="medicine-input" name="dosage" required />
+      </div>
 
-                <div class="medicine-col">
-                  <label class="reg-label">Quantity</label><br />
-                  <input class="medicine-input" name="qtyvalue" style="width:80%;" required />
-                </div>
+      <div class="medicine-col">
+        <label class="reg-label">Quantity</label><br />
+        <input class="medicine-input" name="qtyvalue" style="width:80%;" required />
+      </div>
 
-        {% endif %}
-        
+      {% endif %}
 
+  </div>
+  <br>
+  <div class="reg-row" style="padding-top:0px">
+
+    <div class="medicine-col">
+      <label class="reg-label">7AM</label><br />
+      <input class="medicine-input" name="am" required />
+    </div>
+
+    <div class="medicine-col">
+      <label class="reg-label">1PM</label><br />
+      <input class="medicine-input" name="noon" required />
+    </div>
+
+    <div class="medicine-col">
+      <label class="reg-label">5PM</label><br />
+      <input class="medicine-input" name="pmvalue" required />
+    </div>
+
+    <div class="medicine-col">
+
+      <button class="btn-addmed btn-success mt-4 p-2" type="submit" name="addtoprescription">add to
+        prescription</button>
 
     </div>
-    <br>
-    <div class="reg-row" style="padding-top:0px">
 
-      <div class="medicine-col">
-        <label class="reg-label">7AM</label><br />
-        <input class="medicine-input" name="am" required />
-      </div>
-
-      <div class="medicine-col">
-        <label class="reg-label">1PM</label><br />
-        <input class="medicine-input" name="noon" required />
-      </div>
-
-      <div class="medicine-col">
-        <label class="reg-label">5PM</label><br />
-        <input class="medicine-input" name="pmvalue" required />
-      </div>
-
-      <div class="medicine-col">
-
-        <button class="btn-addmed btn-success mt-4 p-2" type="submit" name="addtoprescription">add to prescription</button>
-
-      </div>
-
-    </div>
+  </div>
 
   </form>
 
@@ -258,101 +263,97 @@
     </table>
   </div>
   <!--end of PATIENT PRESCRIPTION TABLE-->
-  {% endblock content1 %}
 
-</div>
-</div>
+  <!-- Modal -->
+  <div class="modal fade sm" id="print_report" data-bs-backdrop="static" tabindex="-1" aria-labelledby="print_report"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
 
-<!-- Modal -->
-<div class="modal fade sm" id="print_report" data-bs-backdrop="static" tabindex="-1" aria-labelledby="print_report"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="title-form">Print Prescription</div>
+        <form action="" method="POST" target="_blank">
+          {% csrf_token %}
 
-    <div class="modal-content">
-      <div class="title-form">Print Prescription</div>
-      <form action="" method="POST" target="_blank">
-        {% csrf_token %}
-
-        <div class="form-check m-4">
-          <input name="sigchecked" class="form-check-input" type="checkbox" value="with signature" id="flexCheckChecked"
-            checked>
-          <label class="form-check-label" for="flexCheckChecked">
-            with signature
-          </label>
-        </div>
-
-        <div class="reg-row">
-          <div class="medicine-col" align="right" style="margin-bottom:15px;">
-
-            <button class="btn-save" type="submit" name="print_prescription">Print</button>
-            <button style="margin-right:20px;"type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
+          <div class="form-check m-4">
+            <input name="sigchecked" class="form-check-input" type="checkbox" value="with signature"
+              id="flexCheckChecked" checked>
+            <label class="form-check-label" for="flexCheckChecked">
+              with signature
+            </label>
           </div>
+
+          <div class="reg-row">
+            <div class="medicine-col" align="right" style="margin-bottom:15px;">
+
+              <button class="btn-save" type="submit" name="print_prescription">Print</button>
+              <button style="margin-right:20px;" type="button" class="btn btn-secondary"
+                data-bs-dismiss="modal">Close</button>
+
+            </div>
+          </div>
+        </form>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="modal fade sm" id="searchmedicine" data-bs-backdrop="static" tabindex="-1" aria-labelledby="print_report"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+      <div class="modal-content">
+        <div class="title-form2"><span><i class="bi bi-search"></i> &nbsp Search Medicine</span>
+          &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+          &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
+          &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp
+
+          <span> <a href="" data-bs-dismiss="modal" class="btn btn-danger btn-sm">CLOSE</a></span></div>
+
+        <div class="m-3">
+
+          <!--MEDICINES TABLE-->
+          <table id="medicine-table" class="medicine-tables">
+            <thead>
+
+              <th>Medicine Name</th>
+              <th>Dosage</th>
+              <th>Actions</th>
+            </thead>
+
+            <tbody>
+              {% for meds in medicinedata %}
+              <tr>
+
+                <td>{{meds.medicine_name}}</td>
+                <td>{{meds.dosage}}</td>
+                <td id="actions_cell">
+
+                  <form action="{% url "patientinfo" pID meds.id %}" method="POST">
+                    {% csrf_token %}
+                    <button type='submit' name="select_medicine" id="link-select">select medicine</button>
+                  </form>
+                </td>
+              </tr>
+              {% endfor %}
+
+            </tbody>
+
+          </table>
+
+          </form>
+
         </div>
-      </form>
+      </div>
+
     </div>
 
   </div>
 </div>
+{% endblock content1 %}
 
-<div class="modal fade sm" id="searchmedicine" data-bs-backdrop="static" tabindex="-1" aria-labelledby="print_report"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-
-    <div class="modal-content">
-      <div class="title-form2"><span><i class="bi bi-search"></i> &nbsp Search Medicine</span>
-          &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-           &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp  &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-            &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp
-           
-        <span > <a href="" data-bs-dismiss="modal" class="btn btn-danger btn-sm" >CLOSE</a></span></div>
-      
-      <div class="m-3">
-      
-     
-        <!--MEDICINES TABLE-->
-      <table id="medicine-table" class="medicine-tables">
-        <thead >
-         
-          <th>Medicine Name</th>
-          <th>Dosage</th>
-          <th>Actions</th>
-        </thead>
-        
-        <tbody>
-          {% for meds in medicinedata %}
-          <tr>
-           
-            <td>{{meds.medicine_name}}</td>
-            <td>{{meds.dosage}}</td>           
-            <td id="actions_cell">
-              
-             
-              <form action="{% url "patientinfo" pID meds.id %}" method="POST">
-                {% csrf_token %}
-              <button type='submit' name="select_medicine"  id="link-select">select medicine</button>
-              </form> </td>          
-            </tr>
-            {% endfor %}
-            
-          </tbody>
-       
-        </table>
-        
-       
-      </form>
-  
-    </div>
-  </div>
-  
-
-    
-
-    </div>
-
-  </div>
+</div>
 </div>
 
 {% endblock content %}

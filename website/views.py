@@ -88,28 +88,39 @@ def medicalhistorytb(request,pk):
     return render(request,'tables/medicalhistorytb.html',context)    
 
 @login_required(login_url="loginuser")
-def medicalhistoryinfo(request,pk,pkHistory):    
+def medicalhistoryinfo(request,pk,pkHistory,selectedmed=''):    
     form =PatientsAttachmentsForm()
     context=patientinfoData(pk)
     patienthistory_Data= Patienthistory.objects.get(id=pkHistory)
     context['patient_history']= patienthistory_Data
     pCode= context['pCode']
+    context['medicinedata'] =Medicinelist.objects.all()
     context['form']=form
     context['patient_history_attachments'] = PatientsAttachments.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data.consultCounter)
     
   
     if request.method=='POST':
-        form = PatientsAttachmentsForm(request.POST,request.FILES)
-        if form.is_valid():
-            print("success add attachments")            
-            form_final=form.save(commit=False)
-            form_final.consultCounter = patienthistory_Data.consultCounter
-            form_final.patient_code = pCode
-            form_final.save()
-        else:
-            print("error add attachments")
+        if 'save_attachments' in request.POST: 
+            form = PatientsAttachmentsForm(request.POST,request.FILES)
+            if form.is_valid():
+                print("success add attachments")            
+                form_final=form.save(commit=False)
+                form_final.consultCounter = patienthistory_Data.consultCounter
+                form_final.patient_code = pCode
+                form_final.save()
+            else:
+                print("error add attachments")
+        elif 'select_medicine' in request.POST:
+            if not selectedmed=='':
+                medselected = Medicinelist.objects.get(id=selectedmed)
+                context['medselected']=medselected
     
     return render(request,'medicalhistoryinfo.html',context) 
+
+def prescription(request,pk):  
+    context=patientinfoData(pk)
+    return render(request,'prescriptionform.html',context) 
+
 
 @login_required(login_url="loginuser")
 def editmedicalhistory(request,pk,pkHistory):
@@ -166,7 +177,7 @@ def patientinfo(request,pk,selectedmed=''):
             return redirect(f'/report/{pk}/{sigValue}')
         else:
             return redirect(f'/report/{pk}/nosig')
-    elif f'select_medicine' in request.POST:
+    elif 'select_medicine' in request.POST:
         if not selectedmed=='':
             medselected = Medicinelist.objects.get(id=selectedmed)
             context['medselected']=medselected
