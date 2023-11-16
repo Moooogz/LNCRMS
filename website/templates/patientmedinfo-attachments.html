@@ -1,0 +1,99 @@
+{% extends 'patientinfo.html' %}
+{% load custom_tags %}
+{% load static %}
+
+{% block btn-back %} <a href="{% url "patienttable" %}">
+    <h4 style="color:black;"><i class="bi bi-arrow-left-square-fill"></i></h4>
+</a>{% endblock btn-back %}
+{% block title %}
+<div class="lbl-details ">
+    <h3>Patient History Details &nbsp<a href="{% url "editmedicalhistory" pID patient_history.id  %}"><i
+                class="bi iconcolor bi-pencil-square"></i></a></h3>
+</div>
+
+{% endblock title %}
+{% block content1 %}
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link" aria-current="page" href="{% url "patientmedinfo_geninfo" pID patient_history.id %}">General Info</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url "patientmedinfo_medications" pID patient_history.id %}">Medications</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link active" href="{% url "patientmedinfo_attachments" pID patient_history.id %}">Attachments</a>
+    </li>
+   
+  </ul>
+
+
+
+
+
+  {% comment %} <div class="title-form"></div> {% endcomment %}
+<div class="medicalhistorytable">
+    <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#add_attachments">Add
+        attachments</button>
+
+    <table id="table-medications" class="table table-sm table-bordered content-table">
+        <thead class="table-success">
+            <th colspan="2">Attachments</th>
+        </thead>
+        <tbody>
+            {% if patient_history_attachments %}
+            {% for a in  patient_history_attachments%}
+            <tr>
+                <td>{{a.name}}</td>
+                <td><img src="{{a.fileattachments.url}}" width="50"></img>
+                    <a class="" id="link-view" type="button" href="{{a.fileattachments.url}}" target="_blank">
+                        Open
+                    </a>
+                    <a class="btn btn-danger btn-sm" type="button"
+                        href="{% url "deleteattachment" pID patient_history.id a.id %} ">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            no attachements
+            {% endif %}
+        </tbody>
+    </table>
+
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="add_attachments" data-bs-backdrop="static" tabindex="-1" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+            <div class="title-form">Upload Attachments </div>
+            <form action="" method="POST" enctype='multipart/form-data'>
+                {% csrf_token %}
+                <div class="reg-row fullwidth" style="padding: 10px;width:100%;">
+
+                    {{form.name}}
+
+                </div>
+                <div class="reg-row" style="padding: 10px;width:100%;">
+
+                    {{form.fileattachments}}
+                </div>
+
+                <div class="reg-row">
+                    <div class="medicine-col">
+
+                        <button name="save_attachments" class="btn-save" type="submit" name="update">Save</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock content1 %}

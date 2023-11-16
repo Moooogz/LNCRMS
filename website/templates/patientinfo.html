@@ -79,7 +79,7 @@
 
 
   <div class="details-history">
-    <div class="title-form"></div>
+ 
     <div class="phistory-head">
 
       {% block title %}
@@ -116,7 +116,7 @@
           <td colspan="1">{{record.created_at}}</td>
           <td colspan="1"><a class="link link-info" href="#">Open</a></td>
           <td colspan="1">
-            &nbsp <a class="link link-info" href="{% url "medicalhistoryinfo" patient_record.id record.id%}">View</a>
+            &nbsp <a class="link link-info" href="{% url "patientmedinfo_geninfo" patient_record.id record.id%}">View</a>
             &nbsp <a class="link link-danger"
               href="{% url "deletemedicalhistory" patient_record.id record.id%}">Delete</a>
           </td>

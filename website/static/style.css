@@ -155,8 +155,8 @@ header li,a,strong, button {
 }
 
 .title-form{
-    color: #edf0f1 ;    
-    width: 100%;
+  
+    color: #edf0f1 ;  
     padding: 10px;
     font-size: 13px;
     background: rgb(0,135,97);
@@ -849,3 +849,20 @@ background: linear-gradient(90deg, rgba(62,85,105,1) 0%, rgba(65,67,69,1) 100%);
    color: white;
   
   }
+
+  .active{
+    margin: 0px;
+    color: white;
+    background: rgb(0,135,97,0.3);
+    background: linear-gradient(90deg, rgba(0,135,97,0.2) 0%, rgba(59,178,113,0.49343487394957986) 100%);
+}
+
+.content-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    min-width: 400px;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+   
+}

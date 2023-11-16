@@ -48,6 +48,7 @@ class Patienthistory(models.Model):
 class Prescription(models.Model):
     created_at = models.DateField(auto_now_add=True)
     patient_code=models.CharField(max_length=50)
+    consultCounter = models.CharField(max_length=50,null=True, blank=True)
     quantity = models.CharField(max_length=50)
     medicine_name = models.CharField(max_length=100)
     dosage = models.CharField(max_length=50)

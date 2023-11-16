@@ -1,0 +1,90 @@
+{% extends 'patientinfo.html' %}
+{% load custom_tags %}
+{% load static %}
+
+{% block btn-back %} <a href="{% url "patienttable" %}">
+    <h4 style="color:black;"><i class="bi bi-arrow-left-square-fill"></i></h4>
+</a>{% endblock btn-back %}
+{% block title %}
+<div class="lbl-details ">
+    <h3>Patient History Details &nbsp<a href="{% url "editmedicalhistory" pID patient_history.id  %}"><i
+                class="bi iconcolor bi-pencil-square"></i></a></h3>
+</div>
+
+{% endblock title %}
+{% block content1 %}
+
+<ul class="nav nav-tabs">
+    <li class="nav-item">
+      <a class="nav-link active" aria-current="page" href="{% url "patientmedinfo_geninfo" pID patient_history.id %}">General Info</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url "patientmedinfo_medications" pID patient_history.id %}">Medications</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="{% url "patientmedinfo_attachments" pID patient_history.id %}">Attachments</a>
+    </li>
+   
+  </ul>
+ {% comment %} <div class="title-form"></div>  {% endcomment %}
+<div class="add_medicalhistorytable">
+
+    <label class="lbl-pname5">CONSULTATION DATE/TIME</label><br />
+
+    <label class="value-pname">{{patient_history.created_at}} </label>
+
+</div>
+
+<div class="add_medicalhistorytable_flex">
+    <div class="history_item">
+        <label class="lbl-pname5">BLOOD PRESSURE</label><br />
+
+        <label class="value-pname">{{patient_history.bp}} </label><br />
+    </div>
+
+    <div class="history_item">
+        <label class="lbl-pname5">WEIGHT</label><br />
+
+        <label class="value-pname">{{patient_history.weight}} </label><br />
+    </div>
+
+    <div class="history_item">
+        <label class="lbl-pname5">HEIGHT</label><br />
+
+        <label class="value-pname">{{patient_history.height}} </label>
+    </div>
+
+    <div class="history_item">
+        <label class="lbl-pname5">TEMPERATURE</label><br />
+
+        <label class="value-pname">{{patient_history.bodytemp}} </label>
+    </div>
+</div>
+
+<div class="add_medicalhistorytable">
+    <label class="lbl-pname5">COMMON CONCERN</label><br />
+
+    <label class="value-pname">{{patient_history.remarks}} </label>
+</div>
+
+<div class="add_medicalhistorytable">
+    <label class="lbl-pname5">ASSESSMENT/DIAGNOSIS</label><br />
+
+    <label class="value-pname">{{patient_history.diagnosis}} </label>
+</div>
+
+<div class="add_medicalhistorytable">
+    <label class="lbl-pname5">PLANS AND RECOMMENDATIONS</label><br />
+
+    <label class="value-pname">{{patient_history.plans_recommendations}} </label>
+</div>
+
+<div class="add_medicalhistorytable">
+    <label class="lbl-pname5">OBJECTIVE/S</label><br />
+
+    <label class="value-pname">{{patient_history.objectives}} </label>
+</div>
+<hr>
+
+
+{% endblock content1 %}

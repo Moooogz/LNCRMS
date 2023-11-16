@@ -117,9 +117,108 @@ def medicalhistoryinfo(request,pk,pkHistory,selectedmed=''):
     
     return render(request,'medicalhistoryinfo.html',context) 
 
+@login_required(login_url="loginuser")
+def patientmedinfo_geninfo(request,pk,pkHistory,selectedmed=''): 
+    form =PatientsAttachmentsForm()
+    context=patientinfoData(pk)
+    patienthistory_Data= Patienthistory.objects.get(id=pkHistory)
+    context['patient_history']= patienthistory_Data
+    pCode= context['pCode']
+    context['medicinedata'] =Medicinelist.objects.all()
+    context['form']=form
+    context['patient_history_attachments'] = PatientsAttachments.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data.consultCounter)
+    if request.method=='POST':
+        if 'save_attachments' in request.POST: 
+            form = PatientsAttachmentsForm(request.POST,request.FILES)
+            if form.is_valid():
+                print("success add attachments")            
+                form_final=form.save(commit=False)
+                form_final.consultCounter = patienthistory_Data.consultCounter
+                form_final.patient_code = pCode
+                form_final.save()
+            else:
+                print("error add attachments")
+        elif 'select_medicine' in request.POST:
+            if not selectedmed=='':
+                medselected = Medicinelist.objects.get(id=selectedmed)
+                context['medselected']=medselected    
+    return render(request,'patientmedinfo-geninfo.html',context) 
+
+@login_required(login_url="loginuser")
+def patientmedinfo_attachments(request,pk,pkHistory,selectedmed=''): 
+    form =PatientsAttachmentsForm()
+    context=patientinfoData(pk)
+    patienthistory_Data= Patienthistory.objects.get(id=pkHistory)
+    context['patient_history']= patienthistory_Data
+    pCode= context['pCode']
+    context['medicinedata'] =Medicinelist.objects.all()
+    context['form']=form
+    context['patient_history_attachments'] = PatientsAttachments.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data.consultCounter)
+    if request.method=='POST':
+        if 'save_attachments' in request.POST: 
+            form = PatientsAttachmentsForm(request.POST,request.FILES)
+            if form.is_valid():
+                print("success add attachments")            
+                form_final=form.save(commit=False)
+                form_final.consultCounter = patienthistory_Data.consultCounter
+                form_final.patient_code = pCode
+                form_final.save()
+            else:
+                print("error add attachments")
+        elif 'select_medicine' in request.POST:
+            if not selectedmed=='':
+                medselected = Medicinelist.objects.get(id=selectedmed)
+                context['medselected']=medselected    
+    return render(request,'patientmedinfo-attachments.html',context) 
+
+@login_required(login_url="loginuser")
+def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''): 
+    form =PatientsAttachmentsForm()
+    context=patientinfoData(pk)
+    patienthistory_Data= Patienthistory.objects.get(id=pkHistory)
+    context['patient_history']= patienthistory_Data
+    pCode= context['pCode']
+    context['medicinedata'] =Medicinelist.objects.all()
+    context['form']=form
+    context['patient_history_attachments'] = PatientsAttachments.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data.consultCounter)
+    date_joined = datetime.now()
+    formatted_datetime = formats.date_format(date_joined, "SHORT_DATETIME_FORMAT")
+    context['medicinedata'] =Medicinelist.objects.all()
+    pCode=patientinfoData(pk)['patient_record'].patient_code
+    context['prescriptionrecord'] = Prescription.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data.consultCounter)
+    if 'addtoprescription' in request.POST: 
+        newPrescriptionData={}        
+        newPrescriptionData['patient_code'] = pCode
+        newPrescriptionData['quantity']=request.POST['qtyvalue']
+        newPrescriptionData['medicine_name']=request.POST['medName']
+        newPrescriptionData['dosage'] =request.POST['dosage']
+        newPrescriptionData['morning'] =request.POST['am']
+        newPrescriptionData['noon'] =request.POST['noon']
+        newPrescriptionData['evening'] =request.POST['pmvalue']
+        newPrescriptionData['consultCounter'] =patienthistory_Data.consultCounter
+        newPrescription = PrescriptionForm(newPrescriptionData)
+        newPrescription.save()
+    elif 'print_prescription' in request.POST:
+        checked=request.POST.getlist('sigchecked')
+        conCounter= patienthistory_Data.consultCounter
+        if len(checked)>0:
+            sigValue = "\doctorsignature.png"
+            return redirect(f'/report/{pk}/{sigValue}/{conCounter}')
+        else:
+            return redirect(f'/report/{pk}/nosig')
+    elif 'select_medicine' in request.POST:
+        if not selectedmed=='':
+            medselected = Medicinelist.objects.get(id=selectedmed)
+            context['medselected']=medselected   
+    return render(request,'patientmedinfo-medications.html',context) 
+
 def prescription(request,pk):  
     context=patientinfoData(pk)
     return render(request,'prescriptionform.html',context) 
+
+
+
+
 
 
 @login_required(login_url="loginuser")
@@ -190,6 +289,7 @@ def deleteitemprescription(request,pID,pk):
     PrescriptionItem= Prescription.objects.get(id=pk)
     PrescriptionItem.delete()
     return redirect(f'/patientinfo/{pID}')
+
     
 @login_required(login_url="loginuser")    
 def patienttable(request):
@@ -252,7 +352,7 @@ def deletepatient(request,pk):
         deletepatient = Patient.objects.get(id=pk)
         deletepatient.delete()
         messages.success(request,"Record Deleted")
-        return redirect('patientlist')        
+        return redirect('patienttable')        
     return render(request, 'deletepatient.html',{})
 
 @login_required(login_url="loginuser")
@@ -347,12 +447,12 @@ def updatemedrecord(request,pk):
     return redirect('medications')
 
 @login_required(login_url="loginuser")
-def pdfreport(request,pk,sig):
+def pdfreport(request,pk,sig,conCounter):
     date_joined = datetime.now()
     formatted_datetime = formats.date_format(date_joined, "SHORT_DATETIME_FORMAT")
     patient_record = Patient.objects.get(id=pk)
     pCode = patient_record.patient_code
-    medicationrecord = Prescription.objects.filter(patient_code=pCode)
+    medicationrecord = Prescription.objects.filter(patient_code=pCode,consultCounter=conCounter)
     
     
     template_path = 'pdfreport.html'
@@ -380,5 +480,5 @@ def deleteattachment(request,pk,pID,apk):
         os.remove(deleteattach.fileattachments.path)
     deleteattach.delete()
     messages.success(request,"Attachments Deleted!")
-    return redirect(f'/patientinfo/{pID}/medicalhistoryinfo/{pk}')   
+    return redirect(f'/patientinfo/{pID}/patientmedinfo_attachments/{pk}')   
     
