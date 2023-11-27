@@ -866,3 +866,19 @@ background: linear-gradient(90deg, rgba(62,85,105,1) 0%, rgba(65,67,69,1) 100%);
     overflow: hidden;
    
 }
+
+#pending {
+    padding: 2px 15px;
+    background-color: #e87861;
+    color: white;
+    font-size: 13px;
+    border-radius: 8px;
+}
+
+#completed {
+    padding: 2px 15px;
+    background-color: #4dd86e;
+    color: white;
+    font-size: 13px;
+    border-radius: 8px;
+}

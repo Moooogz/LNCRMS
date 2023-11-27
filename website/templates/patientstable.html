@@ -7,23 +7,34 @@
         <th>Gender</th>
         <th>Age</th>
         <th>Date Added</th>
+        <th>Status</th>
         <th>Actions</th>
       </thead>
   
       <tbody>
         {% for x in patientsdata %}
+        {% for y in status  %}
+        {% if forloop.counter == forloop.parentloop.counter %}
+    
+    
         <tr>
           <td>{{x.patient_code}}</td>
           <td>{{x.last_name}}, {{x.first_name}} {{x.middle_name.0}}.</td>
           <td>{{x.gender}}</td>
           <td>{{x.age}}</td>
           <td>{{x.created_at}}</td>
+        {% if y == "Completed" %}
+          <td><span id="completed">{{y}}</span></td>
+        {% elif y == "Pending" %}
+          <td><span id="pending">{{y}}</span></td>
+        {% endif %}
           <td>
             <a href="{% url 'patientinfo' x.id %}" id="link-view"><i class="bi bi-eye"></i></a>
             <a href="{% url 'editpatient' x.id %}" id="link-edit"><i class="bi bi-pencil-square"></i></a>
             <a href="{% url 'deletepatient' x.id %}" id="link-delete"><i class="bi bi-trash3"></i></a>
           </td>          
         </tr>
-        {% endfor %}
+        {% endif %}
+        {% endfor %}  {% endfor %}
       </tbody>
     </table>

@@ -57,11 +57,23 @@ def dashboard(request):
     patientcount=Patient.objects.all().count()
     medicinecount= Medicinelist.objects.all().count()
     consultationscount= Patienthistory.objects.all().count()
+    patientsdata =  Patient.objects.all()
+    status=[]
+    for pd in patientsdata:
+        data = Patienthistory.objects.filter(patient_code=pd)
+        for n in range(len(data)):
+            if data[n].diagnosis=='*under observation' or data[n].plans_recommendations=='None' or data[n].objectives=='*None' :
+               data_status = 'Pending'
+               break
+            else:
+               data_status = 'Completed'
+        status.append(data_status)
     context = {"consultationtable":consultationtable,
                'patientsdata': Patient.objects.all(),
                'patientcount':patientcount,
                'medicinecount':medicinecount,
                'consultationscount':consultationscount,
+               'status':status,
                }
     return render(request, 'dashboard.html',context)
 
@@ -292,9 +304,27 @@ def deleteitemprescription(request,pID,pk):
 
     
 @login_required(login_url="loginuser")    
-def patienttable(request):
-    patientsdata = {'patientsdata': Patient.objects.all()}
-    return render(request, 'patienttable.html',patientsdata)
+def patienttable(request):    
+    patientsdata =  Patient.objects.all()
+    status=[]
+    for pd in patientsdata:
+        data = Patienthistory.objects.filter(patient_code=pd)
+        for n in range(len(data)):
+            if data[n].diagnosis=='*under observation' or data[n].plans_recommendations=='None' or data[n].objectives=='*None' :
+               data_status = 'Pending'
+               break
+            else:
+               data_status = 'Completed'
+        status.append(data_status)
+    print(status)
+   
+    context = {'patientsdata':patientsdata,
+               'status':status}
+ 
+           
+
+    
+    return render(request, 'patienttable.html',context)
 
 
 @login_required(login_url="loginuser")
