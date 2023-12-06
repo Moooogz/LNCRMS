@@ -39,10 +39,14 @@ class PrescriptionForm(ModelForm):
     class Meta:
         model = Prescription
         fields = ['patient_code',
-                  'consultCounter',
-                  'quantity',
+                  'consultCounter',                  
                   'medicine_name',
-                  'dosage',
+                  'medsize',
+                  'medgenname',                  
+                  'quantity',
+                  'qty',
+                  'medunit',
+                  'medduration',
                   'morning',
                   'noon',
                   'evening',                                

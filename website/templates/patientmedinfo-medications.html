@@ -114,50 +114,77 @@
 
             </form> {% endcomment %}
 
-
+            <form method="POST">
+              {% csrf_token %}
             <div class="m-3">
                 <label>Medicine/Preparation</label>
                 <div class="row g-3">
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="medicine name" >
+                    <input type="text" class="form-control" placeholder="medicine name" name="medname">
                   </div>
                   <div class="col">
-                    <input type="text" class="form-control" placeholder="ex. mg/ml">
+                    <input type="text" class="form-control" placeholder="ex. mg/ml" name="medsize">
                   </div>
                 </div>
             </div>
 
             <div class="m-3">
-              <label>Transcription</label>
+              <label>Subscription</label>
               <div class="row g-3">
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="medicine name" >
+                  <input type="text" class="form-control" placeholder="generic brand" name="medgenname">
                 </div>
                 <div class="col">
-                  <input type="text" class="form-control" placeholder="ex. mg/ml">
+                  <input type="text" class="form-control" placeholder="total quantity" name="medtotalqty">
                 </div>
               </div>
           </div>
         
           
           <div class="row m-3">
-             <div class="col-md-6">
-              <label for="inputCity" class="form-label">City</label>
-              <input type="text" class="form-control" id="inputCity">
+             <div class="col-md-4">
+              <label for="inputCity" class="form-label">Transcription</label>
+              <input type="text" class="form-control" id="inputCity" placeholder="quantity" name="medqty" >
             </div>
             <div class="col-md-4">
-              <label for="inputState" class="form-label">State</label>
-              <select id="inputState" class="form-select">
+              <label for="inputState" class="form-label">Unit</label>
+              <select id="inputState" class="form-select" name="medunit">
                 <option selected>Choose...</option>
-                <option>...</option>
+                <option>teaspoon</option>
+                <option>tab/s</option>
               </select>
             </div>
-            <div class="col-md-2">
-              <label for="inputZip" class="form-label">Zip</label>
-              <input type="text" class="form-control" id="inputZip">
+            <div class="col-md-4">
+              <label for="inputZip" class="form-label">Duration</label>
+              <select id="inputState" class="form-select" name="medduration">
+                <option selected>Choose...</option>
+                <option>Day</option>
+                <option>Week</option>
+                <option>Month</option>
+              </select>
             </div>
-           
           </div>
+
+          <div class="row m-3">
+            <div class="col-md-4">
+             <label for="inputCity" class="form-label">Morning</label>
+             <input type="text" class="form-control" id="inputCity" placeholder="" name="am" >
+           </div>
+           <div class="col-md-4">
+             <label for="inputState" class="form-label">Noon</label>
+             <input type="text" class="form-control" id="inputCity" placeholder="" name="noon" >
+           </div>
+           <div class="col-md-4">
+             <label for="inputZip" class="form-label">Evening</label>
+             <input type="text" class="form-control" id="inputCity" placeholder="" name="pmvalue" >
+           </div>
+         </div>
+
+            <div class="m-3">
+            <button class="btn btn-save" type="submit" name="testsave">Save</button>
+          </div>
+        </form>
+         
       
 
                 <!--PATIENT PRESCRIPTION TABLE-->

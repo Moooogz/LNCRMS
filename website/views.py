@@ -12,6 +12,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from datetime import datetime
 from django.utils import formats
+from datetime import datetime, date, timedelta
+import calendar
 
 
 def registrationpage(request):
@@ -222,6 +224,50 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
         if not selectedmed=='':
             medselected = Medicinelist.objects.get(id=selectedmed)
             context['medselected']=medselected   
+    elif 'testsave' in request.POST:
+        datenow = datetime.now()
+        
+        
+        medname= request.POST['medname']
+        medsize= request.POST['medsize']
+        medgenname= request.POST['medgenname']
+        medtotalqty= int(request.POST['medtotalqty'])
+        medqty= int(request.POST['medqty'])
+        medunit= request.POST['medunit']
+        medduration= request.POST['medduration']
+
+
+        newPrescriptionData={}        
+        newPrescriptionData['patient_code'] = pCode
+        newPrescriptionData['medicine_name']=medname
+        newPrescriptionData['medsize']=medsize
+        newPrescriptionData['medgenname']=medgenname
+        newPrescriptionData['quantity']=medtotalqty
+        newPrescriptionData['qty']=medqty
+        newPrescriptionData['medunit']=medunit
+        newPrescriptionData['medduration']=medduration   
+        newPrescriptionData['morning'] =request.POST['am']
+        newPrescriptionData['noon'] =request.POST['noon']
+        newPrescriptionData['evening'] =request.POST['pmvalue']
+        newPrescriptionData['consultCounter'] =patienthistory_Data.consultCounter
+        newPrescription = PrescriptionForm(newPrescriptionData)
+        newPrescription.save()
+        
+        datenow = datenow + timedelta(days=medtotalqty/medqty)
+        
+        month = datenow.month
+        day = datenow.day
+        year = datenow.year
+
+        print(medname)
+        print(medsize)
+        print(medgenname)
+        print(medtotalqty)
+        print(medqty)
+        print(medunit)
+        print(medduration)
+        print(f"{calendar.month_name[month]} {day}, {year}")
+      
     return render(request,'patientmedinfo-medications.html',context) 
 
 def prescription(request,pk):  
