@@ -191,6 +191,8 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
     context=patientinfoData(pk)
     patienthistory_Data= Patienthistory.objects.get(id=pkHistory)
     context['patient_history']= patienthistory_Data
+    dosage_units = Dosageunit.objects.all()
+    context['dosage_units']= dosage_units
     pCode= context['pCode']
     context['medicinedata'] =Medicinelist.objects.all()
     context['form']=form
@@ -225,6 +227,7 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
             medselected = Medicinelist.objects.get(id=selectedmed)
             context['medselected']=medselected   
     elif 'testsave' in request.POST:
+    
         datenow = datetime.now()
         
         
@@ -235,7 +238,7 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
         medqty= int(request.POST['medqty'])
         medunit= request.POST['medunit']
         medduration= request.POST['medduration']
-
+       
 
         newPrescriptionData={}        
         newPrescriptionData['patient_code'] = pCode
@@ -250,7 +253,9 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
         newPrescriptionData['noon'] =request.POST['noon']
         newPrescriptionData['evening'] =request.POST['pmvalue']
         newPrescriptionData['consultCounter'] =patienthistory_Data.consultCounter
+        print(medname)
         newPrescription = PrescriptionForm(newPrescriptionData)
+        
         newPrescription.save()
         
         datenow = datenow + timedelta(days=medtotalqty/medqty)
@@ -557,4 +562,12 @@ def deleteattachment(request,pk,pID,apk):
     deleteattach.delete()
     messages.success(request,"Attachments Deleted!")
     return redirect(f'/patientinfo/{pID}/patientmedinfo_attachments/{pk}')   
+
+@login_required(login_url="loginuser")
+def medicationsettings(request):
+    context = Dosageunit.objects.all()
+    if 'addunit' in request.POST:
+        Dosageunit.objects.create(dosage_unit=request.POST['dosage_unit'])
+
+    return render(request, 'medicationsettings.html',{"context":context})
     

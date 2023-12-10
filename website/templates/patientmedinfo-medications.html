@@ -143,24 +143,25 @@
           
           <div class="row m-3">
              <div class="col-md-4">
-              <label for="inputCity" class="form-label">Transcription</label>
+              <label for="inputCity" class="form-label">Transcription(Dosage)</label>
               <input type="text" class="form-control" id="inputCity" placeholder="quantity" name="medqty" >
             </div>
             <div class="col-md-4">
               <label for="inputState" class="form-label">Unit</label>
               <select id="inputState" class="form-select" name="medunit">
                 <option selected>Choose...</option>
-                <option>teaspoon</option>
-                <option>tab/s</option>
+                {% for unit in dosage_units %}
+                <option>{{unit.dosage_unit}}</option>
+                {% endfor %}
               </select>
             </div>
             <div class="col-md-4">
               <label for="inputZip" class="form-label">Duration</label>
               <select id="inputState" class="form-select" name="medduration">
                 <option selected>Choose...</option>
-                <option>Day</option>
-                <option>Week</option>
-                <option>Month</option>
+                {% for unit in dosage_units %}
+                <option>{{unit.dosage_unit}}</option>
+                {% endfor %}
               </select>
             </div>
           </div>

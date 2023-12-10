@@ -1,0 +1,56 @@
+{% extends 'index.html' %} 
+{% block pagetitle %} Settings Page{% endblock pagetitle%}  
+
+{% block content%}
+
+<!--<div class="title-tab bg-gradient">Patient List</div>-->
+
+<div class="container1">
+  
+    {% include "settingsmenu.html " %}
+
+  <!--Add new patient form-->
+  <div class="reg-area">
+
+    <div class="title-form ">Medication Settings</div>
+
+    <form method="POST" action="">
+        {% csrf_token %}
+   
+        <div class="row m-3">
+            <div class="col-md-4">
+             <label for="inputCity" class="form-label">Dosage Unit</label>
+             <input type="text" class="form-control"  placeholder="" name="dosage_unit" >
+             <button class="btn btn-save" name="addunit">Add Unit</button>
+           </div>
+           <div class="col-md-4">
+
+            <table  class="table table-sm table-bordered">
+                <thead class="table-dark">
+                <th>List of Units</th>
+                  
+                </thead>
+                <tbody>
+                  {% for units in context  %}
+                  <tr>
+                  <td>{{units.dosage_unit}}</td>
+                  {% endfor %}
+                  </tr>
+                
+                    
+           
+                 
+                </tbody>
+              </table>
+          </div>
+        </div>
+       
+       
+        </form>
+       
+  </div>
+</div>
+
+
+
+{%endblock%}

@@ -56,10 +56,17 @@ class Prescription(models.Model):
     medicine_name = models.CharField(max_length=100)
     medsize = models.CharField(max_length=50,null=True, blank=True)
     medgenname = models.CharField(max_length=50,null=True, blank=True)
-    dosage = models.CharField(max_length=50)
-    morning = models.CharField(max_length=50)
-    noon = models.CharField(max_length=50)
-    evening = models.CharField(max_length=50)
+    dosage = models.CharField(max_length=50,null=True, blank=True)
+    morning = models.CharField(max_length=50,null=True, blank=True)
+    noon = models.CharField(max_length=50,null=True, blank=True)
+    evening = models.CharField(max_length=50,null=True, blank=True)
 
+
+class Dosageunit(models.Model):
+    dosage_unit = models.CharField(max_length=50,null=True, blank=True)
+
+
+class Dosageduration(models.Model):
+    dosage_duration = models.CharField(max_length=50,null=True, blank=True)
 
     

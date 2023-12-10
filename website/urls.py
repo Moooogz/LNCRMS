@@ -42,4 +42,6 @@ urlpatterns = [
 
     #delete attachments
     path('deleteattachment/<int:pID>/<str:pk>/<str:apk>/',views.deleteattachment, name='deleteattachment'),
+
+    path('medicationsettings',views.medicationsettings, name='medicationsettings'),
 ]
