@@ -484,6 +484,7 @@ td {
     width: 100%;
     /* background: rgb(0,135,97,0.2); */
     padding: 15px 20px;
+    border-top: 8px  solid rgb(0,135,97);
     border-radius: 5px 5px 0 0;
     box-shadow: 0 5px 15px 0 #00000026;
 }
@@ -570,6 +571,9 @@ hr{
 .details-history {
     background-color:white;
     width: 100%;
+    
+    border-top: 8px  solid rgb(0,135,97);
+    border-radius: 5px 5px 0 0;
     box-shadow: 0 5px 15px 0 #00000026;    
 }
 

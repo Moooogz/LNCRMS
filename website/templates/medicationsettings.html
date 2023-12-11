@@ -18,30 +18,48 @@
         {% csrf_token %}
    
         <div class="row m-3">
-            <div class="col-md-4">
-             <label for="inputCity" class="form-label">Dosage Unit</label>
-             <input type="text" class="form-control"  placeholder="" name="dosage_unit" >
-             <button class="btn btn-save" name="addunit">Add Unit</button>
-           </div>
-           <div class="col-md-4">
-
-            <table  class="table table-sm table-bordered">
-                <thead class="table-dark">
+          <div class="col-md-4">
+            <label for="inputCity" class="form-label">Dosage Unit List</label>
+            <input type="text" class="form-control" placeholder="" name="dosage_unit">
+            <button class="btn btn-save" name="addunit">Add Unit</button>
+          </div>
+          <div class="col-md-4">
+            <table id="table-medications" class="table table-bordered content-table" style="margin-top:38px;">
+              <thead class="table-success bg-gradient">
                 <th>List of Units</th>
-                  
-                </thead>
-                <tbody>
-                  {% for units in context  %}
-                  <tr>
+              </thead>
+              <tbody>
+                {% for units in context  %}
+                <tr>
                   <td>{{units.dosage_unit}}</td>
                   {% endfor %}
-                  </tr>
-                
-                    
-           
-                 
-                </tbody>
-              </table>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <hr>
+
+        <div class="row m-3">
+          <div class="col-md-4">
+            <label for="inputCity" class="form-label">Durations List</label>
+            <input type="text" class="form-control" placeholder="" name="dosage_unit">
+            <button class="btn btn-save" name="addunit">Add Unit</button>
+          </div>
+          <div class="col-md-4">
+            <table id="table-medications" class="table table-bordered content-table" style="margin-top:38px;">
+              <thead class="table-success bg-gradient">
+                <th>List of Units</th>
+              </thead>
+              <tbody>
+                {% for units in context  %}
+                <tr>
+                  <td>{{units.dosage_unit}}</td>
+                  {% endfor %}
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
        

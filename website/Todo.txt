@@ -1,0 +1,6 @@
+December 11, 2023
+-Computation of Total Med Quantity
+-Prescription Table Modification
+-Medtype and Medduration Dbase and Settings Page
+-Prescription Modification
+-Medical History List Modification

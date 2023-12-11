@@ -231,47 +231,52 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
         datenow = datetime.now()
         
         
-        medname= request.POST['medname']
-        medsize= request.POST['medsize']
-        medgenname= request.POST['medgenname']
-        medtotalqty= int(request.POST['medtotalqty'])
-        medqty= int(request.POST['medqty'])
-        medunit= request.POST['medunit']
-        medduration= request.POST['medduration']
+        medname=        request.POST['medname']
+        medgenname=     request.POST['medgenname']
+        medsize=        request.POST['medsize']
+        medqty=     int(request.POST['medqty'])
+        medtype=        request.POST['medtype']
+        perduration=    request.POST['perduration']
+        durationqty=    request.POST['durationqty']
+        medduration=    request.POST['medduration']
+
+       
+        
+        
+        
        
 
         newPrescriptionData={}        
         newPrescriptionData['patient_code'] = pCode
-        newPrescriptionData['medicine_name']=medname
-        newPrescriptionData['medsize']=medsize
+        newPrescriptionData['consultCounter'] =patienthistory_Data.consultCounter
+        newPrescriptionData['medname']=medname
         newPrescriptionData['medgenname']=medgenname
-        newPrescriptionData['quantity']=medtotalqty
-        newPrescriptionData['qty']=medqty
-        newPrescriptionData['medunit']=medunit
-        newPrescriptionData['medduration']=medduration   
+        newPrescriptionData['medsize']=medsize
+        newPrescriptionData['medqty']=medqty
+        newPrescriptionData['medtype']=medtype
+        newPrescriptionData['perduration']=perduration
+        newPrescriptionData['durationqty']=durationqty
+        newPrescriptionData['medduration']=medduration
+        newPrescriptionData['totalquantity']="sample quantity"
         newPrescriptionData['morning'] =request.POST['am']
         newPrescriptionData['noon'] =request.POST['noon']
         newPrescriptionData['evening'] =request.POST['pmvalue']
-        newPrescriptionData['consultCounter'] =patienthistory_Data.consultCounter
-        print(medname)
+      
+       
         newPrescription = PrescriptionForm(newPrescriptionData)
         
         newPrescription.save()
         
-        datenow = datenow + timedelta(days=medtotalqty/medqty)
+        # datenow = datenow + timedelta(days=medtotalqty/medqty)
         
-        month = datenow.month
-        day = datenow.day
-        year = datenow.year
+        # month = datenow.month
+        # day = datenow.day
+        # year = datenow.year
 
-        print(medname)
-        print(medsize)
-        print(medgenname)
-        print(medtotalqty)
-        print(medqty)
-        print(medunit)
-        print(medduration)
-        print(f"{calendar.month_name[month]} {day}, {year}")
+        print(medname,medgenname,medsize,medqty,medtype,perduration,durationqty,medduration)
+      
+       # print(medduration)
+       # print(f"{calendar.month_name[month]} {day}, {year}")
       
     return render(request,'patientmedinfo-medications.html',context) 
 
