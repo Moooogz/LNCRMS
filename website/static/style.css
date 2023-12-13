@@ -457,8 +457,14 @@ td {
 .value-pname{
     font-size: 20px;
     font-style: bold;
+    
+}
+
+.value-login{
+    font-size: 20px;
+    font-style: bold;
     border: none;
-    border-bottom: 2px solid #95a5b5;
+    border-bottom: 1px solid #95a5b5;
 }
 
 .col1-info{

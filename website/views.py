@@ -584,3 +584,7 @@ def deletedosageduration(request,pk):
     dosagedurationitem= Dosageduration.objects.get(id=pk)
     dosagedurationitem.delete()
     return redirect('medicationsettings')
+
+@login_required(login_url="loginuser")
+def comparepage(request):
+    return render(request, 'comparepage.html',{})
