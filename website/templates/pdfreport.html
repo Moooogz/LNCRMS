@@ -174,9 +174,9 @@
       {% for a in medicationrecord %}
        
         <tr >
-            <td align ="center">{{a.quantity}}</td>
-            <td colspan="5" align ="center">{{a.medicine_name}}</td>
-            <td colspan="3" align ="center">{{a.dosage}}</td>
+            <td align ="center">{{a.totalquantity}}</td>
+            <td colspan="5" align ="center">{{a.medname}} ({{a.medgenname}}) {{a.medsize}}</td>
+            <td colspan="3" align ="center">{{a.medqty}} {{a.medtype}}(s) a {{a.perduration}}</td>
             <td align ="center">{{a.morning}}</td>
             <td align ="center">{{a.noon}}</td>
             <td align ="center">{{a.evening}}</td>

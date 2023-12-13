@@ -30,8 +30,9 @@ class PatientsAttachmentsForm(ModelForm):
 class MedicineForm(ModelForm):
     class Meta:
         model = Medicinelist
-        fields = ['medicine_name',
-                  'dosage',                                
+        fields = ['medname',
+                  'medgenname',
+                  'medsize',                               
                 ]
         
 

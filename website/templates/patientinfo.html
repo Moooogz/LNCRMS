@@ -96,7 +96,25 @@
     </div>
 
     {% block content1 %}
-    <!--MEDICAL RECORD TABLE-->
+
+
+    {% Medhistory patient_record.patient_code as records %}
+    {% for record in records %}    
+
+    <div class="card m-3">
+      <div class="card-header">
+        Date/Time Consulted:  {{record.created_at}}
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">{{record.remarks}}</h5>
+        <p class="card-text">{{record.objectives}}</p>
+        <a href="{% url "patientmedinfo_geninfo" patient_record.id record.id%}" class="btn btn-success" style="width:150px">Show Details...</a>
+        <a href="{% url "deletemedicalhistory" patient_record.id record.id%}" class="btn btn-danger" ><i class="bi bi-trash3"></i></a>
+      </div>
+    </div>
+
+    {% endfor %}
+    {% comment %} <!--MEDICAL RECORD TABLE-->
     <div class="medicalhistorytable">
 
       {% Medhistory patient_record.patient_code as records %}
@@ -123,7 +141,7 @@
         </tr>
         {% endfor %}
       </table>
-    </div>
+    </div> {% endcomment %}
     <!--end of MEDICAL RECORD TABLE-->
 {% comment %} 
     <div class="phistory-head">

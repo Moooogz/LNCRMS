@@ -7,7 +7,13 @@
 
 <div class="container1">
   
-    {% include "settingsmenu.html " %}
+   <!--Left Menus-->
+        <div class="left-menu">
+          <div class="active-title">Menu</div>
+          <a href="{% url "medicationsettings" %}" class="active" >Medication Settings</a><hr>  
+          <a href="{% url "registrationpage" %}" >Register New User</a><hr>    
+          
+        </div>
 
   <!--Add new patient form-->
   <div class="reg-area">
@@ -20,18 +26,29 @@
         <div class="row m-3">
           <div class="col-md-4">
             <label for="inputCity" class="form-label">Dosage Unit List</label>
-            <input type="text" class="form-control" placeholder="" name="dosage_unit">
+            <input type="text" class="form-control" placeholder="no. of days" name="daysqty_duration" >
+            <input type="text" class="form-control" placeholder="duration label" name="dosage_unit">
             <button class="btn btn-save" name="addunit">Add Unit</button>
           </div>
           <div class="col-md-4">
             <table id="table-medications" class="table table-bordered content-table" style="margin-top:38px;">
               <thead class="table-success bg-gradient">
-                <th>List of Units</th>
+                <th>No. of Days</th>
+                <th>Duration Label</th>
+                <th>Remove</th>
               </thead>
               <tbody>
                 {% for units in context  %}
                 <tr>
-                  <td>{{units.dosage_unit}}</td>
+                  <td>{{units.daysqty_duration}}</td>
+                  <td>{{units.dosage_duration}}</td>
+                  <td>
+
+                    <a href= "{% url "deletedosageduration" units.id %}" style="padding:0 10px;margin:0;"
+                      name="delete_presciption_item" type='submit'  id="link-delete">
+                      <i class="bi bi-trash3"></i></a>
+
+                  </td>
                   {% endfor %}
                 </tr>
               </tbody>
@@ -40,7 +57,7 @@
         </div>
 
         <hr>
-
+{% comment %} 
         <div class="row m-3">
           <div class="col-md-4">
             <label for="inputCity" class="form-label">Durations List</label>
@@ -61,7 +78,7 @@
               </tbody>
             </table>
           </div>
-        </div>
+        </div> {% endcomment %}
        
        
         </form>

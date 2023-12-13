@@ -457,6 +457,8 @@ td {
 .value-pname{
     font-size: 20px;
     font-style: bold;
+    border: none;
+    border-bottom: 2px solid #95a5b5;
 }
 
 .col1-info{
@@ -515,14 +517,18 @@ td {
 
 .login-box{
     display:grid;
-    width: 350px ;
+    width: 950px ;
     left: 50%;
     margin: auto;
-    padding: 30px;
+    padding: 20px;
     background-color: white;
-    box-shadow: 0 5px 15px 0 #00000026;
-    
+    box-shadow: 0 5px 15px 0 #00000026;    
     margin-top: 150px;
+    border-radius: 25px;
+    border-bottom: 8px  solid #1dd1a1;
+ 
+    
+    
 }
 
 .btn-login{
@@ -679,6 +685,7 @@ datalist{
     font-size:13px;
     position: relative;
     color: #01576d;
+    
 }
 
 .fullwidth input  {
@@ -885,4 +892,10 @@ background: linear-gradient(90deg, rgba(62,85,105,1) 0%, rgba(65,67,69,1) 100%);
     color: white;
     font-size: 13px;
     border-radius: 8px;
+}
+
+.close_button {
+   
+    float:right;
+    top:-40px;
 }

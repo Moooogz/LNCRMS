@@ -37,11 +37,12 @@ urlpatterns = [
     path('medications/<str:pk>',views.medications, name='medications'),
     path('editmedicine/<int:pk>',views.editmedicine, name='editmedicine'),
     path('updatemedrecord/<str:pk>',views.updatemedrecord, name='updatemedrecord'),
-    path('deleteitemprescription/<int:pID>/<int:pk>/',views.deleteitemprescription, name='deleteitemprescription'),
+    path('deleteitemprescription/<int:pID>/<int:pk>/<int:pHistoryID>/',views.deleteitemprescription, name='deleteitemprescription'),
     path('report/<int:pk>/<str:sig>/<str:conCounter>',views.pdfreport, name='report'),
 
     #delete attachments
     path('deleteattachment/<int:pID>/<str:pk>/<str:apk>/',views.deleteattachment, name='deleteattachment'),
 
     path('medicationsettings',views.medicationsettings, name='medicationsettings'),
+    path('deletedosageduration/<int:pk>',views.deletedosageduration, name='deletedosageduration'),
 ]

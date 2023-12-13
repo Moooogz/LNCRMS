@@ -191,8 +191,8 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
     context=patientinfoData(pk)
     patienthistory_Data= Patienthistory.objects.get(id=pkHistory)
     context['patient_history']= patienthistory_Data
-    dosage_units = Dosageunit.objects.all()
-    context['dosage_units']= dosage_units
+    dosageduration = Dosageduration.objects.all()
+    context['dosageduration']= dosageduration
     pCode= context['pCode']
     context['medicinedata'] =Medicinelist.objects.all()
     context['form']=form
@@ -221,7 +221,7 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
             sigValue = "\doctorsignature.png"
             return redirect(f'/report/{pk}/{sigValue}/{conCounter}')
         else:
-            return redirect(f'/report/{pk}/nosig')
+            return redirect(f'/report/{pk}/nosig/{conCounter}')
     elif 'select_medicine' in request.POST:
         if not selectedmed=='':
             medselected = Medicinelist.objects.get(id=selectedmed)
@@ -237,8 +237,11 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
         medqty=     int(request.POST['medqty'])
         medtype=        request.POST['medtype']
         perduration=    request.POST['perduration']
-        durationqty=    request.POST['durationqty']
+        durationqty=int(request.POST['durationqty'])
         medduration=    request.POST['medduration']
+
+        durationperday=Dosageduration.objects.get(dosage_duration=medduration[:-3]).daysqty_duration
+        totalquantity = int(durationperday)*(medqty*durationqty)
 
        
         
@@ -257,7 +260,7 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
         newPrescriptionData['perduration']=perduration
         newPrescriptionData['durationqty']=durationqty
         newPrescriptionData['medduration']=medduration
-        newPrescriptionData['totalquantity']="sample quantity"
+        newPrescriptionData['totalquantity']=totalquantity
         newPrescriptionData['morning'] =request.POST['am']
         newPrescriptionData['noon'] =request.POST['noon']
         newPrescriptionData['evening'] =request.POST['pmvalue']
@@ -273,11 +276,10 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
         # day = datenow.day
         # year = datenow.year
 
-        print(medname,medgenname,medsize,medqty,medtype,perduration,durationqty,medduration)
       
        # print(medduration)
        # print(f"{calendar.month_name[month]} {day}, {year}")
-      
+  
     return render(request,'patientmedinfo-medications.html',context) 
 
 def prescription(request,pk):  
@@ -353,10 +355,10 @@ def patientinfo(request,pk,selectedmed=''):
     return render(request, 'patientinfo.html',context)
 
 @login_required(login_url="loginuser")
-def deleteitemprescription(request,pID,pk):
+def deleteitemprescription(request,pID,pk,pHistoryID):
     PrescriptionItem= Prescription.objects.get(id=pk)
     PrescriptionItem.delete()
-    return redirect(f'/patientinfo/{pID}')
+    return redirect(f'/patientinfo/{pID}/patientmedinfo_medications/{pHistoryID}')
 
     
 @login_required(login_url="loginuser")    
@@ -491,8 +493,9 @@ def medications(request,pk=''):
 
     if 'save' in request.POST:
        medData = {}
-       medData['medicine_name']=request.POST['medname']
-       medData['dosage']=request.POST['dosage']       
+       medData['medname']=request.POST['medname']
+       medData['medgenname']=request.POST['medgenname']
+       medData['medsize']=request.POST['medsize']   
        newMedicine = MedicineForm(medData)
        newMedicine.save()
        messages.success(request,"Added Medicine Successfully")
@@ -570,9 +573,14 @@ def deleteattachment(request,pk,pID,apk):
 
 @login_required(login_url="loginuser")
 def medicationsettings(request):
-    context = Dosageunit.objects.all()
+    context = Dosageduration.objects.all()
     if 'addunit' in request.POST:
-        Dosageunit.objects.create(dosage_unit=request.POST['dosage_unit'])
+        Dosageduration.objects.create(daysqty_duration=request.POST['daysqty_duration'],dosage_duration=request.POST['dosage_unit'])
 
     return render(request, 'medicationsettings.html',{"context":context})
-    
+
+@login_required(login_url="loginuser")    
+def deletedosageduration(request,pk):
+    dosagedurationitem= Dosageduration.objects.get(id=pk)
+    dosagedurationitem.delete()
+    return redirect('medicationsettings')

@@ -31,7 +31,31 @@
 
             <form method="POST">
               {% csrf_token %}
+              <a class="btn btn-outline-success" style="margin-left:20px;margin-top:10px;"   type="button" data-bs-toggle="modal" data-bs-target="#searchmedicine">
+                <i class="bi bi-search"></i> Search medicine</a>
+              <a class="btn btn-secondary" style="margin-left:20px;margin-top:10px;"   type="button" data-bs-toggle="modal" data-bs-target="#print_report">
+                <i class="bi bi-printer-fill"></i> Print Prescription</a>
+              
+            
+              {% if medselected %}
 
+                <div class="row m-3">
+                  <div class="col-md-4">
+                   <label class="form-label">Medicine/Preparation</label>
+                   <input type="text" class="form-control  mt-2" placeholder="medicine name" value="{{medselected.medname}}" name="medname">
+                 </div>
+                 <div class="col-md-4">
+                  <label for="inputZip" class="form-label"></label>
+                   <input type="text" class="form-control mt-3" placeholder="generic brand" value="{{medselected.medgenname}}" name="medgenname">
+                 </div>
+                 <div class="col-md-4">
+                   <label for="inputZip" class="form-label"></label>
+                   <input type="text" class="form-control mt-3" placeholder="ex. mg/ml" value="{{medselected.medsize}}" name="medsize">
+                 </div>
+               </div>
+
+                {% else %}
+              
               <div class="row m-3">
                 <div class="col-md-4">
                  <label class="form-label">Medicine/Preparation</label>
@@ -47,6 +71,8 @@
                </div>
              </div>
 
+             {% endif %}
+
 
 
 
@@ -60,12 +86,12 @@
                     <option selected>Tablet</option>
                     <option>Capsule</option>
                     </select>
-                    </div>
+                    </div><span style="font-size:30px">/</span>
                 <div class="input-group-append">
                   <select id="inputState" class="form-select" name="perduration">
-                    <option selected>/Day</option>
-                    {% for unit in dosage_units %}
-                    <option>/{{unit.dosage_unit}}</option>
+                    <option selected>Day</option>
+                    {% for unit in dosageduration %}
+                    <option>{{unit.dosage_duration}}</option>
                     {% endfor %}
                   </select>
                 </div>
@@ -75,13 +101,13 @@
             <div class="col g-3">
               <label for="inputZip" class="form-label">Duration</label>
               <div class="input-group mb-3">            
-                  <input type="number" class="form-control" id="inputCity" placeholder="quantity" name="durationqty" >
+                  <input type="number" class="form-control" placeholder="ex. 1,2,3 . . ." name="durationqty" >
                  
                 <div class="input-group-append">
                   <select id="inputState" class="form-select" name="medduration">
-                    <option selected>Week(s)</option>
-                    {% for unit in dosage_units %}
-                    <option>/{{unit.dosage_unit}}</option>
+                    <option selected>Day(s)</option>
+                    {% for unit in dosageduration %}
+                    <option>{{unit.dosage_duration}}(s)</option>
                     {% endfor %}
                   </select>
                 </div>
@@ -133,15 +159,15 @@
                       {% if prescriptionrecord %}
                       {% for medrecord in prescriptionrecord %}
                       <tr>
-                        <td>{{medrecord.quantity}}</td>
-                        <td>{{medrecord.medicine_name}}</td>
-                        <td>{{medrecord.dosage}}</td>
+                        <td>{{medrecord.totalquantity}}</td>
+                        <td>{{medrecord.medname}} ({{medrecord.medgenname}}) {{medrecord.medsize}}</td>
+                        <td>{{medrecord.medqty}} {{medrecord.medtype}}(s) a {{medrecord.perduration}}</td>
                         <td>{{medrecord.morning}}</td>
                         <td>{{medrecord.noon}}</td>
                         <td>{{medrecord.evening}}</td>
                         <td>
 
-                          <a href="{% url "deleteitemprescription" patient_record.id medrecord.id %}" style="padding:0 10px;margin:0;"
+                          <a href="{% url "deleteitemprescription" patient_record.id medrecord.id patient_history.id %}" style="padding:0 10px;margin:0;"
                             name="delete_presciption_item" type='submit' value="{{medrecord.id}}" id="link-delete">
                             <i class="bi bi-trash3"></i></a>
 
@@ -191,18 +217,14 @@
 
                   <div class="modal fade sm" id="searchmedicine" data-bs-backdrop="static" tabindex="-1" aria-labelledby="print_report"
                     aria-hidden="true">
-                    <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-dialog modal-lg modal-dialog-centered" >
 
                       <div class="modal-content">
-                        <div class="title-form2"><span><i class="bi bi-search"></i> &nbsp Search Medicine</span>
-                          &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                          &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                          &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp
-                          &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp&nbsp &nbsp
-
-                          <span> <a href="" data-bs-dismiss="modal" class="btn btn-danger btn-sm">CLOSE</a></span></div>
-
+                        <div class="title-form2">
+                       
+                          <span><i class="bi bi-search"></i> &nbsp Search Medicine</span>  
+                          <span class="close_button"> <a href="" data-bs-dismiss="modal" class="btn btn-danger btn-sm">CLOSE</a></span></div>
+                      
                         <div class="m-3">
 
                           <!--MEDICINES TABLE-->
@@ -210,6 +232,7 @@
                             <thead>
 
                               <th>Medicine Name</th>
+                              <th>Generic Name</th>
                               <th>Dosage</th>
                               <th>Actions</th>
                             </thead>
@@ -218,8 +241,9 @@
                               {% for meds in medicinedata %}
                               <tr>
 
-                                <td>{{meds.medicine_name}}</td>
-                                <td>{{meds.dosage}}</td>
+                                <td>{{meds.medname}}</td>
+                                <td>{{meds.medgenname}}</td>   
+                                <td>{{meds.medsize}}</td> 
                                 <td id="actions_cell">
 
                                   <form action="{% url "patientmedinfo_medications" pID patient_history.id meds.id%}" method="POST">

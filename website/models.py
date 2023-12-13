@@ -28,9 +28,10 @@ class PatientsAttachments(models.Model):
     fileattachments = models.ImageField(null=True, blank=True)
     
 class Medicinelist(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
-    medicine_name = models.CharField(max_length=100)
-    dosage = models.CharField(max_length=50)
+    created_at = models.DateTimeField(auto_now_add=True)   
+    medname = models.CharField(max_length=100,null=True, blank=True)
+    medgenname = models.CharField(max_length=50,null=True, blank=True)   
+    medsize = models.CharField(max_length=50,null=True, blank=True) 
 
 class Patienthistory(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
@@ -70,6 +71,7 @@ class Dosageunit(models.Model):
 
 
 class Dosageduration(models.Model):
+    daysqty_duration = models.CharField(max_length=50,null=True, blank=True)
     dosage_duration = models.CharField(max_length=50,null=True, blank=True)
 
     

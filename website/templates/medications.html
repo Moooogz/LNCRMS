@@ -17,16 +17,22 @@
     <form method="POST">
       {% csrf_token %}
     <div class="title-form">Add Medicines</div>
-    <div class="reg-row">
-        <div class="medicine-col">
-          <label class="reg-label">Medicine Name</label><br />
-          <textarea class="medicine-input" name="medname" required /></textarea>
-        </div>
-        <div class="medicine-col">
-          <label class="reg-label">Dosage</label><br />
-          <textarea class="medicine-input" name="dosage" style="width: 50%;" required/></textarea>
-        </div>
-    </div>
+
+    <div class="row m-3">
+      <div class="col-md-4">
+       <label class="form-label">Medicine/Brand/Si</label>
+       <input type="text" class="form-control  mt-2" placeholder="medicine name" name="medname">
+     </div>
+     <div class="col-md-4">
+      <label for="inputZip" class="form-label"></label>
+       <input type="text" class="form-control mt-3" placeholder="generic brand" name="medgenname">
+     </div>
+     <div class="col-md-4">
+       <label for="inputZip" class="form-label"></label>
+       <input type="text" class="form-control mt-3" placeholder="ex. mg/ml" name="medsize">
+     </div>
+   </div>
+
 
     <div class="reg-row">
         <div class="medicine-col">        
@@ -49,6 +55,7 @@
         <thead >
           
           <th>Medicine Name</th>
+          <th>Generic Name</th>
           <th>Dosage</th>
           <th>Actions</th>
         </thead>
@@ -57,8 +64,9 @@
           {% for meds in medicinedata %}
           <tr>
             
-            <td>{{meds.medicine_name}}</td>
-            <td>{{meds.dosage}}</td>           
+            <td>{{meds.medname}}</td>
+            <td>{{meds.medgenname}}</td>   
+            <td>{{meds.medsize}}</td>           
             <td id="actions_cell">
               
               <button name="updatedetails" type='submit' value="{{meds.id}}" id="link-edit"><i class="bi bi-pencil-square" data-bs-toggle="modal" data-bs-target="#{{meds.id}}"></i></button>

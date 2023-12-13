@@ -50,19 +50,33 @@
             {% endfor %}
         {% endif %}
    
-        <div class="login-box"><h4 style="color: #1dd1a1;">LOGIN</h4><hr>
-          
+        <div class="login-box">
+          <div class=" header-bases">
+            <div>
+              <img src="{% static "logo.png" %}" width="50px">
+              <img src="{% static "logo2.jpg" %}" width="50px">
+            <span class="logotitle" style="color: #1dd1a1;"><b>LABAGUIS</b></span> <strong style="color:black;font-size:15px;">Neuro Clinic and Neurocare Pharmacy</strong></div>
+          </div>
+          <div class="row m-3">
+            <div class="col-md-6">
+             
+              <img src="{% static "loginimage.png" %}" width="400px" ></img>
+            </div>
+            <div class="col-md-5">
+              <h4 style="color: #95a5b5;">LOGIN</h4>
+              <p style="color: #95a5b5;">Welcome back! Please login to your account.</p><hr>
             <form method="POST">
                 {% csrf_token %}
             <label class="lbl-pname" style="margin-top: 20px;">USERNAME</label>
-            <input name="uName" class="value-pname" style="margin-top: 5px;width: 100%;border: 1px solid #ddd;padding:5px;"/>
+            <input name="uName" class="value-pname" style="margin-top: 5px;width: 100%;padding:5px;"/>
             
             <label class="lbl-pname" style="margin-top: 20px;">PASSWORD</label>
-            <input name="pWord" type="PASSWORD" class="value-pname" style="margin-top: 5px;width: 100%;border: 1px solid #ddd;padding:5px;"/>
+            <input name="pWord" type="PASSWORD" class="value-pname" style="margin-top: 5px;width: 100%;padding:5px;"/>
             
             <button class="btn btn-successs w-100 mt-3 mb-3">LOGIN</button>
             </form>
             </div>
+          </div>
       
  
 
