@@ -95,7 +95,7 @@ header li,a,strong, button {
 
 .content-main {
     height: 100%;
-    margin: 5px 18%;
+    margin: 5px 8%;
     
 
 
@@ -473,7 +473,7 @@ td {
     padding: 10px 20px;
     background-color:white;
     width:60%;
-    border-left: 6px  solid rgb(0,135,97);
+    border-left: 6px  solid #1dd1a1;
     border-radius: 5px 0 0 5px;
     box-shadow: 0 5px 15px 0 #00000026;
 }
@@ -483,7 +483,7 @@ td {
     padding: 10px 20px;
     background-color:white;
     width:40%;
-    border-left: 6px  solid rgb(0,135,97);
+    border-left: 6px  solid #1dd1a1;
     border-radius: 5px 0 0 5px;
     box-shadow: 0 5px 15px 0 #00000026;
 }
@@ -492,9 +492,10 @@ td {
     width: 100%;
     /* background: rgb(0,135,97,0.2); */
     padding: 15px 20px;
-    border-top: 8px  solid rgb(0,135,97);
+    border-top: 8px  solid #1dd1a1;
     border-radius: 5px 5px 0 0;
     box-shadow: 0 5px 15px 0 #00000026;
+    
 }
 
 .pdetails-body {
@@ -584,7 +585,7 @@ hr{
     background-color:white;
     width: 100%;
     
-    border-top: 8px  solid rgb(0,135,97);
+    border-top: 8px  solid #1dd1a1;
     border-radius: 5px 5px 0 0;
     box-shadow: 0 5px 15px 0 #00000026;    
 }
@@ -707,7 +708,16 @@ datalist{
     margin: 0px 18%;
     background-color: #80c3e3;
     background: rgb(1,136,97);
-background: linear-gradient(90deg, rgba(1,136,97,1) 0%, rgba(31,157,105,1) 50%, rgba(59,178,113,1) 100%);
+    background: linear-gradient(90deg, rgba(1,136,97,1) 0%, rgba(31,157,105,1) 50%, rgba(59,178,113,1) 100%);
+    color: white;
+}
+
+.header-main5 {
+    height: 100%;
+    margin: 0px 8%;
+    background-color: #80c3e3;
+    background: rgb(1,136,97);
+    background: linear-gradient(90deg, rgba(1,136,97,1) 0%, rgba(31,157,105,1) 50%, rgba(59,178,113,1) 100%);
     color: white;
 }
 
@@ -717,14 +727,15 @@ background: linear-gradient(90deg, rgba(1,136,97,1) 0%, rgba(31,157,105,1) 50%, 
 
 .header-main2 {
     height: 100%;
-    margin: 0px 18%;
+    margin: 0px 8%;
     background-color: #24242a;
     background: rgb(62,85,105);
-background: linear-gradient(90deg, rgba(62,85,105,1) 0%, rgba(65,67,69,1) 100%);
+    background: linear-gradient(90deg, rgba(62,85,105,1) 0%, rgba(65,67,69,1) 100%);
     color: white;
     padding: 10px 5px;
     
 }
+
 
 .navbar {
     padding: 2px;
@@ -732,10 +743,19 @@ background: linear-gradient(90deg, rgba(62,85,105,1) 0%, rgba(65,67,69,1) 100%);
 
 .header-base{
     height: 100%;
-    margin: 0px 18% 0 18%;
+    margin: 0px 8% 0 8%;
     padding: 10px 5px;
     background-color: white;
     border: 1px solid rgb(62,85,105,0.3);
+
+}
+
+.header-base2{
+    height: 100%;
+    margin: 0px;
+    padding: 10px 5px;
+    background-color: white;
+    border-bottom: 20px  solid rgba(1,136,97,1) ;
 
 }
 

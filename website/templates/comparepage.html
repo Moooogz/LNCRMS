@@ -36,7 +36,8 @@
       href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"
     />
 
-
+ <!--Custom CSS-->
+ <link rel="stylesheet" href="{% static 'style.css' %}" />
    
 
     <style>
@@ -73,159 +74,58 @@
             letter-spacing: 2px;
         }
     </style>
-    <div class="sticky">
+    {% comment %} <div class="sticky">
         <div class=" header-base">
            <div style="background-color:green">
              <img src="{% static "logo.png" %}" width="50px">
              <img src="{% static "logo2.jpg" %}" width="50px">
            <span class="logotitle"><b>LABAGUIS</b></span> <strong style="color:black;font-size:15px;">Neuro Clinic and Neurocare Pharmacy</strong></div>
-         </div>
+         </div></div> {% endcomment %}
 </head>
 
 <body>
+
+
+    <div class="sticky">
+        <div class=" header-base2">
+           <div>
+             <img src="{% static "logo.png" %}" width="50px">
+             <img src="{% static "logo2.jpg" %}" width="50px">
+           <span class="logotitle"><b>LABAGUIS</b></span> <strong style="color:black;font-size:15px;">Neuro Clinic and Neurocare Pharmacy</strong></div>
+         </div>
+     
+         <div class="info-row1">
+            <div class="col1-info">
+              <label class="lbl-pname">PATIENT NAME : &nbsp &nbsp </label>
+              <label class="value-pname">{{patient_record.first_name}} {{patient_record.middle_name}}
+                {{patient_record.last_name }}
+              </label>
+            </div>
+          
+            <div class="col2-info">
+              <label class="lbl-pname">PATIENT NUMBER : &nbsp &nbsp</label>
+              <label class="value-pname">{{patient_record.patient_code}} </label>
+            </div>
+          </div>
+
     <div class="flex">
-        <div id="one" class="split">
-            <div class="heading">
+        <div id="one" class="split" style="background-color:white">
+            <div class="heading" >
                 Column one
             </div>
-            <h4>What is Lorem Ipsum?</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book. It has survived not only five
-                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                s of Lorem Ipsum.</p>
+            {% include "compareitem1.html" %}
 
-            <h4>What is Lorem Ipsum?</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book. It has survived not only five
-                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                s of Lorem Ipsum.</p>
-            <h4>What is Lorem Ipsum?</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book. It has survived not only five
-                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                s of Lorem Ipsum.</p>
-            <h4>What is Lorem Ipsum?</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book. It has survived not only five
-                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                s of Lorem Ipsum.</p>
 
-                <h4>What is Lorem Ipsum?</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                    been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                    galley of type and scrambled it to make a type specimen book. It has survived not only five
-                    centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                    t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                    sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                    s of Lorem Ipsum.</p>
-    
-                <h4>What is Lorem Ipsum?</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                    been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                    galley of type and scrambled it to make a type specimen book. It has survived not only five
-                    centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                    t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                    sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                    s of Lorem Ipsum.</p>
-                <h4>What is Lorem Ipsum?</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                    been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                    galley of type and scrambled it to make a type specimen book. It has survived not only five
-                    centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                    t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                    sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                    s of Lorem Ipsum.</p>
-                <h4>What is Lorem Ipsum?</h4>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                    been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                    galley of type and scrambled it to make a type specimen book. It has survived not only five
-                    centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                    t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                    sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                    s of Lorem Ipsum.</p>
 
-                    <h4>What is Lorem Ipsum?</h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                        galley of type and scrambled it to make a type specimen book. It has survived not only five
-                        centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                        t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                        sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                        s of Lorem Ipsum.</p>
-        
-                    <h4>What is Lorem Ipsum?</h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                        galley of type and scrambled it to make a type specimen book. It has survived not only five
-                        centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                        t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                        sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                        s of Lorem Ipsum.</p>
-                    <h4>What is Lorem Ipsum?</h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                        galley of type and scrambled it to make a type specimen book. It has survived not only five
-                        centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                        t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                        sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                        s of Lorem Ipsum.</p>
-                    <h4>What is Lorem Ipsum?</h4>
-                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                        been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                        galley of type and scrambled it to make a type specimen book. It has survived not only five
-                        centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                        t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                        sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                        s of Lorem Ipsum.</p>
         </div>
-        <div id="two" class="split">
+
+
+        <div id="two" class="split" style="background-color:white">
             <div class="heading">
                 Column two
             </div>
-            <h4>What is Lorem Ipsum?</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book. It has survived not only five
-                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                s of Lorem Ipsum.</p>
-            <h4>What is Lorem Ipsum?</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book. It has survived not only five
-                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                s of Lorem Ipsum.</p>
-            <h4>What is Lorem Ipsum?</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book. It has survived not only five
-                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                s of Lorem Ipsum.</p>
-            <h4>What is Lorem Ipsum?</h4>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
-                been the industry's standard dummy text ever since the 1500s, when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book. It has survived not only five
-                centuries, but also the leap into electronic typesetting, remaining essentially unchanged. I
-                t was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum pas
-                sages, and more recently with desktop publishing software like Aldus PageMaker including version
-                s of Lorem Ipsum.</p>
+            {% include "compareitem2.html" %}
+
 
         </div>
     </div>

@@ -46,5 +46,5 @@ urlpatterns = [
     path('medicationsettings',views.medicationsettings, name='medicationsettings'),
     path('deletedosageduration/<int:pk>',views.deletedosageduration, name='deletedosageduration'),
 
-    path('comparepage',views.comparepage, name='comparepage'),
+    path('comparepage/<int:pk>/<int:pkHistory>',views.comparepage, name='comparepage'),
 ]

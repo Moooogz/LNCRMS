@@ -306,7 +306,7 @@ def editmedicalhistory(request,pk,pkHistory):
         patienthistory_Data.plans_recommendations=request.POST['plansrecommendationss']
         patienthistory_Data.save()
         messages.success(request,"Updated Medical History Successfully")
-        return redirect(f'/patientinfo/{pk}/medicalhistoryinfo/{pkHistory}')
+        return redirect(f'/patientinfo/{pk}/patientmedinfo_geninfo/{pkHistory}')
         
     return render(request,'editmedhistory.html',context)
 
@@ -585,6 +585,14 @@ def deletedosageduration(request,pk):
     dosagedurationitem.delete()
     return redirect('medicationsettings')
 
-@login_required(login_url="loginuser")
-def comparepage(request):
-    return render(request, 'comparepage.html',{})
+@login_required(login_url="loginuser")  
+def comparepage(request,pk,pkHistory):
+    
+    context=patientinfoData(pk)
+    patienthistory_Data= Patienthistory.objects.get(id=pkHistory)
+    context['patient_history']= patienthistory_Data
+    pCode= context['pCode']
+    context['medicinedata'] =Medicinelist.objects.all()
+    context['patient_history_attachments'] = PatientsAttachments.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data.consultCounter)
+    context['prescriptionrecord'] = Prescription.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data.consultCounter)
+    return render(request, 'comparepage.html',context)
