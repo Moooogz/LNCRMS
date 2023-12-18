@@ -132,12 +132,12 @@ header li,a,strong, button {
 }
 
 .container3{
-    height: 78%;
+    height: 100%;
     background-color: white;
     box-shadow: 0 5px 15px 0 #00000026;
-    margin-left: 250px;
+    margin-left: 00px;
     margin-right: 40%;
-    margin: 5px 0 5px 253px;
+    margin: 5px 0 5px 230px;
 }
 
 .left-menu{
@@ -149,7 +149,7 @@ header li,a,strong, button {
 
 .reg-area{
     margin-left: 20px;
-    width: 80%;
+    width: 100%;
     background-color: white;
     box-shadow: 0 5px 15px 0 #00000026;
 }

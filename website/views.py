@@ -201,7 +201,8 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
     formatted_datetime = formats.date_format(date_joined, "SHORT_DATETIME_FORMAT")
     context['medicinedata'] =Medicinelist.objects.all()
     pCode=patientinfoData(pk)['patient_record'].patient_code
-    context['prescriptionrecord'] = Prescription.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data.consultCounter)
+    prescriptionrecord=Prescription.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data.consultCounter)
+    context['prescriptionrecord'] = prescriptionrecord
     if 'addtoprescription' in request.POST: 
         newPrescriptionData={}        
         newPrescriptionData['patient_code'] = pCode
@@ -215,21 +216,32 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
         newPrescription = PrescriptionForm(newPrescriptionData)
         newPrescription.save()
     elif 'print_prescription' in request.POST:
-        checked=request.POST.getlist('sigchecked')
-        conCounter= patienthistory_Data.consultCounter
-        if len(checked)>0:
-            sigValue = "\doctorsignature.png"
-            return redirect(f'/report/{pk}/{sigValue}/{conCounter}')
+        if not len(prescriptionrecord)==0:
+            totalDates=[]
+            datenow = date.today()
+            for x in prescriptionrecord:
+                durationperiod=Dosageduration.objects.get(dosage_duration=x.medduration[:-3]).daysqty_duration
+                totaldays = int(durationperiod) * int(x.durationqty) 
+                totalDates.append(totaldays)    
+            datenow = datenow + timedelta(days=(max(totalDates)))
+            nextappointment =str(datenow.strftime("%B %d, %Y"))
+            print(str(datenow.strftime("%B %d, %Y")))
+            checked=request.POST.getlist('sigchecked')
+            conCounter= patienthistory_Data.consultCounter
+            if len(checked)>0:
+                sigValue = "\doctorsignature.png"
+                return redirect(f'/report/{pk}/{sigValue}/{conCounter}/{nextappointment}')
+            else:
+                return redirect(f'/report/{pk}/nosig/{conCounter}/{nextappointment}')
         else:
-            return redirect(f'/report/{pk}/nosig/{conCounter}')
+             messages.error(request,f"ERROR: No Records to print!")
     elif 'select_medicine' in request.POST:
         if not selectedmed=='':
             medselected = Medicinelist.objects.get(id=selectedmed)
             context['medselected']=medselected   
     elif 'testsave' in request.POST:
     
-        datenow = datetime.now()
-        
+        datenow = datetime.now()       
         
         medname=        request.POST['medname']
         medgenname=     request.POST['medgenname']
@@ -244,11 +256,6 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
         totalquantity = int(durationperday)*(medqty*durationqty)
 
        
-        
-        
-        
-       
-
         newPrescriptionData={}        
         newPrescriptionData['patient_code'] = pCode
         newPrescriptionData['consultCounter'] =patienthistory_Data.consultCounter
@@ -267,7 +274,6 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
       
        
         newPrescription = PrescriptionForm(newPrescriptionData)
-        
         newPrescription.save()
         
         # datenow = datenow + timedelta(days=medtotalqty/medqty)
@@ -279,7 +285,14 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
       
        # print(medduration)
        # print(f"{calendar.month_name[month]} {day}, {year}")
-  
+    
+        #print(x.durationqty, durationperiod)
+
+     
+    
+
+    print(len(prescriptionrecord))
+      
     return render(request,'patientmedinfo-medications.html',context) 
 
 def prescription(request,pk):  
@@ -301,6 +314,9 @@ def editmedicalhistory(request,pk,pkHistory):
     if request.method=="POST":
         patienthistory_Data.diagnosis=request.POST['diagnosisss']
         patienthistory_Data.remarks=request.POST['remarksss']
+        patienthistory_Data.weight=request.POST['weight']
+        patienthistory_Data.height=request.POST['height']
+        patienthistory_Data.bodytemp=request.POST['bodytemp']
         patienthistory_Data.bp=request.POST['bps']
         patienthistory_Data.objectives=request.POST['objectivess']
         patienthistory_Data.plans_recommendations=request.POST['plansrecommendationss']
@@ -368,7 +384,7 @@ def patienttable(request):
     for pd in patientsdata:
         data = Patienthistory.objects.filter(patient_code=pd)
         for n in range(len(data)):
-            if data[n].diagnosis=='*under observation' or data[n].plans_recommendations=='None' or data[n].objectives=='*None' :
+            if data[n].diagnosis=='*under observation' or data[n].plans_recommendations=='None' or data[n].plans_recommendations=='*under observation' or data[n].objectives=='*None' or data[n].objectives=='*under observation':
                data_status = 'Pending'
                break
             else:
@@ -430,7 +446,7 @@ def patientlist(request):
             newPatienthistory.save()
 
             messages.success(request,"Added Patient Data Successfully")
-            return redirect('patientlist')
+            return redirect('patienttable')
     patientsdata = {'patientsdata': Patient.objects.all()}
     return render(request, 'patientlist.html',patientsdata)
 
@@ -536,7 +552,7 @@ def updatemedrecord(request,pk):
     return redirect('medications')
 
 @login_required(login_url="loginuser")
-def pdfreport(request,pk,sig,conCounter):
+def pdfreport(request,pk,sig,conCounter,nextappointment):
     date_joined = datetime.now()
     formatted_datetime = formats.date_format(date_joined, "SHORT_DATETIME_FORMAT")
     patient_record = Patient.objects.get(id=pk)
@@ -551,6 +567,7 @@ def pdfreport(request,pk,sig,conCounter):
                 'patient_record':patient_record,          
                 'medicationrecord':medicationrecord,
                 'static_url':static_url,
+                'nextappointment':nextappointment,
     }
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'filename="report.pdf"'

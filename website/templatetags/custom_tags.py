@@ -16,3 +16,8 @@ def testing1(pk):
 def Medhistory(pcode):
     Phistory = Patienthistory.objects.filter(patient_code=pcode)
     return Phistory
+
+@register.simple_tag
+def getPatientID(pCode):
+    patientID = Patient.objects.get(patient_code=pCode)
+    return patientID.id
