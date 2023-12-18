@@ -34,7 +34,7 @@ class Medicinelist(models.Model):
     medsize = models.CharField(max_length=50,null=True, blank=True) 
 
 class Patienthistory(models.Model):
-    created_at = models.DateTimeField(auto_now_add=True)
+    created_at = models.DateTimeField(auto_now_add=True,null=True, blank=True)
     consultCounter = models.CharField(max_length=50)
     patient_code=models.CharField(max_length=50)
     diagnosis = models.TextField(default="*under observation",max_length=500,null=True, blank=True)

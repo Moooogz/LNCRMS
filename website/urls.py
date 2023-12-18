@@ -47,4 +47,5 @@ urlpatterns = [
     path('deletedosageduration/<int:pk>',views.deletedosageduration, name='deletedosageduration'),
 
     path('comparepage/<int:pk>/<int:pkHistory>',views.comparepage, name='comparepage'),
+    path('comparepage/<int:pk>/<int:pkHistory>/<int:compareID>',views.comparepage, name='comparepage'),
 ]

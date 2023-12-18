@@ -586,13 +586,30 @@ def deletedosageduration(request,pk):
     return redirect('medicationsettings')
 
 @login_required(login_url="loginuser")  
-def comparepage(request,pk,pkHistory):
+def comparepage(request,pk,pkHistory,compareID=''):
     
     context=patientinfoData(pk)
-    patienthistory_Data= Patienthistory.objects.get(id=pkHistory)
-    context['patient_history']= patienthistory_Data
     pCode= context['pCode']
+    historydata = Patienthistory.objects.filter(patient_code=pCode)   
+    
+    patienthistory_Data= Patienthistory.objects.get(id=pkHistory)
+    context['pkHistory']=pkHistory
+    context['compareID']=compareID
+    context['patient_history']= patienthistory_Data
+    context['historydatalist']=historydata
     context['medicinedata'] =Medicinelist.objects.all()
     context['patient_history_attachments'] = PatientsAttachments.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data.consultCounter)
     context['prescriptionrecord'] = Prescription.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data.consultCounter)
+    
+    if not compareID=='':
+       
+        patienthistory_Data2= Patienthistory.objects.get(id=compareID)
+        context['patient_history2']= patienthistory_Data2
+        context['patient_history_attachments2'] = PatientsAttachments.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data2.consultCounter)
+        context['prescriptionrecord2'] = Prescription.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data2.consultCounter)
+        
+
+
+    if 'datechanged1' in request.POST:
+        print("press1")
     return render(request, 'comparepage.html',context)

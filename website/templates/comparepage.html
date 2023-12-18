@@ -3,42 +3,22 @@
 <html lang="en">
 
 <head>
+
     <!-- Required meta tags -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
-        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
-
     <title>File compare</title>
 
-     <!--Bootstrap CSS-->
-    
-     <link
-     href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
-     rel="stylesheet"
-     integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
-     crossorigin="anonymous"
-   />
+    <!--Custom CSS-->
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <!--Bootstrap CSS-->
 
-   <!--Bootstrap ICons-->
-   <link
-     rel="stylesheet"
-     href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css"
-   />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous" />
 
-
-    <!--Datatable CSS-->
-    
-    <link
-      rel="stylesheet"
-      href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css"
-    />
-
- <!--Custom CSS-->
- <link rel="stylesheet" href="{% static 'style.css' %}" />
-   
+    <!--Bootstrap ICons-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" />
 
     <style>
         .flex {
@@ -74,64 +54,187 @@
             letter-spacing: 2px;
         }
     </style>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous" />
+    <!--Datatable CSS-->
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" />
+
     {% comment %} <div class="sticky">
         <div class=" header-base">
-           <div style="background-color:green">
-             <img src="{% static "logo.png" %}" width="50px">
-             <img src="{% static "logo2.jpg" %}" width="50px">
-           <span class="logotitle"><b>LABAGUIS</b></span> <strong style="color:black;font-size:15px;">Neuro Clinic and Neurocare Pharmacy</strong></div>
-         </div></div> {% endcomment %}
+            <div style="background-color:green">
+                <img src="{% static "logo.png" %}" width="50px">
+                <img src="{% static "logo2.jpg" %}" width="50px">
+                <span class="logotitle"><b>LABAGUIS</b></span> <strong style="color:black;font-size:15px;">Neuro Clinic
+                    and Neurocare Pharmacy</strong></div>
+        </div>
+    </div> {% endcomment %}
 </head>
 
 <body>
 
+    <div class="">
 
-    <div class="sticky">
-        <div class=" header-base2">
-           <div>
-             <img src="{% static "logo.png" %}" width="50px">
-             <img src="{% static "logo2.jpg" %}" width="50px">
-           <span class="logotitle"><b>LABAGUIS</b></span> <strong style="color:black;font-size:15px;">Neuro Clinic and Neurocare Pharmacy</strong></div>
-         </div>
-     
-         <div class="info-row1">
-            <div class="col1-info">
-              <label class="lbl-pname">PATIENT NAME : &nbsp &nbsp </label>
-              <label class="value-pname">{{patient_record.first_name}} {{patient_record.middle_name}}
-                {{patient_record.last_name }}
-              </label>
-            </div>
-          
-            <div class="col2-info">
-              <label class="lbl-pname">PATIENT NUMBER : &nbsp &nbsp</label>
-              <label class="value-pname">{{patient_record.patient_code}} </label>
-            </div>
-          </div>
+        {% comment %} <div class=" header-base2">
+            <div>
+                <img src="{% static "logo.png" %}" width="50px">
+                <img src="{% static "logo2.jpg" %}" width="50px">
+                <span class="logotitle"><b>LABAGUIS</b></span> <strong style="color:black;font-size:15px;">Neuro Clinic
+                    and Neurocare Pharmacy</strong></div>
+                  
+        </div> {% endcomment %}
+         
+        <label class="lbl-pname">PATIENT NAME : &nbsp &nbsp </label>
+        <label class="value-pname">{{patient_record.first_name}} {{patient_record.middle_name}}
+            {{patient_record.last_name }}
+        </label>
+   
+</div>
+    
 
     <div class="flex">
         <div id="one" class="split" style="background-color:white">
-            <div class="heading" >
-                Column one
+            <div class="title-form5 sticky m-0">
+
             </div>
+            <a class="btn btn-outline-success" style="margin-left:20px;margin-top:10px;" type="button"
+                data-bs-toggle="modal" data-bs-target="#searchhistory">
+                <i class="bi bi-search"></i> Change Data</a>
+
+                <div class="card m-3">
             {% include "compareitem1.html" %}
-
-
+             </div>
 
         </div>
-
 
         <div id="two" class="split" style="background-color:white">
-            <div class="heading">
-                Column two
-            </div>
-            {% include "compareitem2.html" %}
+            <div class="title-form5 sticky">
 
+            </div>
+            <a class="btn btn-outline-success" style="margin-left:20px;margin-top:10px;" type="button"
+                data-bs-toggle="modal" data-bs-target="#searchhistory2">
+                <i class="bi bi-search"></i> Change Data</a>
+                <div class="card m-3">
+            {% include "compareitem2.html" %}
+            </div>
 
         </div>
     </div>
 
 
+     <!--Search History Modal-->
+     <div class="modal fade sm" id="searchhistory2" data-bs-backdrop="modal" aria-labelledby="print_report"
+     aria-hidden="true">
+     <div class="modal-dialog modal-lg modal-dialog-centered">
+
+         <div class="modal-content">
+             <div class="title-form2">
+
+                 <span><i class="bi bi-search"></i> &nbsp Choose Different Data</span>
+                 <span class="close_button"> <a href="" data-bs-dismiss="modal"
+                         class="btn btn-danger btn-sm">CLOSE</a></span>
+             </div>
+
+             <div class="m-3">
+
+                 <!--MEDICINES TABLE-->
+
+                 <table id="searchhistoryTB2" class="medicine-tables content-table ">
+                     <thead>
+                         <tr>
+                             <th>Date Consulted</th>
+                             <th>Remarks</th>
+                             <th></th>
+
+                         </tr>
+                     </thead>
+                     <tbody>
+                         {% for phlist in historydatalist %}
+                         <tr>
+                             <td>{{phlist.created_at}}</td>
+                             <td>{{phlist.remarks}}</td>
+                             <td>
+                                 <form action="{% url "comparepage" pID pkHistory phlist.id%}" method="POST">
+                                     {% csrf_token %}
+                                     <button type='submit' name="datechanged1" id="link-select">Load Data</button>
+                                 </form>
+                             </td>
+                         </tr>
+                         {% endfor %}
+
+                     </tbody>
+                 </table>
+
+             </div>
+         </div>
+
+     </div>
     </div>
+
+    <!--Search History Modal-->
+    <div class="modal fade sm" id="searchhistory" data-bs-backdrop="modal" aria-labelledby="print_report"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content">
+                <div class="title-form2">
+
+                    <span><i class="bi bi-search"></i> &nbsp Choose Different Data 1</span>
+                    <span class="close_button"> <a href="" data-bs-dismiss="modal"
+                            class="btn btn-danger btn-sm">CLOSE</a></span>
+                </div>
+
+                <div class="m-3">
+
+                    <!--MEDICINES TABLE-->
+
+                    <table id="searchhistoryTB" class="medicine-tables content-table ">
+                        <thead>
+                            <tr>
+                                <th>Date Consulted</th>
+                                <th>Remarks</th>
+                                <th></th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for phlist in historydatalist %}
+                            <tr>
+                                <td>{{phlist.created_at}}</td>
+                                <td>{{phlist.remarks}}</td>
+                                <td>
+                                    {% if compareID %}
+                                    <form action="{% url "comparepage" pID phlist.id compareID%}" method="POST">
+                                        {% csrf_token %}
+                                        <button type='submit' name="datechanged1" id="link-select">Load Data</button>
+                                    </form>
+                                    {% else %}
+                                    <form action="{% url "comparepage" pID phlist.id%}" method="POST">
+                                        {% csrf_token %}
+                                        <button type='submit' name="datechanged1" id="link-select">Load Data</button>
+                                    </form>
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% endfor %}
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </div>
+
+
+
+
+
+
+    
+
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -148,6 +251,23 @@
             sizes: [50, 50]
         });
     </script>
+
+    <!--Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous">
+    </script>
+
+    <!-- Datatable JS-->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+    <script>
+        $("#searchhistoryTB").DataTable({})
+        $("#searchhistoryTB2").DataTable({})
+    </script>
+
 </body>
 
 </html>

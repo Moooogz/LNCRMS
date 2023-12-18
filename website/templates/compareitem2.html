@@ -1,1 +1,119 @@
-<h1>Hello World</h1>
+{% load static %}
+<div class="add_medicalhistorytable">
+  
+  <h2>Medical History</h2>
+  <hr class="border border-success border-2 opacity-50">
+    <label class="lbl-pname5">CONSULTATION DATE/TIME</label><br />
+
+    <label class="value-pname">{{patient_history2.created_at}} </label>
+
+</div>
+
+<div class="add_medicalhistorytable_flex">
+    <div class="history_item">
+        <label class="lbl-pname5">BLOOD PRESSURE</label><br />
+
+        <label class="value-pname">{{patient_history2.bp}} </label><br />
+    </div>
+
+    <div class="history_item">
+        <label class="lbl-pname5">WEIGHT</label><br />
+
+        <label class="value-pname">{{patient_history2.weight}} </label><br />
+    </div>
+
+    <div class="history_item">
+        <label class="lbl-pname5">HEIGHT</label><br />
+
+        <label class="value-pname">{{patient_history2.height}} </label>
+    </div>
+
+    <div class="history_item">
+        <label class="lbl-pname5">TEMPERATURE</label><br />
+
+        <label class="value-pname">{{patient_history2.bodytemp}} </label>
+    </div>
+</div>
+
+<div class="add_medicalhistorytable">
+    <label class="lbl-pname5">COMMON CONCERN</label><br />
+
+    <label class="value-pname">{{patient_history2.remarks}} </label>
+</div>
+
+<div class="add_medicalhistorytable">
+    <label class="lbl-pname5">ASSESSMENT/DIAGNOSIS</label><br />
+
+    <label class="value-pname">{{patient_history2.diagnosis}} </label>
+</div>
+
+<div class="add_medicalhistorytable">
+    <label class="lbl-pname5">PLANS AND RECOMMENDATIONS</label><br />
+
+    <label class="value-pname">{{patient_history2.plans_recommendations}} </label>
+</div>
+
+<div class="add_medicalhistorytable">
+    <label class="lbl-pname5">OBJECTIVE/S</label><br />
+
+    <label class="value-pname">{{patient_history2.objectives}} </label>
+</div>
+         
+<h2>Medication/Prescription</h2>
+<hr class="border border-success border-2 opacity-50">
+
+                <!--PATIENT PRESCRIPTION TABLE-->
+                <div class="medicalhistorytablsae ml-2 mr-2 mb-5">
+                  <table id="table-medicationss" class="table table-sm table-bordered content-table">
+                    <thead class="table-success bg-gradient">
+                      <tr>
+                        <th rowspan="2">Quantity</th>
+                        <th rowspan="2">Medication/Preparation</th>
+                        <th rowspan="2">Dosage</th>
+                        <th colspan="3">Schedule of Intake</th>
+                    
+                      </tr>
+                      <tr>
+                        <th>7:00 AM</th>
+                        <th>1:00 PM</th>
+                        <th>7:00 PM</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% if prescriptionrecord2 %}
+                      {% for medrecord in prescriptionrecord2 %}
+                      <tr>
+                        <td>{{medrecord.totalquantity}}</td>
+                        <td>{{medrecord.medname}} ({{medrecord.medgenname}}) {{medrecord.medsize}}</td>
+                        <td>{{medrecord.medqty}} {{medrecord.medtype}}(s) a {{medrecord.perduration}}</td>
+                        <td>{{medrecord.morning}}</td>
+                        <td>{{medrecord.noon}}</td>
+                        <td>{{medrecord.evening}}</td>
+                       
+                      </tr>
+                      {% endfor %}
+                      {% else %}
+                      <td colspan="6">No current prescription data.</td>
+                      {% endif %}
+                    </tbody>
+                  </table>
+                </div>
+                <!--end of PATIENT PRESCRIPTION TABLE-->
+
+             
+
+            <h2>Files/Attachments</h2>
+            <hr class="border border-success border-2 opacity-50">
+            {% if patient_history_attachments2 %}
+            {% for a in  patient_history_attachments2%}
+            <center> {{a.name}}</center>
+            <a class="" id="link-viesw" type="button" href="{{a.fileattachments.url}}" target="_blank">
+            
+            <img src="{{a.fileattachments.url}}" width="100%"> </img>
+          </a>
+           
+
+            {% endfor %}
+            {% endif %}
+
+           
