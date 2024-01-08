@@ -45,17 +45,17 @@
     <div class="col-md-4">
       <label class="form-label">Medicine/Preparation</label>
       <input type="text" class="form-control  mt-2" placeholder="medicine name" value="{{medselected.medname}}"
-        name="medname">
+        name="medname" required>
     </div>
     <div class="col-md-4">
       <label for="inputZip" class="form-label"></label>
       <input type="text" class="form-control mt-3" placeholder="generic brand" value="{{medselected.medgenname}}"
-        name="medgenname">
+        name="medgenname" required>
     </div>
     <div class="col-md-4">
       <label for="inputZip" class="form-label"></label>
       <input type="text" class="form-control mt-3" placeholder="ex. mg/ml" value="{{medselected.medsize}}"
-        name="medsize">
+        name="medsize" required>
     </div>
   </div>
 
@@ -64,15 +64,15 @@
   <div class="row m-3">
     <div class="col-md-4">
       <label class="form-label">Medicine/Preparation</label>
-      <input type="text" class="form-control  mt-2" placeholder="medicine name" name="medname">
+      <input type="text" class="form-control  mt-2" placeholder="medicine name" name="medname" required>
     </div>
     <div class="col-md-4">
       <label for="inputZip" class="form-label"></label>
-      <input type="text" class="form-control mt-3" placeholder="generic brand" name="medgenname">
+      <input type="text" class="form-control mt-3" placeholder="generic brand" name="medgenname" required>
     </div>
     <div class="col-md-4">
       <label for="inputZip" class="form-label"></label>
-      <input type="text" class="form-control mt-3" placeholder="ex. mg/ml" name="medsize">
+      <input type="text" class="form-control mt-3" placeholder="ex. mg/ml" name="medsize" required>
     </div>
   </div>
 
@@ -82,7 +82,7 @@
     <div class="col g-3">
       <label for="inputCity" class="form-label">Transcription(Dosage)</label>
       <div class="input-group mb-3">
-        <input type="number" class="form-control" id="inputCity" placeholder="quantity" name="medqty">
+        <input type="number" class="form-control" id="inputCity" placeholder="quantity" name="medqty" required>
         <div class="input-group-append">
           <select id="inputState" class="form-select" name="medtype">
             <option selected>Tablet</option>
@@ -103,7 +103,7 @@
     <div class="col g-3">
       <label for="inputZip" class="form-label">Duration</label>
       <div class="input-group mb-3">
-        <input type="number" class="form-control" placeholder="ex. 1,2,3 . . ." name="durationqty">
+        <input type="number" class="form-control" placeholder="ex. 1,2,3 . . ." name="durationqty" required>
 
         <div class="input-group-append">
           <select id="inputState" class="form-select" name="medduration">
@@ -121,15 +121,15 @@
   <div class="row m-3">
     <div class="col-md-4">
       <label for="inputCity" class="form-label">Morning</label>
-      <input type="number" class="form-control" id="inputCity" placeholder="" name="am">
+      <input type="number" class="form-control" id="inputCity" placeholder="" name="am" required>
     </div>
     <div class="col-md-4">
       <label for="inputState" class="form-label">Noon</label>
-      <input type="number" class="form-control" id="inputCity" placeholder="" name="noon">
+      <input type="number" class="form-control" id="inputCity" placeholder="" name="noon" required>
     </div>
     <div class="col-md-4">
       <label for="inputZip" class="form-label">Evening</label>
-      <input type="number" class="form-control" id="inputCity" placeholder="" name="pmvalue">
+      <input type="number" class="form-control" id="inputCity" placeholder="" name="pmvalue" required>
     </div>
   </div>
 

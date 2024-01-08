@@ -25,7 +25,7 @@ class PatientsAttachments(models.Model):
     patient_code=models.CharField(max_length=50,null=True, blank=True)
     name = models.CharField(max_length=100,null=True, blank=True)
     consultCounter = models.CharField(max_length=50,null=True, blank=True)
-    fileattachments = models.ImageField(null=True, blank=True)
+    fileattachments = models.FileField(null=True, blank=True)
     
 class Medicinelist(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)   

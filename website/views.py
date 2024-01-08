@@ -58,7 +58,7 @@ def dashboard(request):
     consultationtable = Patienthistory.objects.all()
     patientcount=Patient.objects.all().count()
     medicinecount= Medicinelist.objects.all().count()
-    consultationscount= Patienthistory.objects.all().count()
+    consultationscount= len(Patienthistory.objects.filter(created_at__contains=datetime.now().date()))
     patientsdata =  Patient.objects.all()
     status=[]
     for pd in patientsdata:
@@ -77,6 +77,9 @@ def dashboard(request):
                'consultationscount':consultationscount,
                'status':status,
                }
+    # my_date = date(2023, 10, 23)
+    # datenow=datetime.now().date()
+    # print(len(Patienthistory.objects.filter(created_at__contains=datenow)))
     return render(request, 'dashboard.html',context)
 
 @login_required(login_url="loginuser")
