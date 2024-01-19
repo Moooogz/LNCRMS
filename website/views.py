@@ -179,7 +179,9 @@ def patientmedinfo_attachments(request,pk,pkHistory,selectedmed=''):
                 form_final=form.save(commit=False)
                 form_final.consultCounter = patienthistory_Data.consultCounter
                 form_final.patient_code = pCode
-                form_final.save()
+                atype=request.POST.get('uploadtype',False)
+                form_final.atype=atype         
+                form_final.save()   
             else:
                 print("error add attachments")
         elif 'select_medicine' in request.POST:

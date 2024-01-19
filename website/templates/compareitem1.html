@@ -108,11 +108,16 @@
             {% if patient_history_attachments %}
             {% for a in  patient_history_attachments%}
             <center> {{a.name}}</center>
+            {% if a.atype == "image" %}
             <a class="" id="link-viesw" type="button" href="{{a.fileattachments.url}}" target="_blank">
             
             <img src="{{a.fileattachments.url}}" width="100%"> </img>
           </a>
-           
+          {% else %}
+         <video controls>
+          <source src="{{a.fileattachments.url}}">
+         </video>
+          {% endif %}
 
             {% endfor %}
             {% endif %}

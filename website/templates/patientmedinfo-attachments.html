@@ -45,7 +45,13 @@
             {% for a in  patient_history_attachments%}
             <tr>
                 <td>{{a.name}}</td>
-                <td><img src="{{a.fileattachments.url}}" width="50"></img>
+                
+                <td>
+                    {% if a.atype == "image" %}
+                    <img src="{{a.fileattachments.url}}"  width="50"></img>
+                    {% else %}
+                    Video File
+                    {% endif %}
                     <a class="" id="link-view" type="button" href="{{a.fileattachments.url}}" target="_blank">
                         Open
                     </a>
@@ -76,6 +82,15 @@
                 <div class="reg-row fullwidth" style="padding: 10px;width:100%;">
 
                     {{form.name}}
+
+                </div>
+                <div class="reg-row fullwidth" style="padding: 10px;width:100%;">
+
+                    <select class="reg-input p-2" name="uploadtype">
+                        <option selected>-options-</option>
+                        <option>Image</option>
+                        <option>Video</option>                       
+                      </select>
 
                 </div>
                 <div class="reg-row" style="padding: 10px;width:100%;">
