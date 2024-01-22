@@ -109,7 +109,7 @@
         <h5 class="card-title">{{record.remarks}}</h5>
         <p class="card-text">{{record.objectives}}</p>
         <a href="{% url "patientmedinfo_geninfo" patient_record.id record.id%}" class="btn btn-success" style="width:150px">Show Details...</a>
-        <a href="{% url "comparepage" patient_record.id record.id%}" target="_blank" class="btn btn-primary" style="width:150px">Compare</a>
+        <a href="{% url "comparepage" patient_record.id record.id%}" target="_blank" class="btn btn-outline-success" style="width:150px">Compare</a>
         <a href="{% url "deletemedicalhistory" patient_record.id record.id%}" class="btn btn-danger" ><i class="bi bi-trash3"></i></a>
       </div>
     </div>

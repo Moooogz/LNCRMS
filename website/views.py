@@ -16,6 +16,10 @@ from datetime import datetime, date, timedelta
 import calendar
 
 
+def writelog(logmessage,activeuser):
+    SystemLog.objects.create(userLog=activeuser, logMessage=logmessage)
+    
+
 def registrationpage(request):
     userForm = UserCreationForm()
 
@@ -80,6 +84,11 @@ def dashboard(request):
     # my_date = date(2023, 10, 23)
     # datenow=datetime.now().date()
     # print(len(Patienthistory.objects.filter(created_at__contains=datenow)))
+
+
+    
+    
+
     return render(request, 'dashboard.html',context)
 
 @login_required(login_url="loginuser")
@@ -497,6 +506,7 @@ def login_user(request):
         if user is not None:
             login(request, user)
             messages.success(request,f"You have been login! Welcome {uNmae}")
+            writelog("has login",request.user)
             return redirect('dashboard')            
         else:
             messages.success(request,"Invalid Username and Password...")

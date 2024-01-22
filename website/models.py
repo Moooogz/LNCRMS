@@ -75,4 +75,10 @@ class Dosageduration(models.Model):
     daysqty_duration = models.CharField(max_length=50,null=True, blank=True)
     dosage_duration = models.CharField(max_length=50,null=True, blank=True)
 
+
+class SystemLog(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    userLog = models.CharField(max_length=50,null=True, blank=True)
+    logMessage = models.CharField(max_length=200,null=True, blank=True)
+
     

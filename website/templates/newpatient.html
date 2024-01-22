@@ -1,19 +1,9 @@
-<div class="title-form ">Add New Patient</div>
+<div class="title-form">Add New Patient</div>
 <form method="POST">
     {% csrf_token %}
 <div class="form-fields">
     
-    <div class="reg-row">
-        <div class="reg-col">
-        <label class="reg-label">Senior ID No.</label><br>
-        <input class="reg-input" name="srID" width="60%" value ='none' required>
-        </div>  
-        <div class="reg-col">
-            <label class="reg-label">PWD ID No.</label><br>
-            <input class="reg-input" name="pwdID" width="60%" value ='none' required>
-            </div> 
-    </div>
-
+   <h4>Personal Information</h4>
     <div class="reg-row">
         <div class="reg-col">
         <label class="reg-label">Lastname</label><br>
@@ -66,6 +56,13 @@
             <label class="reg-label">Civil Status</label><br>
             <input class="reg-input" name="civil_status" size="20px" required> 
         </div>
+       
+    </div>
+    
+    <br><br>
+
+    <h4>Contact Information</h4>
+    <div class="reg-row">        
         <div class="reg-col">
             <label class="reg-label">Contact Number</label><br>
             <input class="reg-input" name="contact_number" size="20px" required>
@@ -79,6 +76,22 @@
             <input class="reg-input" name="address" size="80%" required>
         </div>
     </div>
+
+
+    <br><br>
+
+    <h4>Medical Information</h4>
+    <div class="reg-row">
+        <div class="reg-col">
+        <label class="reg-label">Senior ID No.</label><br>
+        <input class="reg-input" name="srID" width="60%" value ='none' required>
+        </div>  
+        <div class="reg-col">
+            <label class="reg-label">PWD ID No.</label><br>
+            <input class="reg-input" name="pwdID" width="60%" value ='none' required>
+            </div> 
+    </div>
+
 
     <br>
     <div class="reg-row">        
