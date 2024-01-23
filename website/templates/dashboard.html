@@ -1,79 +1,107 @@
 {% extends 'index.html' %}
 {% load custom_tags %}
- {% block pagetitle %} Dashboard{% endblock pagetitle%}  
- 
- {% block content%}
-    <div class="dashboard-row2">
-            <div< class="dashboard-patient">
-                <h5><i class="bi patienticon bi-people"></i></h5>
-                <div class="mt-2">
-                    <span style="font-size: 12px">PATIENTS</span>
-                    <h3>{{patientcount}}</h3>
-                    <div></div>
-                </div>
-            </div<>
+{% block pagetitle %} Dashboard{% endblock pagetitle%}
 
-            <div< class="dashboard-medicines">
-                <h5><i class="bi patienticon bi-prescription"></i></h5>
-                <div class="mt-2">
-                    <span style="font-size: 12px">MEDICINES</span>
-                    <h3>{{medicinecount}}</h3>
-                    <div></div>
-                </div>
-            </div<>
+{% block content%}
 
-            <div< class="dashboard-consultations">
-                <h4><i class="bi patienticon bi-clipboard2-pulse"></i></h4>
-                <div class="mt-2">
-                    <span style="font-size: 12px">TODAYS' CONSULTATIONS</span>
-                    <h3>{{consultationscount}}</h3>
-                    <div></div>
-                </div>
-            </div<>
-    </div>
-
-      <!--Table container-->
-      <div class="container4">
-      
-        <div class="table-box2">
-           <div class="adds"> <h4 style="color:#2ea86d;padding-top:10px;">Patients &nbsp&nbsp&nbsp</h4><h4 style="color:#2ea86d;padding-top:10px;padding-right:10px;"><a id="addpatients" href="{% url "patientlist" %}"><i class="bi bi-plus-circle-fill"></i></a></h4></div>
-            <hr><br>
-          {% include 'patientstable.html' %}
+<div class="dashboard-row2">
+    <div< class="dashboard-patient">
+        <h5><i class="bi patienticon bi-people"></i></h5>
+        <div class="mt-2">
+            <span style="font-size: 12px">PATIENTS</span>
+            <h3>{{patientcount}}</h3>
+            <div></div>
         </div>
+    </div<>
+
+    <div< class="dashboard-medicines">
+        <h5><i class="bi patienticon bi-prescription"></i></h5>
+        <div class="mt-2">
+            <span style="font-size: 12px">MEDICINES</span>
+            <h3>{{medicinecount}}</h3>
+            <div></div>
         </div>
+    </div<>
 
-    <div class="dashboard-row">
-        <div class="dashboard-tblconsultations">
-            <h4 style="color:#2ea86d">Consultations</h4>
-            <hr><br>
+    <div< class="dashboard-consultations">
+        <h4><i class="bi patienticon bi-clipboard2-pulse"></i></h4>
+        <div class="mt-2">
+            <span style="font-size: 12px">TODAYS' CONSULTATIONS</span>
+            <h3>{{consultationscount}}</h3>
+            <div></div>
+        </div>
+    </div<>
+</div>
+<!--Table container-->
+<div class="container4 mb-3">
 
-            <table id="consultation-table" class="patient-table table-striped content-table">
-                <thead class="table-success">
-                    <th>Patient Number</th>
-                    <th>Common Concern</th>
-                    <th>Diagnosis</th>
-                    <th>Date/Time</th>
-                    <th>Actions</th>
-                </thead>
-                {% for x in consultationtable %}
-                    <tr>
-                        <td>{{x.patient_code}}</td>
-                        <td>{{x.remarks}}</td>
-                        <td>{{x.diagnosis}}</td>
-                        <td>{{x.created_at}}</td>
-                        <td>
-                            {% getPatientID x.patient_code as pcode %}
-                            <a href="{% url "patientmedinfo_geninfo" pcode x.id%}" id="link-view"><i class="bi bi-eye"></i> Open</a>
-                           
-                        </td>   
-                    </tr>
-                {% endfor %}
-            </table>
-            </div>
+    <div class="table-box2">
+        <div class="adds">
+            <h4 style="color:#2ea86d;padding-top:10px;">System Log &nbsp&nbsp&nbsp</h4>
+    
+        </div>
+        <hr><br>
+           <table id="consultation-tablse" class="">
+          
+            {% for syslog in systemlogdata %}
+            <tr>
+                <td><b>{{syslog.created_at}}</b>   : {{syslog.userLog}}, {{syslog.logMessage}}</td>
+               
+            </tr>
+            
+            {% endfor %}
+            <tr><a href="#" class="link-primary"> . . . Open System Log window</a></tr>
+        </table>
+
     </div>
+</div>
+<!--Table container-->
+<div class="container4">
 
-    {% comment %} <div class="dashboard-row"> {% endcomment %}
-  
+    <div class="table-box2">
+        <div class="adds">
+            <h4 style="color:#2ea86d;padding-top:10px;">Patients &nbsp&nbsp&nbsp</h4>
+            <h4 style="color:#2ea86d;padding-top:10px;padding-right:10px;"><a id="addpatients"
+                    href="{% url "patientlist" %}"><i class="bi bi-plus-circle-fill"></i></a></h4>
+        </div>
+        <hr><br>
+        {% include 'patientstable.html' %}
+    </div>
+</div>
+
+<div class="dashboard-row">
+    <div class="dashboard-tblconsultations">
+        <h4 style="color:#2ea86d">Consultations</h4>
+        <hr><br>
+
+        <table id="consultation-table" class="patient-table table-striped content-table">
+            <thead class="table-success">
+                <th>Patient Number</th>
+                <th>Common Concern</th>
+                <th>Diagnosis</th>
+                <th>Date/Time</th>
+                <th>Actions</th>
+            </thead>
+            {% for x in consultationtable %}
+            <tr>
+                <td>{{x.patient_code}}</td>
+                <td>{{x.remarks}}</td>
+                <td>{{x.diagnosis}}</td>
+                <td>{{x.created_at}}</td>
+                <td>
+                    {% getPatientID x.patient_code as pcode %}
+                    <a href="{% url "patientmedinfo_geninfo" pcode x.id%}" id="link-view"><i class="bi bi-eye"></i>
+                        Open</a>
+
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
 
 
- {%endblock%}
+
+{% comment %} <div class="dashboard-row"> {% endcomment %}
+
+    {%endblock%}

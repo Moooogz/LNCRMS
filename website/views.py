@@ -59,6 +59,7 @@ def home(request):
 
 @login_required(login_url="loginuser")
 def dashboard(request):        
+    systemlogdata = SystemLog.objects.all().order_by('-id')[:5]
     consultationtable = Patienthistory.objects.all()
     patientcount=Patient.objects.all().count()
     medicinecount= Medicinelist.objects.all().count()
@@ -80,6 +81,7 @@ def dashboard(request):
                'medicinecount':medicinecount,
                'consultationscount':consultationscount,
                'status':status,
+               'systemlogdata':systemlogdata,
                }
     # my_date = date(2023, 10, 23)
     # datenow=datetime.now().date()
@@ -106,6 +108,7 @@ def medicalhistorytb(request,pk):
             pHistoryForm_final.patient_code = pCode
             pHistoryForm_final.save()
             messages.success(request,"Added Medical History Successfully")
+            writelog(f"Added Medical Information for patient ({pCode})",request.user)
             return redirect(f'/patientinfo/{pk}')
         else:
             print("error")
