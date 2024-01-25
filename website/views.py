@@ -72,9 +72,10 @@ def dashboard(request):
             if data[n].diagnosis=='*under observation' or data[n].plans_recommendations=='None' or data[n].objectives=='*None' :
                data_status = 'Pending'
                break
-            else:
+            else:             
                data_status = 'Completed'
         status.append(data_status)
+             
     context = {"consultationtable":consultationtable,
                'patientsdata': Patient.objects.all(),
                'patientcount':patientcount,
@@ -137,6 +138,7 @@ def medicalhistoryinfo(request,pk,pkHistory,selectedmed=''):
                 form_final.consultCounter = patienthistory_Data.consultCounter
                 form_final.patient_code = pCode
                 form_final.save()
+                writelog(f"Added attachments for patient ({pCode})",request.user)
             else:
                 print("error add attachments")
         elif 'select_medicine' in request.POST:
@@ -194,6 +196,7 @@ def patientmedinfo_attachments(request,pk,pkHistory,selectedmed=''):
                 atype=request.POST.get('uploadtype',False)
                 form_final.atype=atype         
                 form_final.save()   
+                writelog(f"added attachments for patient ({pCode})",request.user)
             else:
                 print("error add attachments")
         elif 'select_medicine' in request.POST:
@@ -245,11 +248,13 @@ def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''):
             print(str(datenow.strftime("%B %d, %Y")))
             checked=request.POST.getlist('sigchecked')
             conCounter= patienthistory_Data.consultCounter
+            writelog(f"generated prescription for patient ({pCode})",request.user)
             if len(checked)>0:
                 sigValue = "\doctorsignature.png"
                 return redirect(f'/report/{pk}/{sigValue}/{conCounter}/{nextappointment}')
             else:
                 return redirect(f'/report/{pk}/nosig/{conCounter}/{nextappointment}')
+            
         else:
              messages.error(request,f"ERROR: No Records to print!")
     elif 'select_medicine' in request.POST:
@@ -338,6 +343,7 @@ def editmedicalhistory(request,pk,pkHistory):
         patienthistory_Data.objectives=request.POST['objectivess']
         patienthistory_Data.plans_recommendations=request.POST['plansrecommendationss']
         patienthistory_Data.save()
+        writelog(f"edited medical information of patient ({pCode})",request.user)
         messages.success(request,"Updated Medical History Successfully")
         return redirect(f'/patientinfo/{pk}/patientmedinfo_geninfo/{pkHistory}')
         
@@ -345,10 +351,12 @@ def editmedicalhistory(request,pk,pkHistory):
 
 @login_required(login_url="loginuser")
 def deletemedicalhistory(request,pkpatient,pkmedhistory):
+    pCode = Patient.objects.get(id=pkpatient)
     if request.method=="POST":
         pHistory = Patienthistory.objects.get(id=pkmedhistory)
         pHistory.delete()
         messages.success(request,"Medical History Deleted")
+        writelog(f"Deleted medical information of patient ({pCode})",request.user)
         return redirect(f'/patientinfo/{pkpatient}')
     return render(request,'deletemedhistory.html',{}) 
     
@@ -402,12 +410,14 @@ def patienttable(request):
         data = Patienthistory.objects.filter(patient_code=pd)
         for n in range(len(data)):
             if data[n].diagnosis=='*under observation' or data[n].plans_recommendations=='None' or data[n].plans_recommendations=='*under observation' or data[n].objectives=='*None' or data[n].objectives=='*under observation':
-               data_status = 'Pending'
-               break
+            
+                data_status = 'Pending'
+                break
             else:
+             
                data_status = 'Completed'
         status.append(data_status)
-    print(status)
+    print(data)
    
     context = {'patientsdata':patientsdata,
                'status':status}
@@ -469,10 +479,13 @@ def patientlist(request):
 
 @login_required(login_url="loginuser")
 def deletepatient(request,pk):
+    pCode= Patient.objects.get(id=pk)
     if request.method == 'POST':
         deletepatient = Patient.objects.get(id=pk)
         deletepatient.delete()
         messages.success(request,"Record Deleted")
+        Patienthistory.objects.filter(patient_code=pCode).delete()
+        writelog(f"deleted patient ({pCode})",request.user)
         return redirect('patienttable')        
     return render(request, 'deletepatient.html',{})
 
@@ -497,6 +510,7 @@ def editpatient(request,pk):
         editpatientdata.nationality=request.POST['nationality']
         editpatientdata.save()
         messages.success(request,"Patient Data Updated Successfully")
+        writelog(f"edited patient ({editpatientdata.patient_code}) general information",request.user)
         return redirect('patientlist')      
     return render(request, 'editpatient.html',context)
 
@@ -519,6 +533,7 @@ def login_user(request):
 
 def logout_user(request):
     messages.success(request,"You logout successfully")
+    writelog("has logout",request.user)
     logout(request)
     return redirect('loginuser')
 
@@ -604,6 +619,7 @@ def deleteattachment(request,pk,pID,apk):
         os.remove(deleteattach.fileattachments.path)
     deleteattach.delete()
     messages.success(request,"Attachments Deleted!")
+    writelog(f"Updated patient ({deleteattach.patient_code}) medical attachments",request.user)
     return redirect(f'/patientinfo/{pID}/patientmedinfo_attachments/{pk}')   
 
 @login_required(login_url="loginuser")

@@ -37,22 +37,22 @@
 
     <div class="table-box2">
         <div class="adds">
-            <h4 style="color:#2ea86d;padding-top:10px;">System Log &nbsp&nbsp&nbsp</h4>
+            <h4 style="color:#2ea86d;padding-top:10px;">Activity Log &nbsp&nbsp&nbsp</h4>
     
         </div>
         <hr><br>
            <table id="consultation-tablse" class="">
-          
+            
             {% for syslog in systemlogdata %}
             <tr>
-                <td><b>{{syslog.created_at}}</b>   : {{syslog.userLog}}, {{syslog.logMessage}}</td>
+                <td><b>{{syslog.created_at}}</b>   : {{syslog.userLog}} {{syslog.logMessage}}</td>
                
             </tr>
             
             {% endfor %}
-            <tr><a href="#" class="link-primary"> . . . Open System Log window</a></tr>
+           
         </table>
-
+        <tr><a href="#" class="link-primary"> . . . see more</a></tr>
     </div>
 </div>
 <!--Table container-->
@@ -89,8 +89,8 @@
                 <td>{{x.diagnosis}}</td>
                 <td>{{x.created_at}}</td>
                 <td>
-                    {% getPatientID x.patient_code as pcode %}
-                    <a href="{% url "patientmedinfo_geninfo" pcode x.id%}" id="link-view"><i class="bi bi-eye"></i>
+                    {% getPatientID x.patient_code as pcodes %}
+                    <a href="{% url "patientmedinfo_geninfo" pcodes x.id%}" id="link-view"><i class="bi bi-eye"></i>
                         Open</a>
 
                 </td>
