@@ -1,0 +1,68 @@
+{% extends 'index.html' %}
+{% load custom_tags %}
+{% block pagetitle %} Dashboard{% endblock pagetitle%}
+
+{% block content%}
+
+<div class="dashboard-row2">
+    <div< class="dashboard-patient">
+        <h5><i class="bi patienticon bi-people"></i></h5>
+        <div class="mt-2">
+            <span style="font-size: 12px">PATIENTS</span>
+            <h3>{{patientcount}}</h3>
+            <div></div>
+        </div>
+    </div<>
+
+    <div< class="dashboard-medicines">
+        <h5><i class="bi patienticon bi-prescription"></i></h5>
+        <div class="mt-2">
+            <span style="font-size: 12px">MEDICINES</span>
+            <h3>{{medicinecount}}</h3>
+            <div></div>
+        </div>
+    </div<>
+
+    <div< class="dashboard-consultations">
+        <h4><i class="bi patienticon bi-clipboard2-pulse"></i></h4>
+        <div class="mt-2">
+            <span style="font-size: 12px">TODAYS' CONSULTATIONS</span>
+            <h3>{{consultationscount}}</h3>
+            <div></div>
+        </div>
+    </div<>
+</div>
+<!--Table container-->
+<div class="container4 mb-3">
+
+    <div class="table-box2">
+        <div class="adds">
+            <h4 style="color:#2ea86d;padding-top:10px;">Activity Log &nbsp&nbsp&nbsp</h4>
+    
+        </div>
+        
+        <hr><br>
+       
+           <table id="consultation-table" class="">
+            <thead>
+            <th></th>
+            </thead>
+            {% for syslog in systemlogdata %}
+            <tr>
+                <td><b>{{syslog.created_at}}</b>   : {{syslog.userLog}} {{syslog.logMessage}}</td>
+               
+            </tr>
+            
+            {% endfor %}
+           
+        </table>
+  
+    </div>
+</div>
+
+
+
+
+{% comment %} <div class="dashboard-row"> {% endcomment %}
+
+    {%endblock%}

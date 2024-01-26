@@ -48,4 +48,6 @@ urlpatterns = [
 
     path('comparepage/<int:pk>/<int:pkHistory>',views.comparepage, name='comparepage'),
     path('comparepage/<int:pk>/<int:pkHistory>/<int:compareID>',views.comparepage, name='comparepage'),
+
+    path('activitylog',views.activitylog, name='activitylog'),
 ]

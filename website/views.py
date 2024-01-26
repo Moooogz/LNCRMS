@@ -87,12 +87,29 @@ def dashboard(request):
     # my_date = date(2023, 10, 23)
     # datenow=datetime.now().date()
     # print(len(Patienthistory.objects.filter(created_at__contains=datenow)))
-
-
-    
-    
-
     return render(request, 'dashboard.html',context)
+
+def activitylog(request):        
+    systemlogdata = SystemLog.objects.all().order_by('-id')
+    consultationtable = Patienthistory.objects.all()
+    patientcount=Patient.objects.all().count()
+    medicinecount= Medicinelist.objects.all().count()
+    consultationscount= len(Patienthistory.objects.filter(created_at__contains=datetime.now().date()))
+    patientsdata =  Patient.objects.all()
+   
+             
+    context = {"consultationtable":consultationtable,
+               'patientsdata': Patient.objects.all(),
+               'patientcount':patientcount,
+               'medicinecount':medicinecount,
+               'consultationscount':consultationscount,
+               'systemlogdata':systemlogdata,
+               }
+
+    
+    
+
+    return render(request, 'activitylog.html',context)
 
 @login_required(login_url="loginuser")
 def medicalhistorytb(request,pk):
@@ -471,7 +488,7 @@ def patientlist(request):
             newPatienthistory.patient_code=phistory_code
             newPatienthistory.consultCounter = str(consultCounter())
             newPatienthistory.save()
-
+            writelog(f"added new patient(P-{lastcode:03})",request.user) 
             messages.success(request,"Added Patient Data Successfully")
             return redirect('patienttable')
     patientsdata = {'patientsdata': Patient.objects.all()}
