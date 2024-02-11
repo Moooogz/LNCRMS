@@ -220,7 +220,37 @@ def patientmedinfo_attachments(request,pk,pkHistory,selectedmed=''):
             if not selectedmed=='':
                 medselected = Medicinelist.objects.get(id=selectedmed)
                 context['medselected']=medselected    
-    return render(request,'patientmedinfo-attachments.html',context) 
+    return render(request,'patientmedinfo-attachments.html',context) \
+
+@login_required(login_url="loginuser")
+def patientmedinfo_labresults(request,pk,pkHistory,selectedmed=''): 
+    form =PatientsAttachmentsForm()
+    context=patientinfoData(pk)
+    patienthistory_Data= Patienthistory.objects.get(id=pkHistory)
+    context['patient_history']= patienthistory_Data
+    pCode= context['pCode']
+    context['medicinedata'] =Medicinelist.objects.all()
+    context['form']=form
+    context['patient_history_attachments'] = PatientsAttachments.objects.filter(patient_code=pCode,consultCounter=patienthistory_Data.consultCounter)
+    if request.method=='POST':
+        if 'save_attachments' in request.POST: 
+            form = PatientsAttachmentsForm(request.POST,request.FILES)
+            if form.is_valid():
+                print("success add attachments")            
+                form_final=form.save(commit=False)
+                form_final.consultCounter = patienthistory_Data.consultCounter
+                form_final.patient_code = pCode
+                atype=request.POST.get('uploadtype',False)
+                form_final.atype=atype         
+                form_final.save()   
+                writelog(f"added attachments for patient ({pCode})",request.user)
+            else:
+                print("error add attachments")
+        elif 'select_medicine' in request.POST:
+            if not selectedmed=='':
+                medselected = Medicinelist.objects.get(id=selectedmed)
+                context['medselected']=medselected    
+    return render(request,'patientmedinfo-labresults.html',context) 
 
 @login_required(login_url="loginuser")
 def patientmedinfo_medications(request,pk,pkHistory,selectedmed=''): 

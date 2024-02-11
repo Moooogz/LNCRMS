@@ -1,0 +1,88 @@
+{% extends 'patientinfo.html' %}
+{% load custom_tags %}
+{% load static %}
+
+{% block btn-back %} <a href="{% url "patientinfo" pID%}">
+  <h4 style="color:black;"><i class="bi bi-arrow-left-square-fill"></i></h4>
+</a>{% endblock btn-back %}
+{% block title %}
+<div class="lbl-details ">
+  <h3>Patient History Details &nbsp<a href="{% url "editmedicalhistory" pID patient_history.id  %}"><i
+        class="bi iconcolor bi-pencil-square"></i></a></h3>
+</div>
+
+{% endblock title %}
+{% block content1 %}
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" aria-current="page" href="{% url "patientmedinfo_geninfo" pID patient_history.id %}">General
+      Info</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url "patientmedinfo_medications" pID patient_history.id %}">Medications</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{% url "patientmedinfo_attachments" pID patient_history.id %}">Attachments</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url "patientmedinfo_labresults" pID patient_history.id %}">Lab Results</a>
+  </li>
+</ul>
+
+<div class="m-3"
+<h1>LAB RESULTS</h1>
+
+<table id="medicine-table" class="medicine-tables content-table table-sm ">
+    <thead>
+
+      <th>Name</th>
+      <th>Result</th>
+      <th>Range</th>
+    
+    </thead>
+
+  
+      <tr>
+
+        <td>1</td>
+        <td><input type="text" class="form-control  mt-2" placeholder="medicine name"
+            name="medname" required></td>
+        <td>3</td>
+       
+      </tr>
+
+    </tbody>
+
+  </table>
+</div>
+
+
+<div class="modal fade sm" id="searchmedicine" data-bs-backdrop="static" tabindex="-1" aria-labelledby="print_report"
+  aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+
+    <div class="modal-content">
+      <div class="title-form2">
+
+        <span><i class="bi bi-search"></i> &nbsp Search Medicine</span>
+        <span class="close_button"> <a href="" data-bs-dismiss="modal" class="btn btn-danger btn-sm">CLOSE</a></span>
+      </div>
+
+      <div class="m-3">
+
+        <!--MEDICINES TABLE-->
+        
+
+        </form>
+
+      </div>
+    </div>
+
+  </div>
+
+</div>
+
+<!-- END OF PRESCRIPTION FORM-->
+
+{% endblock content1 %}

@@ -26,6 +26,8 @@ urlpatterns = [
     path('patientinfo/<int:pk>/patientmedinfo_attachments/<int:pkHistory>',views.patientmedinfo_attachments, name='patientmedinfo_attachments'),
     path('patientinfo/<int:pk>/patientmedinfo_attachments/<int:pkHistory>/<int:selectedmed>/',views.patientmedinfo_attachments, name='patientmedinfo_attachments'),
 
+    path('patientinfo/<int:pk>/patientlabresults_attachments/<int:pkHistory>',views.patientmedinfo_labresults, name='patientmedinfo_labresults'),
+
     path('patientinfo/<int:pk>/medicalhistoryinfo/edit/<int:pkHistory>',views.editmedicalhistory, name='editmedicalhistory'),
     path('patientinfo/<int:pkpatient>/deletemedicalhistory/<int:pkmedhistory>',views.deletemedicalhistory, name='deletemedicalhistory'),
 
