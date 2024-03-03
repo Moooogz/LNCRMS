@@ -68,3 +68,14 @@ class PatienthistoryForm(ModelForm):
                   'plans_recommendations',
                                               
                 ]
+        
+class LabResultsForm(ModelForm):
+    class Meta:
+        model = LabResults
+        fields = ['labresultdate',
+                  'patient_code',
+                  'labname',
+                  'labresult',
+                  'labrange',
+                                              
+                ]

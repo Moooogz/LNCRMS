@@ -30,59 +30,65 @@
   </li>
 </ul>
 
-<div class="m-3"
-<h1>LAB RESULTS</h1>
 
-<table id="medicine-table" class="medicine-tables content-table table-sm ">
-    <thead>
+<form method="POST">
+  {% csrf_token %}
+<div class="row m-3">
 
-      <th>Name</th>
-      <th>Result</th>
-      <th>Range</th>
-    
-    </thead>
-
-  
-      <tr>
-
-        <td>1</td>
-        <td><input type="text" class="form-control  mt-2" placeholder="medicine name"
-            name="medname" required></td>
-        <td>3</td>
-       
-      </tr>
-
-    </tbody>
-
-  </table>
-</div>
-
-
-<div class="modal fade sm" id="searchmedicine" data-bs-backdrop="static" tabindex="-1" aria-labelledby="print_report"
-  aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-centered">
-
-    <div class="modal-content">
-      <div class="title-form2">
-
-        <span><i class="bi bi-search"></i> &nbsp Search Medicine</span>
-        <span class="close_button"> <a href="" data-bs-dismiss="modal" class="btn btn-danger btn-sm">CLOSE</a></span>
-      </div>
-
-      <div class="m-3">
-
-        <!--MEDICINES TABLE-->
-        
-
-        </form>
-
-      </div>
-    </div>
-
+  <div class="col-md-3">
+    <label class="form-label">Add Laboratory Results Data</label>
+    <input type="text" class="form-control mt-2" placeholder="particulars" 
+      name="labname" required>
+  </div>
+  <div class="col-md-3">
+    <label for="inputZip" class="form-label"></label>
+    <input type="text" class="form-control mt-3" placeholder="result" 
+      name="labresult" required>
+  </div>
+  <div class="col-md-3">
+    <label for="inputZip" class="form-label"></label>
+    <input type="text" class="form-control mt-3" placeholder="range" 
+      name="labrange" required>
+  </div>
+  <div class="col-md-3">
+    <label for="inputZip" class="form-label"></label>
+    <button class="btn btn-save form-control mt-3" type="submit" name="addlabresult">Add</button>
   </div>
 
 </div>
+</form>
 
-<!-- END OF PRESCRIPTION FORM-->
+
+<!--end of Labresults TABLE-->
+<div class="medicalhistorytable">
+  <table id="table-medicationss" class="table table-sm table-bordered ">
+    <thead class="table-success bg-gradient">
+     
+        <th>Particular</th>
+        {% for labresultsDb_data in labresultsDATEDb %}
+        <th>{{labresultsDb_data.labresultdate}}</th>
+        {% endfor %}
+        <th>Range</th> 
+     
+ 
+    </thead>
+    <tbody>
+     {% for labresultsDb_data in labresultsDb  %}
+     <tr>
+        <td>{{labresultsDb_data.labname}}</td>
+        <td>{{labresultsDb_data.labresult}}</td>
+        <td>{{labresultsDb_data.labrange}}</td>
+    </tr>
+     
+     
+     {% endfor %}
+    </tbody>
+  </table>
+</div>
+<!--end of Labresults TABLE-->
+
+
+
+
 
 {% endblock content1 %}

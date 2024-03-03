@@ -7,4 +7,5 @@ admin.site.register(Patienthistory)
 admin.site.register(Prescription)
 admin.site.register(PatientsAttachments)
 admin.site.register(SystemLog)
+admin.site.register(LabResults)
 

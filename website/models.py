@@ -81,4 +81,12 @@ class SystemLog(models.Model):
     userLog = models.CharField(max_length=50,null=True, blank=True)
     logMessage = models.CharField(max_length=200,null=True, blank=True)
 
+
+class LabResults(models.Model):
+    created_at = models.DateTimeField(auto_now_add=True)
+    labresultdate=models.CharField(max_length=50,null=True, blank=True)
+    patient_code=models.CharField(max_length=50,null=True, blank=True)
+    labname = models.CharField(max_length=50,null=True, blank=True)
+    labresult = models.CharField(max_length=50,null=True, blank=True)
+    labrange= models.CharField(max_length=50,null=True, blank=True)
     
