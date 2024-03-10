@@ -14,6 +14,7 @@ from datetime import datetime
 from django.utils import formats
 from datetime import datetime, date, timedelta
 import calendar
+import pandas as pd
 
 
 def writelog(logmessage,activeuser):
@@ -233,7 +234,7 @@ def patientmedinfo_labresults(request,pk,pkHistory,selectedmed=''):
     context['labresultsDATEDb']= LabResults.objects.order_by().values('labresultdate').distinct().filter(patient_code=pCode)
     
    
-    print(datetime.now().date().strftime("%b. %d, %Y"))
+    #print(datetime.now().date().strftime("%b. %d, %Y"))
     if request.method=='POST':
         if 'addlabresult' in request.POST:
             labresultdate= datetime.now().date().strftime("%b. %d, %Y")
@@ -251,8 +252,32 @@ def patientmedinfo_labresults(request,pk,pkHistory,selectedmed=''):
             newLabResultData=LabResultsForm(newLabResult)
             newLabResultData.save()
             
+    labnamelist=[]
+    labresultlist=[]
+    labresultDates=[]
+    labDatadict={}
+    for data in context['labresultsDb']:
+        if not data.labname in labnamelist:
+            labnamelist.append(data.labname)
+            if not data.labresultdate in labresultlist:
+                labresultlist.append(data.labresult)
+                labresultDates.append(data.labresultdate)
+    
 
-            
+        
+   
+    labDatadict['Particulars']=labnamelist  
+ 
+    # for x in labresultDates:
+    #     for y in labnamelist:
+    #         if
+    #     labDatadict[x]=x
+    
+    labnamePD = pd.DataFrame(labDatadict)
+    print(labnamePD)
+    # labnamelist.sort(reverse=True)
+    # print(labnamelist[0])
+    # context['labnamelist']=labnamelist
    
     return render(request,'patientmedinfo-labresults.html',context) 
 
